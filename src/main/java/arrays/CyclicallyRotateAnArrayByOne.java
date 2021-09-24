@@ -22,9 +22,8 @@ public class CyclicallyRotateAnArrayByOne {
 
     public static void main(String[] args) {
         int rotationDegree = 3;
-        int input1[] = {1, 2, 3, 4, 5};
-        int input2[] = new int[rotationDegree];
-        int output[] = new int[input1.length];
+        int[] input1 = {1, 2, 3, 4, 5};
+        int[] input2 = new int[rotationDegree];
 
         int input2Counter = 0;
         for (int i = input1.length - rotationDegree; i < input1.length; i++) {
