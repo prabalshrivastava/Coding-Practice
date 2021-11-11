@@ -19,17 +19,29 @@ public class MergeIntervals {
 
     public static void main(String[] args) {
         int[][] input = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+//        int[][] input = {{1, 4}, {4, 5}};
         int[][] output = new int[input.length][2];
 
         int counter = 0;
-        for (int i = 0; i < input.length - 1; i++) {
-            int[] previous = input[i];
-            int[] next = input[i + 1];
-            if (previous[1] >= next[1]) {
+        int[] next = null;
+        for (int i = 1; i < input.length; i++) {
+            int[] previous = input[i - 1];
+            next = input[i];
+            if (previous[1] >= next[0]) {
                 output[counter] = new int[]{previous[0], next[1]};
                 counter++;
+                i++;
+            } else {
+                output[counter] = new int[]{previous[0], previous[1]};
+                counter++;
+                if (i == input.length - 1) {
+                    output[counter] = new int[]{next[0], next[1]};
+                    counter++;
+                }
             }
         }
+//        if (next != null)
+//            output[counter] = new int[]{next[0], next[1]};
         System.out.println(Arrays.deepToString(output));
     }
 }
