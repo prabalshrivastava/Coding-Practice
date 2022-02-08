@@ -1,4 +1,4 @@
-package arrays;
+package faang450.arrays;
 
 public class RotateArray {
 	

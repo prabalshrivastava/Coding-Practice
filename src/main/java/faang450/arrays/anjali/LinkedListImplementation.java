@@ -1,4 +1,4 @@
-package arrays.anjali;
+package faang450.arrays.anjali;
 
 public class LinkedListImplementation {
     Node head;

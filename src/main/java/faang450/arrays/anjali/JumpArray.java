@@ -1,4 +1,4 @@
-package arrays.anjali;
+package faang450.arrays.anjali;
 
 public class JumpArray {
     public static void main(String[] args) {

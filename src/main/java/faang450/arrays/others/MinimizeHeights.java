@@ -1,4 +1,4 @@
-package arrays.others;
+package faang450.arrays.others;
 
 import java.util.*;
 import java.lang.*;

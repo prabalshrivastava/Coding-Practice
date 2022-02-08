@@ -1,4 +1,4 @@
-package arrays;
+package faang450.arrays;
 
 import java.util.ArrayList;
 import java.util.List;

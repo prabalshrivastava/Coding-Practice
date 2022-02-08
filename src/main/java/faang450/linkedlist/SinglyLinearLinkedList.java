@@ -1,8 +1,4 @@
-package linkedlist;
-
-import arrays.anjali.LinkedListImplementation;
-
-import java.util.Arrays;
+package faang450.linkedlist;
 
 public class SinglyLinearLinkedList {
     Node head;

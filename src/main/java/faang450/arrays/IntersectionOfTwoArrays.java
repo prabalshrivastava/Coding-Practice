@@ -1,4 +1,4 @@
-package arrays;
+package faang450.arrays;
 
 import java.util.Arrays;
 import java.util.LinkedList;
