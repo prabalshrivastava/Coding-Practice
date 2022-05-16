@@ -23,10 +23,27 @@ public class BestTimeToBuyAndSellStock {
 
     public static void main(String[] args) {
 //        sol1();
+//        sol2DoesntWork();
 
-//        int[] prices = {7, 1, 5, 3, 6, 4};
+        int[] prices = {7, 1, 5, 3, 6, 4};
 //        int[] prices = {7,6,4,3,1};
-        int[] prices = {1,2};
+//        int[] prices = {1,2};
+        int minPrice = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minPrice) {
+                minPrice = prices[i];
+            }
+            if (maxProfit < prices[i] - minPrice){
+                maxProfit = prices[i] - minPrice;
+            }
+        }
+        System.out.println(maxProfit);
+    }
+
+    private static void sol2DoesntWork() {
+        int[] prices = {2, 4, 1};
+
         //find min element
         int minIndex = 0;
         for (int i = 0; i < prices.length; i++) {
@@ -49,7 +66,7 @@ public class BestTimeToBuyAndSellStock {
 //        int[] prices = {7,6,4,3,1};
 //        int[] prices = {1,2};
         int maxProfit = 0;
-        for (int i = prices.length-1; i >= 1; i--) {
+        for (int i = prices.length - 1; i >= 1; i--) {
             for (int j = i; j >= 0; j--) {
                 int profit = prices[i] - prices[j];
                 if (profit > maxProfit)
