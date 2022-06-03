@@ -3,7 +3,8 @@ package faang450.arrays;
 public class MinimizeTheHeightsII {
 //    Minimize the Heights II
 //    Medium Accuracy: 28.62% Submissions: 100k+ Points: 4
-//    Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the height of each tower either by increasing or decreasing them by K only once. After modifying, height should be a non-negative integer.
+//    Given an array arr[] denoting heights of N towers and a positive integer K, you have to modify the height of each tower either by increasing or decreasing them by K only once.
+//    After modifying, height should be a non-negative integer.
 //    Find out what could be the possible minimum difference of the height of shortest and longest towers after you have modified each tower.
 //
 //    A slight modification of the problem can be found here.
@@ -45,7 +46,8 @@ public class MinimizeTheHeightsII {
 
 
     public static void main(String[] args) {
-        int[] input = {12,3, 9, 16, 20};
+//        int[] input = {12,3, 9, 16, 20};
+        int[] input = {3, 9, 12, 16, 20};
         int k = 3;
         int max = input[0];
         int min = input[0];

@@ -15,8 +15,8 @@ public class FindTheContiguousSubArray {
     Max subarray sum is 9
     of elements (1, 2, 3, -2, 5) which
     is a contiguous subarray.
-    Example 2:
 
+    Example 2:
     Input:
     N = 4
     Arr[] = {-1,-2,-3,-4}

@@ -4,6 +4,17 @@ import java.util.Arrays;
 
 public class MoveNegativeNumbersBeginningPositiveEndConstantExtraSpace {
     //https://www.geeksforgeeks.org/move-negative-numbers-beginning-positive-end-constant-extra-space/
+//  Move all negative numbers to beginning and positive to end with constant extra space
+//  Difficulty Level : Easy
+//  Last Updated : 22 Apr, 2022
+//  An array contains both positive and negative numbers in random order. Rearrange the array elements so that all negative numbers appear before all positive numbers.
+//
+//  Examples :
+//
+//  Input: -12, 11, -13, -5, 6, -7, 5, -3, -6
+//  Output: -12 -13 -5 -7 -3 -6 11 6 5
+//  Note: Order of elements is not important here.
+//
 
 //    Input: -12, 11, -13, -5, 6, -7, 5, -3, -6
 //    Output: -12 -13 -5 -7 -3 -6 11 6 5
@@ -53,7 +64,7 @@ public class MoveNegativeNumbersBeginningPositiveEndConstantExtraSpace {
             }
         }
 
-        System.out.println("Intermdeitat : " + Arrays.toString(output1));
+        System.out.println("Intermediate : " + Arrays.toString(output1));
 
         for (int j = 0; j < input.length; j++) {
             if (input[j] > 0) {

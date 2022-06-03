@@ -1,8 +1,9 @@
 package faang450.arrays;
 
 public class MinimumNumberOfJumps {
-//    Given an array of N integers arr[] where each element represents the max number of steps that can be made forward from that element. Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
-//            Note: Return -1 if you can't reach the end of the array.
+//    Given an array of N integers arr[] where each element represents the max number of steps that can be made forward from that element.
+//    Find the minimum number of jumps to reach the end of the array (starting from the first element). If an element is 0, then you cannot move through that element.
+//    Note: Return -1 if you can't reach the end of the array.
 //    Example 1:
 //    Input:
 //    N = 11
@@ -24,7 +25,9 @@ public class MinimumNumberOfJumps {
 //    and then jump to the last element.
 //
 //    Your task:
-//    You don't need to read input or print anything. Your task is to complete function minJumps() which takes the array arr and it's size N as input parameters and returns the minimum number of jumps. If not possible returns -1.
+//    You don't need to read input or print anything. Your task is to complete function minJumps() which takes the array arr
+//    and it's size N as input parameters and returns the minimum number of jumps.
+//    If not possible returns -1.
 //    Expected Time Complexity: O(N)
 //    Expected Space Complexity: O(1)
 //    Constraints:

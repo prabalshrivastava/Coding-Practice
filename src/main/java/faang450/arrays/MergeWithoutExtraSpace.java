@@ -6,7 +6,8 @@ import java.util.Arrays;
 public class MergeWithoutExtraSpace {
 //        Merge Without Extra Space
 //        Hard Accuracy: 36.41% Submissions: 86722 Points: 8
-//        Given two sorted arrays arr1[] of size N and arr2[] of size M. Each array is sorted in non-decreasing order. Merge the two arrays into one sorted array in non-decreasing order without using any extra space.
+//        Given two sorted arrays arr1[] of size N and arr2[] of size M. Each array is sorted in non-decreasing order.
+//        Merge the two arrays into one sorted array in non-decreasing order without using any extra space.
 //
 //        Example 1:
 //        Input:
