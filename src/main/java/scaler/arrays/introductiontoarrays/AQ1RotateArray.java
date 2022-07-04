@@ -1,8 +1,8 @@
-package scaler.arrays;
+package scaler.arrays.introductiontoarrays;
 
 import java.util.Scanner;
 
-public class RotateArray {
+public class AQ1RotateArray {
   //  Problem Description
   //  Given an integer array A of size N and an integer B, you have to print the same array after
   // rotating it B times towards the right.

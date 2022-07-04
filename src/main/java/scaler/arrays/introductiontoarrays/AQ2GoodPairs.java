@@ -1,6 +1,6 @@
-package scaler.arrays;
+package scaler.arrays.introductiontoarrays;
 
-public class GoodPairs {
+public class AQ2GoodPairs {
   //  Problem Description
   //  Given an array A and an integer B. A pair(i, j) in the array is a good pair if i != j and
   // (A[i] + A[j] == B). Check if any good pair exist or not.
@@ -39,9 +39,9 @@ public class GoodPairs {
   //      (i,j) = (2,3)
 
   public static void main(String[] args) {
-    System.out.println(new GoodPairs().solve(new int[] {1, 2, 3, 4}, 7));
-    System.out.println(new GoodPairs().solve(new int[] {1,2,4}, 4));
-    System.out.println(new GoodPairs().solve(new int[] {1,2,2}, 4));
+    System.out.println(new AQ2GoodPairs().solve(new int[] {1, 2, 3, 4}, 7));
+    System.out.println(new AQ2GoodPairs().solve(new int[] {1,2,4}, 4));
+    System.out.println(new AQ2GoodPairs().solve(new int[] {1,2,2}, 4));
   }
 
   public int solve(int[] A, int B) {

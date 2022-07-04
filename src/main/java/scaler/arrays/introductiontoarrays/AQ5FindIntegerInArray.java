@@ -1,8 +1,8 @@
-package scaler.arrays;
+package scaler.arrays.introductiontoarrays;
 
 import java.util.Scanner;
 
-public class FindIntegerInArray {
+public class AQ5FindIntegerInArray {
   //  Problem Description
   //  You are given an integer T (number of test cases). You are given array A and an integer B for
   // each test case. You have to tell whether B is present in array A or not.

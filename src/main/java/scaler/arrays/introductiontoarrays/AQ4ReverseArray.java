@@ -1,8 +1,8 @@
-package scaler.arrays;
+package scaler.arrays.introductiontoarrays;
 
 import java.util.Arrays;
 
-public class ReverseArray {
+public class AQ4ReverseArray {
   //  Problem Description
   //  You are given a constant array A.
   //  You are required to return another array which is the reversed form of the input array.
@@ -32,7 +32,7 @@ public class ReverseArray {
 //    int A[] = {1, 2, 3, 2, 1};
     int A[] = {1,1,10};
     System.out.println(Arrays.toString(A));
-    System.out.println(Arrays.toString(new ReverseArray().solve(A)));
+    System.out.println(Arrays.toString(new AQ4ReverseArray().solve(A)));
   }
 
   public int[] solve(final int[] A) {

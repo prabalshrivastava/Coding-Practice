@@ -1,8 +1,8 @@
-package scaler.arrays;
+package scaler.arrays.introductiontoarrays;
 
 import java.util.Scanner;
 
-public class FindMinMax {
+public class AQ3FindMinMax {
   //  Problem Description
   //  Write a program to print maximum and minimum elements of the input array A of size N where you
   // have to take integer N and other N elements as input from the user.
