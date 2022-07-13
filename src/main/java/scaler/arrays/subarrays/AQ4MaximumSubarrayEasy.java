@@ -1,5 +1,7 @@
 package scaler.arrays.subarrays;
 
+import java.util.Arrays;
+
 public class AQ4MaximumSubarrayEasy {
     //    Problem Description
 //    You are given an integer array C of size A. Now you need to find a subarray (contiguous elements) so that the sum of contiguous elements is maximum.
@@ -51,10 +53,55 @@ public class AQ4MaximumSubarrayEasy {
 //    Hence, the answer is 0.
 //
     public static void main(String[] args) {
+        int input1A = 5;
+        int input1B = 12;
+        int[] input1C = {2, 1, 3, 4, 5};
+        System.out.println(new AQ4MaximumSubarrayEasy().maxSubarray(input1A, input1B, input1C));
+        int input2A = 3;
+        int input2B = 1;
+        int[] input2C = {2, 2, 2};
+        System.out.println(new AQ4MaximumSubarrayEasy().maxSubarray(input2A, input2B, input2C));
+        int  input3A = 9;
+        int  input3B = 78;
+        int[] input3C = {7, 1, 8, 5, 8, 5, 3, 3, 5 };
+        System.out.println(new AQ4MaximumSubarrayEasy().maxSubarray(input3A, input3B, input3C));
+    }
 
+    public int maxSubarrayIncomplete(int A, int B, int[] C) {
+        int sum = C[0];
+        int ans = 0;
+        for (int i = 1; i < C.length; i++) {
+            if (sum + C[i] > sum) {
+                if (sum + C[i] <= 12) {
+                    sum = sum + C[i];
+                    ans = sum;
+                } else {
+
+                }
+            }
+        }
+        return ans;
     }
 
     public int maxSubarray(int A, int B, int[] C) {
-        return A;
+        int[] pf = new int[C.length];
+        pf[0] = C[0];
+        for (int i = 1; i < C.length; i++) {
+            pf[i] = pf[i - 1] + C[i];
+        }
+//        System.out.println(Arrays.toString(pf));
+        int ans = 0;
+        for (int i = 0; i < C.length; i++) {
+            int sum;
+            for (int j = i; j < C.length; j++) {
+                if (i == 0)
+                    sum = pf[j];
+                else
+                    sum = pf[j] - pf[i - 1];
+                if (sum <= B)
+                    ans = Math.max(ans, sum);
+            }
+        }
+        return ans;
     }
 }

@@ -49,10 +49,39 @@ public class AQ3SubarrayWithLeastAverage {
 //    Subarray between [4, 5] has minimum average
 //
     public static void main(String[] args) {
+//        int[] input1A = {3, 7, 90, 20, 10, 50, 40};
+//        int input1B = 3;
+//        System.out.println(new AQ3SubarrayWithLeastAverage().solve(input1A, input1B));
+//        int[] input2A = {3, 7, 5, 20, -10, 0, 12};
+//        int input2B = 2;
+//        System.out.println(new AQ3SubarrayWithLeastAverage().solve(input2A, input2B));
+//
+//        int[] input3A = {18, 11, 16, 19, 11, 9, 8, 15, 3, 10, 9, 20, 1, 19};
+//        int input3B = 1;
+//        System.out.println(new AQ3SubarrayWithLeastAverage().solve(input3A, input3B));//        12
 
+        int[] input4A = {20, 3, 13, 5, 10, 14, 8, 5, 11, 9, 1, 11};
+        int input4B = 9;
+        System.out.println(new AQ3SubarrayWithLeastAverage().solve(input4A,input4B));//3
     }
 
     public int solve(int[] A, int B) {
-        return B;
+        int avg;
+        int minAvg = Integer.MAX_VALUE;
+        int ans = 0;
+        for (int i = 0; i < A.length - (B - 1); i++) {
+            int sum = 0;
+            for (int j = i; j < i + B; j++) {
+                sum = sum + A[j];
+            }
+            avg = sum;
+            System.out.println("sum : " +  sum + " ------ avg : " + avg);
+//            minAvg = Math.min(avg, minAvg);
+            if (avg < minAvg) {
+                minAvg = avg;
+                ans = i;
+            }
+        }
+        return ans;
     }
 }
