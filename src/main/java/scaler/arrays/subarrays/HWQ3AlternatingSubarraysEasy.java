@@ -1,5 +1,9 @@
 package scaler.arrays.subarrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class HWQ3AlternatingSubarraysEasy {
     //    Problem Description
 //    You are given an integer array A of length N comprising of 0's & 1's, and an integer B.
@@ -61,10 +65,40 @@ public class HWQ3AlternatingSubarraysEasy {
 //
 //    Each index in the array acts as the center of alternating sequences of lengt
     public static void main(String[] args) {
-
+//        int[] input1A = {1, 0, 1, 0, 1};
+//        int input1B = 1;
+//        System.out.println(Arrays.toString(new HWQ3AlternatingSubarraysEasy().solve(input1A, input1B)));
+//        int[] input2A = {0, 0, 0, 1, 1, 0, 1};
+//        int input2B = 0;
+//        System.out.println(Arrays.toString(new HWQ3AlternatingSubarraysEasy().solve(input2A, input2B)));
+        int[] A = {0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1};
+        int B = 1;
+        System.out.println(Arrays.toString(new HWQ3AlternatingSubarraysEasy().solve(A, B))); //3 7 8
     }
 
     public int[] solve(int[] A, int B) {
-        return A;
+        List<Integer> res = new ArrayList<>();
+        int k = 2 * B + 1;
+        System.out.println(A.length - k);
+        for (int i = 0; i < A.length - k + 1; i++) {
+            int e = i + k;
+            boolean isAlternatingSubArray = true;
+//            System.out.printf("Start : %s ------ End : %s%n", i, e);
+            for (int j = i; j < e; j++) {
+                if (j == i) {
+                    continue;
+                }
+//                System.out.printf("A[%d]==A[%d-1]-->A[%d]==A[%d]-->%d==%d : %s%n", j, j, j, j - 1, A[j], A[j - 1], (A[j] == A[j - 1]));
+                if (A[j] == A[j - 1]) {
+                    isAlternatingSubArray = false;
+                    break;
+                }
+            }
+            if (isAlternatingSubArray) {
+//                System.out.println("adding : " + i + k/2);
+                res.add(i + k/2);
+            }
+        }
+        return res.stream().mapToInt(value -> value).toArray();
     }
 }
