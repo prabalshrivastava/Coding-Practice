@@ -1,5 +1,7 @@
 package scaler.arrays.arrays2dmatrices;
 
+import java.util.Arrays;
+
 public class AQ7SpiralOrderMatrixII {
     //    Problem Description
 //    Given an integer A, generate a square matrix filled with elements from 1 to A2 in spiral order.
@@ -50,10 +52,23 @@ public class AQ7SpiralOrderMatrixII {
 //            |
 //            4<--- 3
     public static void main(String[] args) {
-
+        int input1 = 1;
+        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(input1)));
+        int input2 = 2;
+        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(input2)));
     }
 
     public int[][] generateMatrix(int A) {
+        int[][] ans = new int[A][A];
+        int count = 0;
+        int i = 0;
+        int j = 0;
+        while (count < A * A) {
+            if (j == A - 1) {
+
+            }
+            count++;
+        }
         return new int[0][];
     }
 }

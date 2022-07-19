@@ -52,11 +52,39 @@ public class HWQ1SingleNumberIII {
         System.out.println(Arrays.toString(new HWQ1SingleNumberIII().solve(input1A)));
         int[] input2A = {1, 2};
         System.out.println(Arrays.toString(new HWQ1SingleNumberIII().solve(input2A)));
+        int[] input3A = {2308, 1447, 1918, 1391, 2308, 216, 1391, 410, 1021, 537, 1825, 1021, 1729, 669, 216, 1825, 537, 1995, 805, 410, 805, 602, 1918, 1447, 90, 1995, 90, 1540, 1161, 1540, 2160, 1235, 1161, 602, 880, 2160, 1235, 669};
+        System.out.println(Arrays.toString(new HWQ1SingleNumberIII().solve(input3A)));
 
     }
 
     public int[] solve(int[] A) {
-
-        return A;
+        int ans = 0;
+        for (int i = 0; i < A.length; i++) {
+            ans ^= A[i];
+        }
+        int i = 0;
+        while (((ans >> i) & 1) != 1) {
+            i++;
+        }
+//        System.out.println("Ans : " + ans + " - set bit : " + i);
+        int set = 0;
+        int unset = 0;
+        for (int j = 0; j < A.length; j++) {
+            if (((A[j] >> i) & 1) == 1) {
+//                System.out.println("set :" + A[j]);
+                //set
+                set ^= A[j];
+            } else {
+//                System.out.println("unset :" + A[j]);
+                //unset
+                unset ^= A[j];
+            }
+        }
+//        System.out.printf("%s - %s %n", set, unset);
+        if (unset < set) {
+            return new int[]{unset, set};
+        } else {
+            return new int[]{set, unset};
+        }
     }
 }
