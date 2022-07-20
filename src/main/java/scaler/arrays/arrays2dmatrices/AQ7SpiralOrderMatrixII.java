@@ -60,15 +60,88 @@ public class AQ7SpiralOrderMatrixII {
 
     public int[][] generateMatrix(int A) {
         int[][] ans = new int[A][A];
-        int count = 0;
+        int count = 1;
         int i = 0;
         int j = 0;
-        while (count < A * A) {
-            if (j == A - 1) {
+        int iLowerbound = -1;
+        int jLowerbound = -1;
+        int iUpperbound = A;
+        int jUpperbound = A;
 
+        boolean isJ = true;
+        boolean isInc = true;
+        while (count < A * A) {
+//            if (isJ) {
+//                if (isInc) {
+//                    if (j < jUpperbound) {
+//                        j++;
+//                    } else {
+//                        isJ = false;
+//                        isInc = false;
+//                        jUpperbound--;
+//                    }
+//                } else {
+//                    if (j >= jLowerbound) {
+//                        j--;
+//                    } else {
+//                        isJ = false;
+//                        isInc = true;
+//                        jLowerbound++;
+//                    }
+//                }
+//            }
+//            if (!isJ) {
+//                if (isInc) {
+//                    if (i < iUpperbound) {
+//                        i++;
+//                    } else {
+//                        isJ = true;
+//                        isInc = false;
+//                        iUpperbound--;
+//                    }
+//                } else {
+//                    if (i >= iLowerbound) {
+//                        i--;
+//                    } else {
+//                        isJ = true;
+//                        isInc = true;
+//                        iLowerbound++;
+//                    }
+//                }
+//            }
+            if (isJ) {
+                if (isInc) j++;
+                else j--;
+            } else {
+                if (isInc) i++;
+                else i--;
             }
+
+            switch (isJ + " - " + isInc) {
+                case "true - true":
+                    isJ = false;
+                    break;
+                case "false - true":
+                    isJ = true;
+                    isInc = false;
+                    break;
+                case "true - false":
+                    isJ = false;
+                    isInc = false;
+                    break;
+                case "false - false":
+                    isJ = true;
+                    isInc = false;
+                    break;
+                default:
+                    System.out.println("wrong place");
+                    break;
+            }
+
+
+            ans[i][j] = count;
             count++;
         }
-        return new int[0][];
+        return ans;
     }
 }
