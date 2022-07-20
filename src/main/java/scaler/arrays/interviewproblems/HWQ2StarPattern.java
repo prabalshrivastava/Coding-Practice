@@ -1,9 +1,8 @@
 package scaler.arrays.interviewproblems;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class HWQ2StarPatternI {
+public class HWQ2StarPattern {
     //    Problem Description
 //
 //    Write a program to input an integer N from user and print hollow diamond star pattern series of N lines.
@@ -71,11 +70,27 @@ public class HWQ2StarPatternI {
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
 
-        for (int i = 0; i < input * 2; i++) {
+        for (int i = 0; i < input; i++) {
             for (int j = 0; j < input * 2; j++) {
-                System.out.print("*");
+                if (j >= input - i && j < input + i) {
+                    System.out.print(" ");
+//                    System.out.print(j);
+                } else
+                    System.out.print("*");
             }
             System.out.println("");
+        }
+
+        for (int i = input - 1; i >= 0; i--) {
+            for (int j = 0; j < input * 2; j++) {
+                if (j >= input - i && j < input + i) {
+                    System.out.print(" ");
+//                    System.out.print(j);
+                } else
+                    System.out.print("*");
+            }
+            System.out.println("");
+//        }
         }
     }
 }
