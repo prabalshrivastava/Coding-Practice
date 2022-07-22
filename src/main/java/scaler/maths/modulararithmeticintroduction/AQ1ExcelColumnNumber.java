@@ -1,4 +1,4 @@
-package scaler.arrays.modulararithmeticintroduction;
+package scaler.maths.modulararithmeticintroduction;
 
 public class AQ1ExcelColumnNumber {
 //        Problem Description

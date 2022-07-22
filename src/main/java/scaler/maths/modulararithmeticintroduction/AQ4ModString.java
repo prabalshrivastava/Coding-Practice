@@ -1,4 +1,4 @@
-package scaler.arrays.modulararithmeticintroduction;
+package scaler.maths.modulararithmeticintroduction;
 
 public class AQ4ModString {
 //    Problem Description
@@ -32,10 +32,16 @@ public class AQ4ModString {
 //            43535321 % 47 = 20
 
     public static void main(String[] args) {
-
+        String input1A = "143";
+        int input1B = 2;
+        System.out.println(new AQ4ModString().findMod(input1A, input1B));
+        String input2A = "43535321";
+        int input2B = 47;
+        System.out.println(new AQ4ModString().findMod(input2A, input2B));
     }
 
     public int findMod(String A, int B) {
+
         return B;
     }
 }
