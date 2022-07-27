@@ -33,15 +33,16 @@ public class HWQ1RepeatAndMissingNumberArray {
     public int[] repeatedNumber(final int[] A) {
         long totalSum = ((long) A.length * (A.length + 1)) / 2;
 //        long totalSumOfSquare = (A.length * (A.length + 1) * (2L * A.length + 1)) / 6;
-        long totalSumOfSquare = 1;
+        long totalSumOfSquare = 0;
 //        System.out.println(totalSum);
 //        System.out.println(totalSumOfSquare);
+        long a2MinusB2 = 0;
         for (int i = 0; i < A.length; i++) {
             totalSum = totalSum - A[i];
-            totalSumOfSquare = totalSumOfSquare - (long) Math.pow(A[i], 2);
+//            totalSumOfSquare = totalSumOfSquare - (long) Math.pow(A[i], 2);
+            a2MinusB2 = a2MinusB2 + ((long) (i + 1) * (i + 1) - (long) A[i] * A[i]);
         }
         long aMinusB = totalSum;
-        long a2MinusB2 = totalSumOfSquare;
         long aPlusB = a2MinusB2 / aMinusB;
         long a = (aMinusB + aPlusB) / 2;
         long b = aPlusB - a;
