@@ -52,10 +52,9 @@ public class AQ7SpiralOrderMatrixII {
 //            |
 //            4<--- 3
     public static void main(String[] args) {
-        int input1 = 1;
-        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(input1)));
-        int input2 = 2;
-        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(input2)));
+//        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(1)));
+//        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(2)));
+        System.out.println(Arrays.deepToString(new AQ7SpiralOrderMatrixII().generateMatrix(4)));
     }
 
     public int[][] generateMatrix(int A) {
@@ -71,6 +70,67 @@ public class AQ7SpiralOrderMatrixII {
         boolean isJ = true;
         boolean isInc = true;
         while (count < A * A) {
+            System.out.printf("%s %s [%s][%s] iupper=%s,ilower=%s,jupper=%s,jlower=%s count=%s %n", isInc ? "increment" : "decrement", isJ ? "j" : "i", i, j, iUpperbound, iLowerbound, jUpperbound, jLowerbound, count);
+            if (isJ) {
+                if (isInc) j++;
+                else j--;
+            } else {
+                if (isInc) i++;
+                else i--;
+            }
+//            boolean isContinue = false;
+            boolean isI = !isJ;
+            boolean isDec = !isInc;
+            if (iLowerbound > 4)
+                break;
+            if ((isJ && ((isInc && j >= jUpperbound) || (isDec && j <= jLowerbound)) || (isI && ((isInc && i >= iUpperbound || (isDec && i <= iLowerbound)))))) {
+                switch (isJ + " - " + isInc) {
+                    case "true - true":
+                        System.out.printf("true - true => jUpperbound:%s jLowerbound:%s iUpperbound:%s iLowerbound:%s%n", jUpperbound, jLowerbound, iUpperbound, iLowerbound);
+                        jUpperbound--;
+                        System.out.println("jUpperbound-- = " + jUpperbound);
+                        j = jUpperbound;
+                        isJ = false;
+                        continue;
+                    case "false - true":
+                        System.out.printf("false - true => jUpperbound:%s jLowerbound:%s iUpperbound:%s iLowerbound:%s%n", jUpperbound, jLowerbound, iUpperbound, iLowerbound);
+                        iUpperbound--;
+                        iLowerbound++;
+                        System.out.println("iUpperbound-- = " + iUpperbound);
+                        i = iUpperbound;
+                        isJ = true;
+                        isInc = false;
+                        continue;
+                    case "true - false":
+                        System.out.printf("true - false => jUpperbound:%s jLowerbound:%s iUpperbound:%s iLowerbound:%s%n", jUpperbound, jLowerbound, iUpperbound, iLowerbound);
+                        //ilowerbound should be incremented
+                        jLowerbound++;
+                        System.out.println("jLowerbound++ = " + jLowerbound);
+                        j = jLowerbound;
+                        isJ = false;
+                        isInc = false;
+                        continue;
+                    case "false - false":
+                        System.out.printf("false - false => jUpperbound:%s jLowerbound:%s iUpperbound:%s iLowerbound:%s%n", jUpperbound, jLowerbound, iUpperbound, iLowerbound);
+                        iLowerbound++;
+                        System.out.println("iLowerbound++ = " + iLowerbound);
+                        i = iLowerbound;
+                        isJ = true;
+                        isInc = false;
+                        continue;
+                    default:
+                        System.out.println("wrong place");
+                        break;
+                }
+            }
+
+            ans[i][j] = count;
+            count++;
+        }
+        return ans;
+    }
+}
+
 //            if (isJ) {
 //                if (isInc) {
 //                    if (j < jUpperbound) {
@@ -109,39 +169,3 @@ public class AQ7SpiralOrderMatrixII {
 //                    }
 //                }
 //            }
-            if (isJ) {
-                if (isInc) j++;
-                else j--;
-            } else {
-                if (isInc) i++;
-                else i--;
-            }
-
-            switch (isJ + " - " + isInc) {
-                case "true - true":
-                    isJ = false;
-                    break;
-                case "false - true":
-                    isJ = true;
-                    isInc = false;
-                    break;
-                case "true - false":
-                    isJ = false;
-                    isInc = false;
-                    break;
-                case "false - false":
-                    isJ = true;
-                    isInc = false;
-                    break;
-                default:
-                    System.out.println("wrong place");
-                    break;
-            }
-
-
-            ans[i][j] = count;
-            count++;
-        }
-        return ans;
-    }
-}
