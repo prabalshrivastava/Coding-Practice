@@ -1,7 +1,5 @@
 package scaler.strings;
 
-import com.sun.tools.javac.util.Convert;
-
 public class AQ4ToUpper {
     //    Problem Description
 //    You are given a function to_upper() consisting of a character array A.

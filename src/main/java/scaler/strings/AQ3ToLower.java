@@ -1,7 +1,5 @@
 package scaler.strings;
 
-import com.sun.tools.javac.util.Convert;
-
 public class AQ3ToLower {
 //    Problem Description
 //    You are given a function to_lower() which takes a character array A as an argument.
