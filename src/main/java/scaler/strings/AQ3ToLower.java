@@ -27,7 +27,13 @@ public class AQ3ToLower {
 //    All the characters in the returned array are in lowercase alphabets.
 
     public char[] to_lower(char[] A) {
-
+        //a = 97
+//        System.out.println((int)'a');
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] >= 'A' && A[i] <= 'Z') {
+                A[i] = (char) (A[i] + 32);
+            }
+        }
         return A;
     }
 

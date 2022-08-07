@@ -35,6 +35,14 @@ public class AQ5IsAlNum {
     }
 
     public int solve(char[] A) {
-        return 0;
+        int ans = 1;
+        for (int i = 0; i < A.length; i++) {
+            if ((A[i] >= 'a' && A[i] <= 'z') || (A[i] >= 'A' && A[i] <= 'Z') || (A[i] >= '0' && A[i] <= '9')) {
+                ans = 1;
+            } else {
+                ans = 0;
+            }
+        }
+        return ans;
     }
 }

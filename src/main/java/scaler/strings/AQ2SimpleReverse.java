@@ -31,6 +31,16 @@ public class AQ2SimpleReverse {
     }
 
     public String solve(String A) {
-        return A;
+        char[] array = A.toCharArray();
+        int i = 0;
+        int j = array.length - 1;
+        while (i <= j) {
+            char temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            i++;
+            j--;
+        }
+        return new String(array);
     }
 }
