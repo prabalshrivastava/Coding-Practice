@@ -66,6 +66,8 @@ public class HWQ2StarPattern {
 //            *****  *****
 //            ************
 //
+
+//   solve this pattern -> https://www.interviewbit.com/snippet/89e8ea0a35e8afff191b/
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();

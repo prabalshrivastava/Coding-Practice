@@ -27,7 +27,13 @@ public class AQ6IsAlpha {
 //    All the characters are NOT alphabets i.e ('#', '2', '0', '2', '0').
 
     public int solve(char[] A) {
-        return 0;
+        int ans = 1;
+        for (int i = 0; i < A.length; i++) {
+            if ((A[i] < 'a' || A[i] > 'z') && (A[i] < 'A' || A[i] > 'Z')) {
+                ans = 0;
+            }
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -35,6 +41,7 @@ public class AQ6IsAlpha {
         System.out.println(new AQ6IsAlpha().solve(input1A));
         char[] input2A = {'S', 'c', 'a', 'l', 'e', 'r', '#', '2', '0', '2', '0'};
         System.out.println(new AQ6IsAlpha().solve(input2A));
-
+        char[] input3A = { 'L', 'b', '6', 'Y', 'X', '6', 's', 'm', 'p', 'D', '3', 'h', '`', '8', '0', 'i' };
+        System.out.println(new AQ6IsAlpha().solve(input3A));
     }
 }
