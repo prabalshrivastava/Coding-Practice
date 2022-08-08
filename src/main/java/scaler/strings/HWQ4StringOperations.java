@@ -1,5 +1,10 @@
 package scaler.strings;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class HWQ4StringOperations {
     //    Problem Description
 //    Akash likes playing with strings. One day he thought of applying following operations on the string in the given order:
@@ -24,10 +29,26 @@ public class HWQ4StringOperations {
 //    Now replace vowel with '#'.
 //    A becomes "bc###bc###".
     public String solve(String A) {
-        return A;
+        A = A + A;
+        Set<Character> vowels = new HashSet();
+        vowels.add('a');
+        vowels.add('e');
+        vowels.add('i');
+        vowels.add('o');
+        vowels.add('u');
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < A.length(); i++) {
+            if (A.charAt(i) >= 'A' && A.charAt(i) <= 'Z') {
+            } else if (vowels.contains(A.charAt(i))) {
+                stringBuilder.append('#');
+            } else {
+                stringBuilder.append(A.charAt(i));
+            }
+        }
+        return stringBuilder.toString();
     }
 
     public static void main(String[] args) {
-
+        System.out.println(new HWQ4StringOperations().solve("AbcaZeoB"));//"bc###bc###"
     }
 }
