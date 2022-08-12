@@ -1,4 +1,4 @@
-package scaler.module1.hashing;
+package scaler.module1.hashing1;
 
 import java.util.Arrays;
 import java.util.HashMap;

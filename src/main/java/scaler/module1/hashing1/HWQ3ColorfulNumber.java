@@ -1,4 +1,7 @@
-package scaler.module1.hashing;
+package scaler.module1.hashing1;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HWQ3ColorfulNumber {
 //    Problem Description
@@ -42,21 +45,39 @@ public class HWQ3ColorfulNumber {
 //    This number is not a COLORFUL number since the product sequence 23  and sequence 6 is same.
 
     public static void main(String[] args) {
-
+        System.out.println(new HWQ3ColorfulNumber().colorful(3245));
+        System.out.println(new HWQ3ColorfulNumber().colorful(236));
+        System.out.println(new HWQ3ColorfulNumber().colorful(23));
     }
 
     public int colorful(int A) {
-        String str = String.valueOf(A);
-//        for (int i = 0; i < str.length(); i++) {
-//            for (int j = i; j < str.length(); j++) {
-//
-//            }
-//        }
-        int trav = A;
-        while (trav != 0) {
-            int curr = trav % 10;
-            trav = trav / 10;
+//        System.out.println(A);
+        Map<Integer, Integer> map = new HashMap<>();
+        boolean isFirst = true;
+        while (A != 0) {
+            int trav = A;
+            int prod = 1;
+            while (trav != 0) {
+                int remainder = trav % 10;
+//                if (isFirst) {
+//                    System.out.println("remainder : " + remainder);
+//                    map.put(remainder, map.getOrDefault(remainder, 0) + 1);
+//                    isFirst = false;
+//                }
+                trav = trav / 10;
+                prod = prod * remainder;
+//                System.out.println("prod : " + prod);
+                int value = map.getOrDefault(prod, 0) + 1;
+                map.put(prod, value);
+            }
+            A = A / 10;
         }
-        return trav;
+//        System.out.println(map);
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                return 0;
+            }
+        }
+        return 1;
     }
 }
