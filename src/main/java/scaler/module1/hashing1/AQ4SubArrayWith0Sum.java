@@ -29,8 +29,8 @@ public class AQ4SubArrayWith0Sum {
 //    Explanation 2:
 //    The array has sum 0.
     public int solve(int[] A) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        int sum = 0;
+        HashMap<Long, Integer> map = new HashMap<>();
+        long sum = 0;
         for (int i = 0; i < A.length; i++) {
             sum = sum + A[i];
             if (sum == 0)
