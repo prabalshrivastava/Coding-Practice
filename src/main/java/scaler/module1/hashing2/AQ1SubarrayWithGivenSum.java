@@ -1,6 +1,8 @@
 package scaler.module1.hashing2;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AQ1SubarrayWithGivenSum {
 //    Problem Description
@@ -35,6 +37,16 @@ public class AQ1SubarrayWithGivenSum {
 //    No subarray sums up to required number.z
 
     public int[] solve(int[] A, int B) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < A.length; i++) {
+            map.put(A[i], i);
+        }
+        for (int i = 0; i < A.length; i++) {
+            if (B - A[i] == 0) {
+
+            }
+        }
+
         return A;
     }
 
