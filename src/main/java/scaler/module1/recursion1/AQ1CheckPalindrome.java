@@ -1,4 +1,4 @@
-package scaler.module1.recursion;
+package scaler.module1.recursion1;
 
 public class AQ1CheckPalindrome {
 //    Problem Description
@@ -28,4 +28,14 @@ public class AQ1CheckPalindrome {
 //    Explanation 2:
 //            "strings" is not a palindrome, so return 0.
 
+    public int solve(String A) {
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        String input1A = "naman";
+        System.out.println(new AQ1CheckPalindrome().solve(input1A));
+        String input2A = "strings";
+        System.out.println(new AQ1CheckPalindrome().solve(input2A));
+    }
 }
