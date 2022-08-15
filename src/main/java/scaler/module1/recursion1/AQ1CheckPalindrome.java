@@ -29,17 +29,16 @@ public class AQ1CheckPalindrome {
 //            "strings" is not a palindrome, so return 0.
 
     public int solve(String A) {
-        if (A.length() % 2 == 0)
-            return isPalEven(A, 0, A.length()) ? 1 : 0;
-        return 0;
+        return isPalEven(A, 0, A.length() - 1) ? 1 : 0;
     }
 
     private boolean isPalEven(String a, int i, int j) {
+//        System.out.println("[" + i + j + "]");
         if (i >= j) {
             return true;
         }
         if (a.charAt(i) == a.charAt(j)) {
-            return isPalEven(a, i++, j--);
+            return isPalEven(a, ++i, --j);
         }
         return false;
     }
