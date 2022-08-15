@@ -29,10 +29,11 @@ public class AQ3FindFactorial {
         System.out.println(new AQ3FindFactorial().solve(input1A));
         int input2A = 1;
         System.out.println(new AQ3FindFactorial().solve(input2A));
-
     }
 
     public int solve(int A) {
-        return A;
+        if (A == 0 || A == 1)
+            return 1;
+        return A * solve(A - 1);
     }
 }
