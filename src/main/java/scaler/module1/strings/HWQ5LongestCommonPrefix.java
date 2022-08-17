@@ -35,6 +35,33 @@ public class HWQ5LongestCommonPrefix {
     }
 
     public String longestCommonPrefix(String[] A) {
-        return null;
+        int length = 0;
+        for (int i = 0; i < A.length; i++) {
+            length = Math.max(length, A[i].length());
+        }
+//        System.out.println(length);
+        Character characterToBeCompared;
+        String maxCommonLength = "";
+        for (int j = 0; j < length; j++) {
+            characterToBeCompared = null;
+            boolean isSameElements = true;
+            for (int i = 0; i < A.length; i++) {
+                if (j >= A[i].length()) {
+                    isSameElements = false;
+                    break;
+                }
+                char currentCharacter = A[i].charAt(j);
+                if (characterToBeCompared == null) {
+                    characterToBeCompared = currentCharacter;
+                } else if (characterToBeCompared != currentCharacter) {
+                    isSameElements = false;
+                    break;
+                }
+            }
+            if (isSameElements)
+                maxCommonLength = maxCommonLength + characterToBeCompared;
+            else break;
+        }
+        return maxCommonLength;
     }
 }
