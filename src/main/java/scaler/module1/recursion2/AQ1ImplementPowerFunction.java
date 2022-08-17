@@ -1,7 +1,7 @@
 package scaler.module1.recursion2;
 
 public class AQ1ImplementPowerFunction {
-    //    Problem Description
+//    Problem Description
 //    Implement pow(A, B) % C.
 //    In other words, given A, B and C, Find (AB % C).
 //    Note: The remainders on division cannot be negative. In other words, make sure the answer you return is non-negative.
@@ -20,6 +20,7 @@ public class AQ1ImplementPowerFunction {
 //    Example Explanation
 //23 % 3 = 8 % 3 = 2
     public int pow(int A, int B, int C) {
+
         return A;
     }
 

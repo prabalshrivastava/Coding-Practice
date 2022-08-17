@@ -1,5 +1,9 @@
 package scaler.module1.trees;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AQ1InorderTraversal {
 //    Problem Description
 //    Given a binary tree, return the inorder traversal of its nodes' values.
@@ -35,11 +39,25 @@ public class AQ1InorderTraversal {
 //    The Inorder Traversal of the given tree is [6, 1, 3, 2].
 
     public int[] inorderTraversal(TreeNode A) {
-        return new int[0];
+        //root left right
+        List<Integer> list = new ArrayList<>();
+        inOrder(A, list);
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    private void inOrder(TreeNode A, List<Integer> list) {
+        if (A == null)
+            return;
+        list.add(A.val);
+        this.inOrder(A.left, list);
+        this.inOrder(A.right, list);
     }
 
     public static void main(String[] args) {
-
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.right = new TreeNode(2);
+        treeNode.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ1InorderTraversal().inorderTraversal(treeNode)));
     }
 }
 
