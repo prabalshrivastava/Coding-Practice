@@ -34,15 +34,20 @@ public class HWQ1KOccurrences {
         }
 //        System.out.println(map);
         int sum = 0;
+        boolean isYes = false;
         for (Integer element : map.keySet()) {
 //            System.out.println(element);
             if (map.get(element) == B) {
+                isYes = true;
                 sum = sum + element;
 //                System.out.println("sum : " + sum);
                 sum = (int) (sum % (Math.pow(10, 9) + 7));
             }
         }
-        return sum;
+        if (isYes)
+            return sum;
+        else
+            return -1;
     }
 
     public static void main(String[] args) {
@@ -55,5 +60,16 @@ public class HWQ1KOccurrences {
         int B1 = 4;
         int[] C1 = {2, 2, 2, 2};
         System.out.println(new HWQ1KOccurrences().getSum(A1, B1, C1));
+
+        int A2 = 5;
+        int B2 = 5;
+        int[] C2 = {1, 2, 3, 4, 5};
+        ;
+        System.out.println(new HWQ1KOccurrences().getSum(A2, B2, C2));//-1
+
+        int A3 = 3;
+        int B3 = 2;
+        int[] C3 = {0, 0, 1};
+        System.out.println(new HWQ1KOccurrences().getSum(A3, B3, C3));//0
     }
 }

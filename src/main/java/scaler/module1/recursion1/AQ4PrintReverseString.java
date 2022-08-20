@@ -1,5 +1,7 @@
 package scaler.module1.recursion1;
 
+import java.util.Scanner;
+
 public class AQ4PrintReverseString {
     //    Problem Description
 //    Write a recursive function that, given a string S, prints the characters of S in reverse order.
@@ -27,6 +29,19 @@ public class AQ4PrintReverseString {
         // Please take input and print output to standard input/output (stdin/stdout)
         // DO NOT USE ARGUMENTS FOR INPUTS
         // E.g. 'Scanner' for input & 'System.out' for output
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+//        System.out.println(input);
+        System.out.println(reverse(input.toCharArray(), 0, input.length() - 1));
+    }
 
+    private static char[] reverse(char[] input, int i, int j) {
+//        System.out.printf("[%s%s]%n",i,j);
+        if (i >= j)
+            return input;
+        char temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+        return reverse(input, ++i, --j);
     }
 }

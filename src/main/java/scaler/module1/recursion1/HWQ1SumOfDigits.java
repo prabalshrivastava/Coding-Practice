@@ -26,7 +26,9 @@ public class HWQ1SumOfDigits {
 //    Sum of digits of 11 = 1 + 1 = 2
 
     public int solve(int A) {
-        return A;
+        if (A / 10 == 0)
+            return A;
+        return solve(A / 10) + solve(A % 10);
     }
 
     public static void main(String[] args) {
