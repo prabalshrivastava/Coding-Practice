@@ -39,7 +39,7 @@ public class AQ1InorderTraversal {
 //    The Inorder Traversal of the given tree is [6, 1, 3, 2].
 
     public int[] inorderTraversal(TreeNode A) {
-        //root left right
+        //left root right
         List<Integer> list = new ArrayList<>();
         inOrder(A, list);
         return list.stream().mapToInt(Integer::intValue).toArray();
@@ -48,8 +48,8 @@ public class AQ1InorderTraversal {
     private void inOrder(TreeNode A, List<Integer> list) {
         if (A == null)
             return;
-        list.add(A.val);
         this.inOrder(A.left, list);
+        list.add(A.val);
         this.inOrder(A.right, list);
     }
 
@@ -58,6 +58,12 @@ public class AQ1InorderTraversal {
         treeNode.right = new TreeNode(2);
         treeNode.right.left = new TreeNode(3);
         System.out.println(Arrays.toString(new AQ1InorderTraversal().inorderTraversal(treeNode)));
+
+        TreeNode treeNode1 = new TreeNode(1);
+        treeNode1.right = new TreeNode(2);
+        treeNode1.left = new TreeNode(6);
+        treeNode1.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ1InorderTraversal().inorderTraversal(treeNode1)));
     }
 }
 

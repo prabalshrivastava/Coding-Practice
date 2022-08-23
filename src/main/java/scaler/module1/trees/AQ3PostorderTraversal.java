@@ -1,5 +1,9 @@
 package scaler.module1.trees;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class AQ3PostorderTraversal {
     //    Problem Description
 //    Given a binary tree, return the Postorder traversal of its nodes values.
@@ -30,13 +34,34 @@ public class AQ3PostorderTraversal {
 //            [6, 3, 2, 1]
 //    Example Explanation
 //    Explanation 1:
-//    The Preoder Traversal of the given tree is [3, 2, 1].
+//    The3Postoder Traversal of the given tree is [3, 2, 1].
 //    Explanation 2:
-//    The Preoder Traversal of the given tree is [6, 3, 2, 1].
+//    The3Postoder Traversal of the given tree is [6, 3, 2, 1].
     public int[] postorderTraversal(TreeNode A) {
-        return new int[0];
+        //left right root
+        List<Integer> list = new ArrayList<>();
+        postOrder(A, list);
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
-    public static void main(String[] args) {
 
+    private void postOrder(TreeNode A, List<Integer> list) {
+        if (A == null)
+            return;
+        this.postOrder(A.left, list);
+        this.postOrder(A.right, list);
+        list.add(A.val);
+    }
+
+    public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.right = new TreeNode(2);
+        treeNode.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ3PostorderTraversal().postorderTraversal(treeNode)));
+
+        TreeNode treeNode1 = new TreeNode(1);
+        treeNode1.right = new TreeNode(2);
+        treeNode1.left = new TreeNode(6);
+        treeNode1.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ3PostorderTraversal().postorderTraversal(treeNode1)));
     }
 }

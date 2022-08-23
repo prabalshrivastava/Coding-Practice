@@ -31,8 +31,17 @@ public class AQ3IsMagic {
 //    Sum of digits of (13) = 4
 //    Single digit is not 1, so it's not a magic number. Return 0.
     public int solve(int A) {
+//        System.out.println(A);
+        return magicNo(A) == 1 ? 1 : 0;
+    }
 
-        return A;
+    private int magicNo(int A) {
+        if (A < 10)
+            return A;
+        else {
+            int value = magicNo(A / 10) + (A % 10);
+            return magicNo(value / 10) + (value % 10);
+        }
     }
 
     public static void main(String[] args) {
