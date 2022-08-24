@@ -1,5 +1,7 @@
 package scaler.advancedDsa;
 
+import java.util.Arrays;
+
 public class AQ3BeggarsOutsideTemple {
 //    Problem Description
 //    There are A beggars sitting in a row outside a temple. Each beggar initially has an empty pot. When the devotees come to the temple, they donate some amount of coins to these beggars. Each devotee gives a fixed amount of coin(according to their faith and ability) to some K beggars sitting next to each other.
@@ -29,10 +31,13 @@ public class AQ3BeggarsOutsideTemple {
 //    Third devotee donated 25 coins to beggars ranging from 2 to 5. Final amount in each beggars pot after third devotee: [10, 55, 45, 25, 25]
 
     public static void main(String[] args) {
-
+        int input1A = 5;
+        int[][] input1B = {{1, 2, 10}, {2, 3, 20}, {2, 5, 25}};
+        System.out.println(Arrays.toString(new AQ3BeggarsOutsideTemple().solve(input1A, input1B)));
     }
 
     public int[] solve(int A, int[][] B) {
+
         return new int[0];
     }
 }
