@@ -37,7 +37,16 @@ public class AQ3BeggarsOutsideTemple {
     }
 
     public int[] solve(int A, int[][] B) {
-
-        return new int[0];
+        int[] arr = new int[A];
+        for (int i = 0; i < B.length; i++) {
+            arr[B[i][0] - 1] = arr[B[i][0] - 1] + B[i][2];
+            if (B[i][1] < arr.length)
+                arr[B[i][1]] = arr[B[i][1]] - B[i][2];
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (i != 0)
+                arr[i] = arr[i] + arr[i - 1];
+        }
+        return arr;
     }
 }

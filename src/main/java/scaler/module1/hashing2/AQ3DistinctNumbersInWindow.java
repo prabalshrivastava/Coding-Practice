@@ -2,6 +2,7 @@ package scaler.module1.hashing2;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class AQ3DistinctNumbersInWindow {
 //    Problem Description
@@ -38,7 +39,15 @@ public class AQ3DistinctNumbersInWindow {
 //    Window size is 1, so the output array is [1, 1, 1, 1].
 
     public int[] dNums(int[] A, int B) {
-        return A;
+        int[] ans = new int[A.length - B + 1];
+        for (int i = 0; i < A.length - B + 1; i++) {
+            HashSet<Integer> hashSet = new HashSet();
+            for (int j = i; j < i + B; j++) {
+                hashSet.add(A[j]);
+            }
+            ans[i] = hashSet.size();
+        }
+        return ans;
     }
 
     public static void main(String[] args) {

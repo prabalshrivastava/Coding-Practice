@@ -1,7 +1,5 @@
 package scaler.advancedDsa.arrays2;
 
-import jdk.internal.joptsimple.internal.Rows;
-
 import java.util.Arrays;
 
 public class AQ2SubMatrixSumQueries {
