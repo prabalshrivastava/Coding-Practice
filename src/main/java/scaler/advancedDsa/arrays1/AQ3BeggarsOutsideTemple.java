@@ -1,4 +1,4 @@
-package scaler.advancedDsa;
+package scaler.advancedDsa.arrays1;
 
 import java.util.Arrays;
 

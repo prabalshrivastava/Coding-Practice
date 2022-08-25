@@ -1,6 +1,4 @@
-package scaler.advancedDsa;
-
-import java.util.Arrays;
+package scaler.advancedDsa.arrays1;
 
 public class AQ1RainWaterTrapped {
     //    Problem Description

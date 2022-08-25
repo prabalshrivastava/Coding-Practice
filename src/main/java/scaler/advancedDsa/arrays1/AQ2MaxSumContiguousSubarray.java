@@ -1,4 +1,4 @@
-package scaler.advancedDsa;
+package scaler.advancedDsa.arrays1;
 
 public class AQ2MaxSumContiguousSubarray {
 //    Problem Description
