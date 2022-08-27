@@ -17,7 +17,7 @@ public class AQ1MajorityElement {
 //2
 //    Example Explanation
 //2 occurs 2 times which is greater than 3/2.
-    public int majorityElement(final int[] A) {
+    public int majorityElement1(final int[] A) {
         int majorityElement = A[0];
         int count = 0;
         for (int i = 0; i < A.length; i++) {
@@ -25,14 +25,61 @@ public class AQ1MajorityElement {
                 count++;
             } else if (count > 0) {
                 count--;
-                if (count == 0)
-                    majorityElement = Integer.MAX_VALUE;
+                if (count == 0) majorityElement = Integer.MAX_VALUE;
             } else {
                 majorityElement = A[i];
                 count++;
             }
         }
         return majorityElement;
+    }
+
+    public int majorityElement(final int[] A) {
+        int majorityElement1 = Integer.MAX_VALUE;
+        int count1 = 0;
+        int majorityElement2 = Integer.MAX_VALUE;
+        int count2 = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            if (majorityElement1 == A[i]) {
+                count1++;
+            } else if (majorityElement2 == A[i]) {
+                count2++;
+            } else if (majorityElement1 == Integer.MAX_VALUE) {
+                majorityElement1 = A[i];
+                count1 = 1;
+            } else if (majorityElement2 == Integer.MAX_VALUE) {
+                majorityElement2 = A[i];
+                count2 = 1;
+            } else {
+                if (count2 < count1) {
+                    count2--;
+                    if (count2 == 0) {
+                        majorityElement2 = Integer.MAX_VALUE;
+                    }
+                } else {
+                    count1--;
+                    if (count1 == 0) {
+                        majorityElement1 = Integer.MAX_VALUE;
+                    }
+                }
+            }
+        }
+
+        int freq1 = 0;
+        int freq2 = 0;
+        for (int i = 0; i < A.length; i++) {
+            if (majorityElement1 == A[i])
+                freq1++;
+            if (majorityElement2 == A[i])
+                freq2++;
+        }
+        if (freq1 > A.length / 3) {
+            return majorityElement1;
+        } else if (freq2 > A.length / 3) {
+            return majorityElement2;
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
