@@ -1,5 +1,8 @@
 package scaler.module1.hashing2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class HWQ2PairsWithGivenXor {
     //    Problem Description
 //    Given an integer array A containing N distinct integers.
@@ -31,8 +34,44 @@ public class HWQ2PairsWithGivenXor {
 //            (10 ^ 15) = 5
 //    Explanation 2:
 //            (3 ^ 6) = 5 and (10 ^ 15) = 5
+
+    //x^y = B
+    //x^y^B = B^B = 1
+    //x^y^B = 1
+    //x^y^B^x = 1^x
+    //y^B = x
+
+
+    //x^y = B
+    //B^y = x
+    //or
+    //B^x = y
+
+
     public int solve(int[] A, int B) {
-        return B;
+        int count = 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < A.length; i++) {
+            int requiredElementInArray = A[i] ^ B;
+            if (map.containsKey(requiredElementInArray)) {
+                count++;
+            } else {
+                map.put(A[i], requiredElementInArray);
+            }
+        }
+        return count;
+    }
+
+    public int solve1(int[] A, int B) {
+        int count = 0;
+        for (int i = 0; i < A.length; i++) {
+            for (int j = i; j < A.length; j++) {
+                if ((A[i] ^ A[j]) == B) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 
     public static void main(String[] args) {

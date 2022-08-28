@@ -74,10 +74,15 @@ public class AQ1MajorityElement {
             if (majorityElement2 == A[i])
                 freq2++;
         }
-        if (freq1 > A.length / 3) {
-            return majorityElement1;
-        } else if (freq2 > A.length / 3) {
-            return majorityElement2;
+
+        if (freq1 > freq2) {
+            if (freq1 > A.length / 3) {
+                return majorityElement1;
+            }
+        } else {
+            if (freq2 > A.length / 3) {
+                return majorityElement2;
+            }
         }
         return -1;
     }
@@ -89,5 +94,7 @@ public class AQ1MajorityElement {
         System.out.println(new AQ1MajorityElement().majorityElement(arr1));
         int[] arr2 = {1, 1, 2};
         System.out.println(new AQ1MajorityElement().majorityElement(arr2));
+        int[] arr3 = {2, 2, 1, 1, 1};
+        System.out.println(new AQ1MajorityElement().majorityElement(arr3));
     }
 }
