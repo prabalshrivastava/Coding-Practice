@@ -39,11 +39,17 @@ public class AQ1SumOfAllSubmatrices {
                 pf[i][j] = sum;
             }
         }
-
-        for (int i = 0; i < A.length; i++) {
-
-        }
         System.out.println(Arrays.deepToString(pf));
+        int sum = 0;
+        for (int a1 = 0; a1 < A.length; a1++) {
+            for (int b1 = 0; b1 < A.length; b1++) {
+                for (int a2 = 0; a2 < A.length; a2++) {
+                    for (int b2 = 0; b2 < A.length; b2++) {
+
+                    }
+                }
+            }
+        }
         return 0;
     }
 
