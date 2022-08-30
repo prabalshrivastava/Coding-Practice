@@ -36,5 +36,19 @@ public class AQ2DesignLinkedList {
 //    Output 2:
 //            4->3->NULL
 
+    public class Solution {
+        public ListNode solve(int[][] A) {
+            return null;
+        }
+    }
 
+    static class ListNode {
+        int value;
+        ListNode next;
+
+        public ListNode(int value, ListNode next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
 }
