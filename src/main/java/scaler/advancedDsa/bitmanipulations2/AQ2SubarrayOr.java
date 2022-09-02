@@ -70,8 +70,8 @@ public class AQ2SubarrayOr {
     public int solve(int[] A) {
         long ans = 0;
         for (int i = 0; i < 32; i++) {
-            int totalNoOfSetBitsByAllSubarrays = (A.length * (A.length + 1)) / 2;
-            int x = 0;
+            long totalNoOfSetBitsByAllSubarrays = ((long) A.length * (A.length + 1)) / 2;
+            long x = 0;
             for (int j = 0; j < A.length; j++) {
                 if ((A[j] & 1 << i) == 0) {
                     x++;
@@ -81,9 +81,10 @@ public class AQ2SubarrayOr {
                 }
             }
             totalNoOfSetBitsByAllSubarrays = totalNoOfSetBitsByAllSubarrays - ((x * (x + 1)) / 2);
-            ans = (long) ((ans + ((long) totalNoOfSetBitsByAllSubarrays * (1 << i))) % (Math.pow(10, 9) + 7));
+            long finalContribution = (long) ((totalNoOfSetBitsByAllSubarrays * (1 << i)) % (Math.pow(10, 9) + 7));
+            ans = (long) ((ans + finalContribution) % (Math.pow(10, 9) + 7));
         }
-        return (int) ((int) ans % (Math.pow(10, 9) + 7));
+        return (int) (ans % (Math.pow(10, 9) + 7));
     }
 
 }
