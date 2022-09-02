@@ -1,6 +1,6 @@
 package scaler.module1.linkedlist;
 
-public class AQ1LinkedList {
+public class AQ1LinkedListKeerti {
 //    Problem Description
 //    Design and implement a Linked List data structure.
 //    A node in a linked list should have the following attributes - an integer value and a pointer to the next node. It should support the following operations:
@@ -37,47 +37,49 @@ public class AQ1LinkedList {
     static Node head;
 
     public static void insert_node(int position, int value) {
-        // @params position, integer
-        // @params value, integer
+// @params position, integer
+// @params value, integer
         if (head == null) {
             head = new Node(value, null);
             return;
         }
-        Node trav = head;
-        if (position == 1) {
-            trav = new Node(value, null);
-            trav.next=head;
-            head = trav;
-            return;
+        if (position == 1 && head != null) {
+            Node k = new Node(value, null);
+            k.next = head;
+            head = k;
+        } else {
+            Node trav = head;
+            int count = 1;
+            while (trav.next != null && count != position - 1) {
+                trav = trav.next;
+                count++;
+            }
+            Node k = new Node(value, null);
+            k.next = trav.next;
+            trav.next = k;
         }
-        int count = 1;
-        while (trav.next != null && count != position - 1) {
-            trav = trav.next;
-            count++;
-        }
-        trav.next = new Node(value, trav.next);
     }
 
     public static void delete_node(int position) {
-        // @params position, integer
+// @params position, integer
         if (head == null)
             return;
-        Node trav = head;
-        if (position == 1  && head != null) {
+        if (position == 1 && head != null) {
             head = head.next;
-            return;
+        } else {
+            Node trav = head;
+            int count = 1;
+            while (trav.next != null && count != position - 1) {
+                trav = trav.next;
+                count++;
+            }
+            if (trav.next != null)
+                trav.next = trav.next.next;
         }
-        int count = 1;
-        while (trav.next != null && count != position - 1) {
-            trav = trav.next;
-            count++;
-        }
-        if (trav.next != null)
-            trav.next = trav.next.next;
     }
 
     public static void print_ll() {
-        // Output each element followed by a space
+// Output each element followed by a space
         Node trav = head;
         while (trav.next != null) {
             System.out.print(trav.value + " ");
