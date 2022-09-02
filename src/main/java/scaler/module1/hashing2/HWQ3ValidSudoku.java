@@ -28,38 +28,38 @@ public class HWQ3ValidSudoku {
         for (int i = 0; i < 9; i++) {
             Map<Character, Integer> rowWiseMap = new HashMap<>();
             for (int j = 0; j < 9; j++) {
-                if (A[i].charAt(j) != '.' && rowWiseMap.containsKey(A[i].charAt(j))) {
-                    System.out.printf("rowWiseMap.containsKey(A[i].charAt(j)) : rowWiseMap.containsKey(A[%s].charAt(%s)) %n", i, j);
+                char key = A[i].charAt(j);
+                if (key != '.' && rowWiseMap.containsKey(key)) {
                     return 0;
                 }
-                rowWiseMap.put(A[i].charAt(j), 1);
+                rowWiseMap.put(key, 1);
             }
-            System.out.println(rowWiseMap);
+//            System.out.println(rowWiseMap);
         }
         for (int j = 0; j < 9; j++) {
             Map<Character, Integer> colWiseMap = new HashMap<>();
             for (int i = 0; i < 9; i++) {
-                if (A[j].charAt(i) != '.' && colWiseMap.containsKey(A[j].charAt(i))) {
-                    System.out.printf("colWiseMap.containsKey(A[j].charAt(i)) : colWiseMap.containsKey(A[%s].charAt(%s)) %n", i, j);
+                char key = A[i].charAt(j);
+                if (key != '.' && colWiseMap.containsKey(key)) {
                     return 0;
                 }
-                colWiseMap.put(A[j].charAt(i), 1);
+                colWiseMap.put(key, 1);
             }
-            System.out.println(colWiseMap);
+//            System.out.println(colWiseMap);
         }
         for (int ai = 0; ai < 3; ai++) {
             for (int aj = 0; aj < 3; aj++) {
                 Map<Character, Integer> boxWiseMap = new HashMap<>();
                 for (int i = 0; i < 3; i++) {
                     for (int j = 0; j < 3; j++) {
-                        if (A[i + ai].charAt(j + aj) != '.' && boxWiseMap.containsKey(A[i + ai].charAt(j + aj))) {
-                            System.out.printf("boxWiseMap.containsKey(A[i + ai].charAt(j + aj)) : boxWiseMap.containsKey(A[%s].charAt(%s)) %n", i + ai, j + ai);
+                        char key = A[i + 3* ai].charAt(j + 3* aj);
+                        if (key != '.' && boxWiseMap.containsKey(key)) {
                             return 0;
                         }
-                        boxWiseMap.put(A[i + ai].charAt(j + aj), 1);
+                        boxWiseMap.put(key, 1);
                     }
                 }
-                System.out.println(boxWiseMap);
+//                System.out.println(boxWiseMap);
             }
         }
         return 1;
