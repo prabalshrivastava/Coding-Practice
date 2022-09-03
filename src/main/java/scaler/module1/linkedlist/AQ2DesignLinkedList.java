@@ -40,6 +40,11 @@ public class AQ2DesignLinkedList {
         public ListNode solve(int[][] A) {
             return null;
         }
+
+    }
+
+    public static void main(String[] args) {
+
     }
 
     static class ListNode {

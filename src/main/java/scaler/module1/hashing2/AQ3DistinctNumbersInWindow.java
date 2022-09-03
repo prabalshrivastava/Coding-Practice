@@ -1,8 +1,9 @@
 package scaler.module1.hashing2;
 
-import java.awt.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class AQ3DistinctNumbersInWindow {
 //    Problem Description
@@ -38,7 +39,49 @@ public class AQ3DistinctNumbersInWindow {
 //    Explanation 2:
 //    Window size is 1, so the output array is [1, 1, 1, 1].
 
+    public int[] dNums_NotWorkingUsingHashsetSinceDuplicatesCausesIssuesWithSlidingWindow(int[] A, int B) {
+        int[] ans = new int[A.length - B + 1];
+        HashSet<Integer> hashSet = new HashSet();
+        int i = 0;
+        int idx = 0;
+        for (; i < B; i++) {
+            hashSet.add(A[i]);
+        }
+        System.out.println(hashSet);
+        ans[idx++] = hashSet.size();
+        for (; i < A.length - B + 1; i++) {
+            hashSet.remove(A[i - B]);
+            hashSet.add(A[i]);
+            System.out.println(hashSet);
+            ans[idx++] = hashSet.size();
+        }
+        return ans;
+    }
+
     public int[] dNums(int[] A, int B) {
+        int[] ans = new int[A.length - B + 1];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < B; i++) {
+            map.put(A[i], map.getOrDefault(A[i], 0) + 1);
+        }
+        int idx = 0;
+        ans[idx++] = map.size();
+        int s = 1;
+        int e = B;
+        while (e < A.length) {
+            int freq = map.getOrDefault(A[s - 1], 0);
+            if (freq <= 1) map.remove(A[s - 1]);
+            else
+                map.put(A[s - 1], freq - 1);
+            map.put(A[e], map.getOrDefault(A[e], 0) + 1);
+            ans[idx++] = map.size();
+            s++;
+            e++;
+        }
+        return ans;
+    }
+
+    public int[] dNums1(int[] A, int B) {
         int[] ans = new int[A.length - B + 1];
         for (int i = 0; i < A.length - B + 1; i++) {
             HashSet<Integer> hashSet = new HashSet();
