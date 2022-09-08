@@ -1,4 +1,4 @@
-package scaler.advancedDsa.mathsgcd;
+package scaler.advancedDsa.gcd;
 
 public class AQ3GreatestCommonDivisor {
 //    Problem Description
