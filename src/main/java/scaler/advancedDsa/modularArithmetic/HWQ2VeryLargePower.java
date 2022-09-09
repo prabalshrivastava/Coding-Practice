@@ -35,6 +35,7 @@ public class HWQ2VeryLargePower {
         System.out.println(new HWQ2VeryLargePower().solve(input1A, input1B));
         int input2A = 2, input2B = 2;
         System.out.println(new HWQ2VeryLargePower().solve(input2A, input2B));
+        //System.out.println(new HWQ2VeryLargePower().power(3,4));
     }
 
     public int solve(int A, int B) {
@@ -45,10 +46,12 @@ public class HWQ2VeryLargePower {
     long power(long a, long b) {
         if (b == 1)
             return a;
+        long ans = power(a, b / 2);
         if (b % 2 == 0) {
-
+            ans = ans * ans;
         } else {
-
+            ans = a * ans * ans;
         }
+        return ans;
     }
 }

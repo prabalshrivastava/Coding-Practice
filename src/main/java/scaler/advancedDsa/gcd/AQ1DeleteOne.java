@@ -1,5 +1,7 @@
 package scaler.advancedDsa.gcd;
 
+import java.util.Arrays;
+
 public class AQ1DeleteOne {
 //    Problem Description
 //    Given an integer array A of size N. You have to delete one element such that the GCD(Greatest common divisor) of the remaining array is maximum.
@@ -33,11 +35,49 @@ public class AQ1DeleteOne {
 //    If you delete 30, gcd will be 5.
 
     public static void main(String[] args) {
-
+        int[] input1A = {12, 15, 18};
+        System.out.println(new AQ1DeleteOne().solve(input1A));
+        int[] input2A = {5, 15, 30};
+        System.out.println(new AQ1DeleteOne().solve(input2A));
     }
 
     public int solve(int[] A) {
+        int[] pfGCD = new int[A.length];
+        int[] sfGCD = new int[A.length];
 
-        return 0;
+        pfGCD[0] = A[0];
+        for (int i = 1; i < A.length; i++) {
+//            System.out.println(i + " - " + A[i] + " - " + pfGCD[i - 1]);
+            pfGCD[i] = gcd(A[i], pfGCD[i - 1]);
+        }
+//        System.out.println(Arrays.toString(pfGCD));
+        sfGCD[A.length - 1] = A[A.length - 1];
+        for (int i = A.length - 2; i >= 0; i--) {
+            sfGCD[i] = gcd(A[i], sfGCD[i + 1]);
+        }
+//        System.out.println(Arrays.toString(sfGCD));
+
+        int ans = sfGCD[1];
+        for (int i = 1; i < A.length; i++) {
+            int gcd;
+            if (i == A.length - 1)
+                gcd = pfGCD[i - 1];
+            else
+                gcd = gcd(pfGCD[i - 1], sfGCD[i + 1]);
+            ans = Math.max(gcd, ans);
+        }
+        return ans;
+    }
+
+    int gcd(int a, int b) {
+        if (a == 0)
+            return b;
+        if (b == 0)
+            return a;
+        if (b > a) {
+            return gcd(b % a, a);
+        } else {
+            return gcd(a % b, b);
+        }
     }
 }
