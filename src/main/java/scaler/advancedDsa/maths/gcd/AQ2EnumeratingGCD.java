@@ -1,4 +1,4 @@
-package scaler.advancedDsa.gcd;
+package scaler.advancedDsa.maths.gcd;
 
 public class AQ2EnumeratingGCD {
     //    Problem Description

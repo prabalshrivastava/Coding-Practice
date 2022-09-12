@@ -1,8 +1,6 @@
-package scaler.advancedDsa.modularArithmetic;
+package scaler.advancedDsa.maths.modularArithmetic;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HWQ1CountOfDivisors {
     //    Problem Description

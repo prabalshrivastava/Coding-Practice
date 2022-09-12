@@ -1,4 +1,4 @@
-package scaler.advancedDsa.modularArithmetic;
+package scaler.advancedDsa.maths.modularArithmetic;
 
 import java.util.ArrayList;
 import java.util.Arrays;

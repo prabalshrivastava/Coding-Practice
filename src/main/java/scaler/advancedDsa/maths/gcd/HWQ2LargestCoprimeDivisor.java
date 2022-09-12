@@ -1,4 +1,4 @@
-package scaler.advancedDsa.gcd;
+package scaler.advancedDsa.maths.gcd;
 
 public class HWQ2LargestCoprimeDivisor {
 //    Problem Description

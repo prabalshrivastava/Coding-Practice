@@ -1,4 +1,4 @@
-package scaler.advancedDsa.modularArithmetic;
+package scaler.advancedDsa.maths.modularArithmetic;
 
 public class AQ2ABAndModulo {
     //    Problem Description

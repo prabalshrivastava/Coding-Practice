@@ -1,5 +1,7 @@
 package scaler.module1.linkedlist;
 
+import java.util.List;
+
 public class AQ2DesignLinkedList {
 //    Problem Description
 //    Given a matrix A of size Nx3 representing operations. Your task is to design the linked list based on these operations.
@@ -36,14 +38,28 @@ public class AQ2DesignLinkedList {
 //    Output 2:
 //            4->3->NULL
 
-    public class Solution {
-        public ListNode solve(int[][] A) {
-            return null;
-        }
-
+    ListNode head;
+    public ListNode solve(int[][] A) {
+//        ListNode listNode = new ListNode();
+        return null;
     }
 
+
     public static void main(String[] args) {
+        int[][] input1A = {{0, 1, -1},
+                {1, 2, -1},
+                {2, 3, 1}};
+        System.out.println(new AQ2DesignLinkedList().solve(input1A));
+        int[][] input2A = {{0, 1, -1},
+                {1, 2, -1},
+                {2, 3, 1},
+                {0, 4, -1},
+                {3, 1, -1},
+                {3, 2, -1}};
+        System.out.println(new AQ2DesignLinkedList().solve(input2A));
+    }
+
+    void addFirstNode(){
 
     }
 

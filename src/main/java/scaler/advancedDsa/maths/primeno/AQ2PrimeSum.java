@@ -1,4 +1,4 @@
-package scaler.advancedDsa.primeno;
+package scaler.advancedDsa.maths.primeno;
 
 public class AQ2PrimeSum {
     //    Problem Description

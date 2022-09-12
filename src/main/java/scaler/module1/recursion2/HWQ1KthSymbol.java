@@ -34,25 +34,56 @@ public class HWQ1KthSymbol {
 //    Row 2: 01
 
     public static void main(String[] args) {
-
+        int input1A = 2;
+        int input1B = 1;
+        System.out.println(new HWQ1KthSymbol().solve(input1A, input1B)); //0
+        int input2A = 2;
+        int input2B = 2;
+        System.out.println(new HWQ1KthSymbol().solve(input2A, input2B)); //1
+        System.out.println(new HWQ1KthSymbol().solve(20, 42));  //1
+        System.out.println(new HWQ1KthSymbol().solve(8, 60));  //1
     }
+
 
     public int solve(int A, int B) {
-        int currentRow;
-        sol(A, B, 1, "0");
-        return A;
+//        return Integer.parseInt(sol(A, B, "0"));
+        return sol(A, B) ? 1 : 0;
     }
+    //0
+    //01
+    //0110
+    //01101001
 
-    private String sol(int a, int b, int currentRow, String s) {
-        if (s.length() < 1)
-            return "";
-        if ("0".equals(s)) {
-            return "01";
-        } else if ("1".equals(s)) {
-            return "10";
+    private boolean sol(int a, int b) {
+        if (a == 1 || b == 1) {
+            return false;
         }
-        String ans = sol(a, b, currentRow, s.substring(0, s.length() / 2));
-        ans += sol(a, b, currentRow, s.substring(s.length() / 2));
-        return ans;
+        int length = (int) Math.pow(2, a - 1);
+        int mid = length / 2;
+        if (b <= mid) {
+            return sol(a - 1, b);
+        } else {
+            return !sol(a - 1, b - mid);
+        }
     }
+//    private String sol1(int a, int b, String current) {
+//        if (a == 1)
+//            return String.valueOf(0);
+//        char[] chars = current.toCharArray();
+//        String ans = "";
+//        for (int i = 0; i < chars.length; i++) {
+//            if ('0' == chars[i]) {
+//                ans = ans + "01";
+//            } else if ('1' == chars[i]) {
+//                ans += "10";
+//            }
+//        }
+////        System.out.printf("ans : %current -------- ans.length()[%current] == Math.pow(2, a[%current] - 1)[%current] -> %current%n", ans, ans.length(), a, Math.pow(2, a - 1), (ans.length() == Math.pow(2, a - 1)));
+//        if (ans.length() == Math.pow(2, a - 1)) {
+//            return String.valueOf(ans.charAt(b - 1));
+//        }
+////        sol(a, b, currentRow, current.substring(0, current.length() / 2));
+////        ans += sol(a, b, currentRow, current.substring(current.length() / 2));
+//        return sol(a, b, ans);
+//    }
 }

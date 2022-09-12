@@ -1,4 +1,4 @@
-package scaler.advancedDsa.primeno;
+package scaler.advancedDsa.maths.primeno;
 
 public class AQ1CountOfDivisors {
 //    Problem Description

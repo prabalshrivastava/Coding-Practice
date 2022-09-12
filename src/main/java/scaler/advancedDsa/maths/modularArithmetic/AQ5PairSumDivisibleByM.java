@@ -1,9 +1,5 @@
-package scaler.advancedDsa.modularArithmetic;
+package scaler.advancedDsa.maths.modularArithmetic;
 
-import com.google.gson.annotations.Since;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 

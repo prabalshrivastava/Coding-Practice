@@ -1,6 +1,4 @@
-package scaler.advancedDsa.gcd;
-
-import java.util.Arrays;
+package scaler.advancedDsa.maths.gcd;
 
 public class AQ1DeleteOne {
 //    Problem Description
