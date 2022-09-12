@@ -40,6 +40,14 @@ public class HWQ2CountingTheNodes {
         treeNode1.right.left = new TreeNode(3);
         treeNode1.right.right = new TreeNode(6);
         System.out.println(new HWQ2CountingTheNodes().solve(treeNode1));
+
+//        11 1 20 3 -1 -1 14 -1 -1 5 -1 -1
+        TreeNode treeNode2 = new TreeNode(11);
+        treeNode2.left = new TreeNode(1);
+        treeNode2.right = new TreeNode(20);
+        treeNode2.right.left = new TreeNode(14);
+        treeNode2.right.left.right = new TreeNode(5);
+        System.out.println(new HWQ2CountingTheNodes().solve(treeNode2));
     }
 
     public int solve(TreeNode A) {
