@@ -71,10 +71,10 @@ public class AQ1SumOfAllSubmatrices {
     }
 
     public static void main(String[] args) {
-        int[][] A = {{1, 1}, {1, 1}};
+        int[][] A = {{1, 1}, {1, 1}}; // 16
         System.out.println(new AQ1SumOfAllSubmatrices().solve(A));
 
-        int[][] B = {{8, 9, 9, 1, 7}, {5, 5, 10, 1, 0}, {7, 7, 5, 8, 6}, {7, 3, 7, 9, 2}, {7, 7, 8, 10, 6}};
+        int[][] B = {{8, 9, 9, 1, 7}, {5, 5, 10, 1, 0}, {7, 7, 5, 8, 6}, {7, 3, 7, 9, 2}, {7, 7, 8, 10, 6}}; //7551
         System.out.println(new AQ1SumOfAllSubmatrices().solve(B));
     }
 }
