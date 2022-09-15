@@ -51,6 +51,22 @@ public class HWQ2CountingTheNodes {
     }
 
     public int solve(TreeNode A) {
+//        return count(A);
+        return counting(A, Integer.MIN_VALUE) ;
+    }
+
+    private int counting(TreeNode a, int max) {
+        int count = 0;
+        if (a == null)
+            return 0;
+        if (a.val > max) {
+            max = a.val;
+            count++;
+        }
+        return count + counting(a.left, max) + counting(a.right, max);
+    }
+
+    private int count(TreeNode A) {
         if (A.left == null && A.right == null)
             return 1;
         return countNodes(A);

@@ -31,6 +31,9 @@ public class AQ1LittlePonnyAnd2Subsequence {
     }
 
     public static void main(String[] args) {
-
+        String input1A = "abcdsfhjagj";
+        System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input1A));
+        String input2A = "ksdjgha";
+        System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input2A));
     }
 }

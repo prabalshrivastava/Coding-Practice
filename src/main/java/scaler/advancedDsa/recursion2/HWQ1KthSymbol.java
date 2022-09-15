@@ -1,4 +1,4 @@
-package scaler.advancedDsa.recursion;
+package scaler.advancedDsa.recursion2;
 
 
 public class HWQ1KthSymbol {

@@ -1,4 +1,4 @@
-package scaler.advancedDsa.recursion;
+package scaler.advancedDsa.recursion2;
 
 
 import java.util.ArrayList;
