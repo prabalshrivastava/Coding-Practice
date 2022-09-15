@@ -1,9 +1,9 @@
-package scaler.module1.recursion2;
+package scaler.advancedDsa.recursion;
 
 
 import java.util.ArrayList;
 
-public class HWQ2GrayCode {
+public class AQ2GrayCode {
 //    Problem Description
 //    The gray code is a binary numeral system where two successive values differ in only one bit.
 //    Given a non-negative integer A representing the total number of bits in the code, print the sequence of gray code.
@@ -56,10 +56,10 @@ public class HWQ2GrayCode {
 
     public static void main(String[] args) {
         int input1A = 2;
-        System.out.println(new HWQ2GrayCode().grayCode(input1A));
+        System.out.println(new AQ2GrayCode().grayCode(input1A));
         int input2A = 1;
-        System.out.println(new HWQ2GrayCode().grayCode(input2A));
-        System.out.println(new HWQ2GrayCode().grayCode(4));
-        System.out.println(new HWQ2GrayCode().grayCode(5));
+        System.out.println(new AQ2GrayCode().grayCode(input2A));
+        System.out.println(new AQ2GrayCode().grayCode(4));
+        System.out.println(new AQ2GrayCode().grayCode(5));
     }
 }
