@@ -40,7 +40,6 @@ public class AQ3ImplementPowerFunction {
             if (B % 2 == 0) {
                 pow = getPow(A, B, C);
             } else {
-
                 pow = ((A + C) % C) * (getPow(Math.abs(A), B, C) % C);
             }
         } else

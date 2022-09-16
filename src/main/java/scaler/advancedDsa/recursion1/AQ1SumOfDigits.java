@@ -1,6 +1,6 @@
 package scaler.advancedDsa.recursion1;
 
-public class AQ2SumOfDigits {
+public class AQ1SumOfDigits {
     //    Problem Description
 //    Given a number A, we need to find the sum of its digits using recursion.
 //    Problem Constraints
