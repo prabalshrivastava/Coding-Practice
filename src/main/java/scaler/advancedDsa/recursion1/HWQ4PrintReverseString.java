@@ -36,7 +36,12 @@ public class HWQ4PrintReverseString {
     }
 
     private static char[] reverse(char[] input, int i, int j) {
-
-        return input;
+        System.out.println(input);
+        if (i >= j)
+            return input;
+        char temp = input[i];
+        input[i] = input[j];
+        input[j] = temp;
+        return reverse(input, ++i, --j);
     }
 }
