@@ -1,5 +1,6 @@
 package scaler.advancedDsa.recursion1;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class HWQ4PrintReverseString {
@@ -36,7 +37,7 @@ public class HWQ4PrintReverseString {
     }
 
     private static char[] reverse(char[] input, int i, int j) {
-        System.out.println(input);
+//        System.out.println(Arrays.toString(input));
         if (i >= j)
             return input;
         char temp = input[i];
