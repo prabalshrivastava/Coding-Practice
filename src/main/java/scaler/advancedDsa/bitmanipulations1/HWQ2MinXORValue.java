@@ -1,7 +1,9 @@
 package scaler.advancedDsa.bitmanipulations1;
 
+import java.util.Arrays;
+
 public class HWQ2MinXORValue {
-//    Problem Description
+    //    Problem Description
 //    Given an integer array A of N integers, find the pair of integers in the array which have minimum XOR value. Report the minimum XOR value.
 //            Problem Constraints
 //2 <= length of the array <= 100000
@@ -23,13 +25,29 @@ public class HWQ2MinXORValue {
 //    Example Explanation
 //    Explanation 1:
 //            0 xor 2 = 2
-public static void main(String[] args) {
-    int[] input1A = {0, 2, 5, 7};
-    System.out.println(new HWQ2MinXORValue().findMinXor(input1A));
-    int[] input2A = {0, 4, 7, 9};
-    System.out.println(new HWQ2MinXORValue().findMinXor(input2A));
-}
+    public static void main(String[] args) {
+        int[] input1A = {0, 2, 5, 7};
+        System.out.println(new HWQ2MinXORValue().findMinXor(input1A));
+        int[] input2A = {0, 4, 7, 9};
+        System.out.println(new HWQ2MinXORValue().findMinXor(input2A));
+    }
+
     public int findMinXor(int[] A) {
-        return 0;
+        int minXor = Integer.MAX_VALUE;
+        for (int i = 0; i < A.length; i++) {
+            for (int j = i + 1; j < A.length; j++) {
+                minXor = Math.min(A[i] ^ A[j], minXor);
+            }
+        }
+        return minXor;
+    }
+    public int findMinXorOn2(int[] A) {
+        int minXor = Integer.MAX_VALUE;
+        for (int i = 0; i < A.length; i++) {
+            for (int j = i + 1; j < A.length; j++) {
+                minXor = Math.min(A[i] ^ A[j], minXor);
+            }
+        }
+        return minXor;
     }
 }

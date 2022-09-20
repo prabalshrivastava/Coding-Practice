@@ -34,7 +34,11 @@ public class HWQ1InterestingArray {
 //    There is no possible way to make it 0.
 
     public String solve(int[] A) {
-        return null;
+        int xor = A[0];
+        for (int i = 1; i < A.length; i++) {
+            xor = xor ^ A[i];
+        }
+        return xor % 2 == 0 ? "Yes" : "No";
     }
 
     public static void main(String[] args) {
