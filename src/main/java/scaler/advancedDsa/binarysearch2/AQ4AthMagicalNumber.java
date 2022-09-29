@@ -38,34 +38,35 @@ public class AQ4AthMagicalNumber {
         long r = A * l;
         long ans = l;
         long lcm = lcm(B, C);
+//        System.out.println("lcm : " + lcm);
         while (l <= r) {
             long mid = (l + r) / 2;
-            long count = check(mid, B, C,lcm);
-            System.out.println("count : " + count);
+            long count = countOfFactors(mid, B, C, lcm);
             if (count == A) {
                 ans = mid;
                 r = mid - 1;
-            } else if (count < A) {
-                l = mid + 1;
-            } else
+            } else if (count < A) l = mid + 1;
+            else
                 r = mid - 1;
+//            System.out.printf("l:%s | r:%s | mid:%s | count:%s | ans:%s%n", l, r, mid, count, ans);
         }
-        return (int) ans;
+        return (int) getModdedSum(ans);
     }
 
-    private long check(long mid, long a, long b, long lcm) {
-        return mid / a + mid / b + mid / lcm;
+
+    private long getModdedSum(long sum) {
+        if (sum < 0)
+            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
+        else
+            sum = (long) (sum % (Math.pow(10, 9) + 7));
+        return sum;
+    }
+    private long countOfFactors(long mid, long a, long b, long lcm) {
+        return (mid / a) + (mid / b) - (mid / lcm);
     }
 
     private long lcm(long b, long c) {
-        long lcm = b * c / gcd(b, c);
-        System.out.println("lcm : " + lcm);
-        return lcm;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new AQ4AthMagicalNumber().solve(1, 2, 3));
-        System.out.println(new AQ4AthMagicalNumber().solve(4, 2, 3));
+        return (b * c) / gcd(b, c);
     }
 
     long gcd(long a, long b) {
@@ -78,5 +79,12 @@ public class AQ4AthMagicalNumber {
         } else {
             return gcd(a % b, b);
         }
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(new AQ4AthMagicalNumber().solve(1, 2, 3));//2
+        System.out.println(new AQ4AthMagicalNumber().solve(4, 2, 3));//6
+        System.out.println(new AQ4AthMagicalNumber().solve(807414236, 3788, 38141));//238134151
     }
 }
