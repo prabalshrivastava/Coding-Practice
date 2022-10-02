@@ -57,7 +57,7 @@ public class HWQ2MedianOfArray {
     }
 
     public double findMedianSortedArrays(final List<Integer> a, final List<Integer> b) {
-
+        
         return 0;
     }
 }
