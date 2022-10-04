@@ -1,5 +1,8 @@
 package scaler.advancedDsa.maths.gcd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class HWQ2LargestCoprimeDivisor {
 //    Problem Description
 //    You are given two positive numbers A and B . You need to find the maximum valued integer X such that:
@@ -39,30 +42,50 @@ public class HWQ2LargestCoprimeDivisor {
     }
 
     public int cpFact(int A, int B) {
-        int num = A;
-        int max = Integer.MIN_VALUE;
-        for (int i = 1; i <= A / 2; i++) {
+        List<Integer> factorsList = new ArrayList<>();
+        for (int i = 1; i * i <= A; i++) {
             if (A % i == 0) {
-                int gcd1 = gcd(i, B);
-                int gcd2 = gcd(A / i, B);
-                if (gcd1 == 1) {
-                    max = Math.max(i, max);
-                }
-                if (gcd2 == 1) {
-                    max = Math.max(A / i, max);
-                }
+                factorsList.add(i);
+                if (i * i != A)
+                    factorsList.add(A / i);
             }
         }
-        return A;
-    }
-
-    private int getMaxGCD(int max, int gcd) {
-        if (gcd == 1) {
-            max = Math.max(gcd, max);
+        int ans = 1;
+        for (int i = 0; i < factorsList.size(); i++) {
+            Integer currentFactor = factorsList.get(i);
+            if (gcd(currentFactor, B) == 1) {
+                ans = Math.max(ans, currentFactor);
+            }
         }
-        return max;
+//        System.out.println(factorsList);
+        return ans;
     }
 
+    //    public int cpFact(int A, int B) {
+//        int num = A;
+//        int max = Integer.MIN_VALUE;
+//        for (int i = 1; i <= A / 2; i++) {
+//            if (A % i == 0) {
+//                int gcd1 = gcd(i, B);
+//                int gcd2 = gcd(A / i, B);
+//                if (gcd1 == 1) {
+//                    max = Math.max(i, max);
+//                }
+//                if (gcd2 == 1) {
+//                    max = Math.max(A / i, max);
+//                }
+//            }
+//        }
+//        return A;
+//    }
+//
+//    private int getMaxGCD(int max, int gcd) {
+//        if (gcd == 1) {
+//            max = Math.max(gcd, max);
+//        }
+//        return max;
+//    }
+//
     int gcd(int a, int b) {
         if (a == 0)
             return b;

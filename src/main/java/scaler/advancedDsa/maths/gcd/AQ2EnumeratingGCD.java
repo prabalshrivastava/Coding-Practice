@@ -27,7 +27,8 @@ public class AQ2EnumeratingGCD {
     }
 
     public String solve(String A, String B) {
-
-        return A;
+        if (A.equals(B)) return A;
+        else
+            return "1";
     }
 }
