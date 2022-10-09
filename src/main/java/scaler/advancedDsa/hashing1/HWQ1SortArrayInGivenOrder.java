@@ -1,9 +1,6 @@
 package scaler.advancedDsa.hashing1;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 public class HWQ1SortArrayInGivenOrder {
 //    Problem Description
@@ -54,11 +51,20 @@ public class HWQ1SortArrayInGivenOrder {
     public int[] solve(int[] A, int[] B) {
         Arrays.sort(A);
         List<Integer> list = new ArrayList<>();
+        HashMap<Integer, Integer> hashmap = new HashMap<>();
+        for (int i = 0; i < A.length; i++) {
+            hashmap.put(A[i], hashmap.getOrDefault(A[i], 0) + 1);
+        }
         HashSet<Integer> hashSet = new HashSet();
         for (int i = 0; i < B.length; i++) {
+            int count = hashmap.getOrDefault(B[i], 0);
+            while (count > 0) {
+                list.add(B[i]);
+                count--;
+            }
             hashSet.add(B[i]);
-            list.add(B[i]);
         }
+//        System.out.println(" - " + list);
         for (int i = 0; i < A.length; i++) {
             if (!hashSet.contains(A[i])) {
                 list.add(A[i]);

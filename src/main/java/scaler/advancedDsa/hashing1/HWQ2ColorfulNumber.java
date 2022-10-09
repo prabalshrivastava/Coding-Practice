@@ -51,5 +51,6 @@ public class HWQ2ColorfulNumber {
     }
 
     public int colorful(int A) {
+        return A;
     }
 }
