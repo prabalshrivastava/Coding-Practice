@@ -51,6 +51,27 @@ public class HWQ2ColorfulNumber {
     }
 
     public int colorful(int A) {
-        return A;
+        Map<Long, Integer> map = new HashMap<>();
+        while (A != 0) {
+            int trav = A;//3245
+            long prod = 1;
+            while (trav != 0) {
+                int remainder = trav % 10;//5
+                prod = prod * remainder;//1*5
+                trav = trav / 10;//324
+//                if (map.getOrDefault(prod, 0) > 1)
+//                    return 0;
+//                else
+                    map.put(prod, map.getOrDefault(prod, 0) + 1);
+            }
+            A = A / 10;//324
+        }
+//        System.out.println(map);
+        for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                return 0;
+            }
+        }
+        return 1;
     }
 }
