@@ -1,5 +1,9 @@
 package scaler.advancedDsa.hashing2;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 public class AQ1CountRectangles {
 //    Problem Description
 //    Given two arrays of integers A and B of size N each, where each pair (A[i], B[i]) for 0 <= i < N represents a unique point (x, y) in a 2-D Cartesian plane.
@@ -35,13 +39,52 @@ public class AQ1CountRectangles {
     public static void main(String[] args) {
         int[] input1A = {1, 1, 2, 2};
         int[] input1B = {1, 2, 1, 2};
-        System.out.println(new AQ2CountRightTriangles().solve(input1A, input1B));
+        System.out.println(new AQ1CountRectangles().solve(input1A, input1B));//1
         int[] input2A = {1, 1, 2, 2, 3, 3};
         int[] input2B = {1, 2, 1, 2, 1, 2};
-        System.out.println(new AQ2CountRightTriangles().solve(input2A, input2B));
+        System.out.println(new AQ1CountRectangles().solve(input2A, input2B));//3
     }
 
     public int solve(int[] A, int[] B) {
+        Map<Integer, Long> freqMapX = new HashMap<>();
+        Map<Integer, Long> freqMapY = new HashMap<>();
+        HashSet<String> hashSet = new HashSet<>();
+        for (int i = 0; i < A.length; i++) {
+            freqMapX.put(A[i], freqMapX.getOrDefault(A[i], 0L) + 1);
+            freqMapY.put(B[i], freqMapY.getOrDefault(B[i], 0L) + 1);
+            hashSet.add(A[i] + "_" + B[i]);
+        }
 
+        long count = 0;
+        for (int i = 0; i < A.length; i++) {
+            for (int j = i + 1; j < A.length; j++) {
+                int x1 = A[i];
+                int y2 = B[j];
+
+                int x2 = A[j];
+                int y1 = B[i];
+//                boolean isExtraX1Exists = freqMapX.getOrDefault(x1, 0L) >= 2;
+//                boolean isExtraX2Exists = freqMapX.getOrDefault(x2, 0L) >= 2;
+//                boolean isExtraY1Exists = freqMapY.getOrDefault(y1, 0L) >= 2;
+//                boolean isExtraY2Exists = freqMapY.getOrDefault(y2, 0L) >= 2;
+                String coord1 = x1 + "_" + y2;
+                String coord2 = x2 + "_" + y1;
+                if (x1 == x2 || y1 == y2) {
+                    continue;
+                }
+                if (hashSet.contains(coord1) && hashSet.contains(coord2)) {
+//                    System.out.println(coord1 + " - " + coord2);
+                    count++;
+                }
+//                if (isExtraX1Exists &&
+//                        isExtraX2Exists &&
+//                        isExtraY1Exists &&
+//                        isExtraY2Exists) {
+//                    System.out.println(coord1 + " - " + coord2);
+//                    count++;
+//                }
+            }
+        }
+        return (int) count / 2;
     }
 }

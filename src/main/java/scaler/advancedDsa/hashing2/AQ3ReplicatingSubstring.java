@@ -1,6 +1,5 @@
 package scaler.advancedDsa.hashing2;
 
-import sun.security.util.Length;
 
 public class AQ3ReplicatingSubstring {
     //    Problem Description
