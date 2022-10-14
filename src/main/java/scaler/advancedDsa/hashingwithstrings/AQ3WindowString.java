@@ -1,5 +1,10 @@
 package scaler.advancedDsa.hashingwithstrings;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 public class AQ3WindowString {
     //    Problem Description
 //    Given a string A and a string B, find the window with minimum length in A, which will contain all the characters in B in linear time complexity.
@@ -38,10 +43,37 @@ public class AQ3WindowString {
         String input2A = "Aa91b";
         String input2B = "ab";
         System.out.println(new AQ3WindowString().minWindow(input2A, input2B));
+        String input3A = "AAAAAA";
+        String input3B = "AA";
+        System.out.println(new AQ3WindowString().minWindow(input3A, input3B));
     }
 
     public String minWindow(String A, String B) {
+        HashSet<Character> hashSetB = new HashSet();
+        for (int i = 0; i < B.length(); i++) {
+            hashSetB.add(B.charAt(i));
+        }
+        Map<Character, int[]> map = new HashMap<>();
+        for (int i = 0; i < A.length(); i++) {
+            if (hashSetB.contains(A.charAt(i))) {
+                int[] countAndIndex = map.getOrDefault(A.charAt(i), new int[]{0, Integer.MIN_VALUE});
+                countAndIndex[0]++;
+                countAndIndex[1] = i;
+                map.put(A.charAt(i), countAndIndex);
+            }
+        }
 
-        return A;
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (Map.Entry<Character, int[]> characterCountAndIndexEntry : map.entrySet()) {
+//            System.out.println(characterCountAndIndexEntry.getKey() + " -> " + Arrays.toString(characterCountAndIndexEntry.getValue()));
+            min = Math.min(characterCountAndIndexEntry.getValue()[1], min);
+            max = Math.max(characterCountAndIndexEntry.getValue()[1], max);
+        }
+        String ans = "";
+        for (int i = min; i <= max; i++) {
+            ans = ans + A.charAt(i);
+        }
+        return ans;
     }
 }
