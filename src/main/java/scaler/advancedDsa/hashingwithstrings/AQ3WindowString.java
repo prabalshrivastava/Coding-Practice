@@ -1,9 +1,6 @@
 package scaler.advancedDsa.hashingwithstrings;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class AQ3WindowString {
     //    Problem Description
@@ -46,9 +43,76 @@ public class AQ3WindowString {
         String input3A = "AAAAAA";
         String input3B = "AA";
         System.out.println(new AQ3WindowString().minWindow(input3A, input3B));
+        String input4A = "AAADOBECODEBANCCBBC";
+        String input4B = "ABCA";
+        System.out.println(new AQ3WindowString().minWindow(input4A, input4B));//AADOBEC
+
+
     }
 
     public String minWindow(String A, String B) {
+        HashMap<Character, Integer> needMapB = new LinkedHashMap<>();
+        HashMap<Character, Integer> currMapA = new LinkedHashMap<>();
+        for (int i = 0; i < B.length(); i++) {
+            needMapB.put(B.charAt(i), needMapB.getOrDefault(B.charAt(i), 0) + 1);
+        }
+//        System.out.println(needMapB);
+        int minIndex = Integer.MAX_VALUE;
+        int maxIndex = Integer.MIN_VALUE;
+        int distance = Integer.MAX_VALUE;
+        int need = B.length();
+
+        for (int i = 0; i < B.length(); i++) {
+            if (currMapA.getOrDefault(A.charAt(i), 0) < needMapB.getOrDefault(A.charAt(i), 0)) {
+                need--;
+            }
+            currMapA.put(A.charAt(i), currMapA.getOrDefault(A.charAt(i), 0) + 1);
+            if (need == 0) {
+                int tempMax = i;
+                int tempMin = 0;
+                if (tempMax - tempMin < distance) {
+                    minIndex = tempMin;
+                    maxIndex = tempMax;
+                    distance = maxIndex - minIndex;
+                }
+            }
+            System.out.println(A.charAt(i) + " - " + currMapA + " - " + needMapB);
+            System.out.println("1need : " + need);
+        }
+        int movingOut = 0;
+        for (int i = B.length(); i < A.length(); i++) {
+            if (A.charAt(i) != A.charAt(movingOut)) {
+                if (currMapA.getOrDefault(A.charAt(i), 0) < needMapB.getOrDefault(A.charAt(i), 0)) {
+                    need--;
+                }
+                if (currMapA.getOrDefault(A.charAt(movingOut), 0) <= needMapB.getOrDefault(A.charAt(movingOut), 0)) {
+                    need++;
+                }
+                currMapA.put(A.charAt(i), currMapA.getOrDefault(A.charAt(i), 0) + 1);
+                currMapA.put(A.charAt(movingOut), currMapA.getOrDefault(A.charAt(movingOut), 1) - 1);
+                movingOut++;
+                if (need == 0) {
+                    System.out.println("need is 0");
+                    if (i - movingOut < distance) {
+                        minIndex = movingOut;
+                        maxIndex = i;
+                        distance = maxIndex - minIndex;
+                    }
+                }
+                System.out.println(movingOut + " - " + i + " - " + A.charAt(i) + " - " + A.charAt(movingOut) + " - " + currMapA + " - " + needMapB);
+                System.out.println("need : " + need);
+            }
+        }
+        String ans = "";
+        System.out.printf("minIndex :%s, maxIndex :%s%n", minIndex, maxIndex);
+        for (int i = minIndex; i <= maxIndex; i++) {
+            ans = ans + A.charAt(i);
+        }
+        return ans;
+    }
+
+
+    public String minWindowHashSet(String A, String B) {
         HashSet<Character> hashSetB = new HashSet();
         for (int i = 0; i < B.length(); i++) {
             hashSetB.add(B.charAt(i));
@@ -66,7 +130,7 @@ public class AQ3WindowString {
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         for (Map.Entry<Character, int[]> characterCountAndIndexEntry : map.entrySet()) {
-//            System.out.println(characterCountAndIndexEntry.getKey() + " -> " + Arrays.toString(characterCountAndIndexEntry.getValue()));
+////            System.out.println(characterCountAndIndexEntry.getKey() + " -> " + Arrays.toString(characterCountAndIndexEntry.getValue()));
             min = Math.min(characterCountAndIndexEntry.getValue()[1], min);
             max = Math.max(characterCountAndIndexEntry.getValue()[1], max);
         }
