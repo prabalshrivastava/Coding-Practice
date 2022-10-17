@@ -1,6 +1,9 @@
 package scaler.advancedDsa.hashing2;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class HWQ2CompareSortedSubarrays {
     //    Problem Description
@@ -55,7 +58,34 @@ public class HWQ2CompareSortedSubarrays {
         System.out.println(Arrays.toString(new HWQ2CompareSortedSubarrays().solve(input2A, input2B)));
     }
 
+    //tle
     public int[] solve(int[] A, int[][] B) {
-        return A;
+        int[] ans = new int[B.length];
+        for (int i = 0; i < B.length; i++) {
+            int l1 = B[i][0];
+            int r1 = B[i][1];
+            int l2 = B[i][2];
+            int r2 = B[i][3];
+
+            if (r1 - l1 != r2 - l2) {
+                ans[i] = 0;
+                continue;
+            }
+            HashSet<Integer> hashSet = new HashSet();
+            while (l1 <= r1) {
+                hashSet.add(A[l1]);
+                l1++;
+            }
+            int tempAns = 1;
+            while (l2 <= r2) {
+                if (!hashSet.contains(A[l2])) {
+                    tempAns = 0;
+                    break;
+                }
+                l2++;
+            }
+            ans[i] = tempAns;
+        }
+        return ans;
     }
 }
