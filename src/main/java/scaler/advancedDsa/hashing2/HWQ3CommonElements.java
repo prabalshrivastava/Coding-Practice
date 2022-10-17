@@ -1,6 +1,6 @@
 package scaler.advancedDsa.hashing2;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class HWQ3CommonElements {
     //        Problem Description
@@ -34,7 +34,27 @@ public class HWQ3CommonElements {
 //        Explantion 2:
 //        Elements (2, 10) appears in both the array.
     public int[] solve(int[] A, int[] B) {
-        return A;
+        Map<Integer, Integer> freqMapA = new HashMap<>();
+        Map<Integer, Integer> freqMapB = new HashMap<>();
+        List<Integer> ansList = new ArrayList<>();
+        for (int i = 0; i < A.length; i++) {
+            freqMapA.put(A[i], freqMapA.getOrDefault(A[i], 0) + 1);
+        }
+        for (int i = 0; i < B.length; i++) {
+            freqMapB.put(B[i], freqMapB.getOrDefault(B[i], 0) + 1);
+        }
+        for (Map.Entry<Integer, Integer> entry : freqMapA.entrySet()) {
+            if (freqMapB.containsKey(entry.getKey())) {
+                Integer b = freqMapB.get(entry.getKey());
+                Integer a = entry.getValue();
+                while (a > 0 && b > 0) {
+                    ansList.add(entry.getKey());
+                    a--;
+                    b--;
+                }
+            }
+        }
+        return ansList.stream().mapToInt(Integer::intValue).toArray();
     }
 
     public static void main(String[] args) {

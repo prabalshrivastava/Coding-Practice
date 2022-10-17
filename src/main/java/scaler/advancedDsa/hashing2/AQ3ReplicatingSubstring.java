@@ -1,6 +1,9 @@
 package scaler.advancedDsa.hashing2;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AQ3ReplicatingSubstring {
     //    Problem Description
 //    Given a string B, find if it is possible to re-order the characters of the string B so that it can be represented as a concatenation of A similar strings.
@@ -42,6 +45,16 @@ public class AQ3ReplicatingSubstring {
     }
 
     public int solve(int A, String B) {
-        return A;
+        Map<Character, Integer> freqMap = new HashMap<>();
+        for (int i = 0; i < B.length(); i++) {
+            freqMap.put(B.charAt(i), freqMap.getOrDefault(B.charAt(i), 0) + 1);
+        }
+        System.out.println(freqMap);
+        for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
+            if (entry.getValue() % A != 0) {
+                return -1;
+            }
+        }
+        return 1;
     }
 }

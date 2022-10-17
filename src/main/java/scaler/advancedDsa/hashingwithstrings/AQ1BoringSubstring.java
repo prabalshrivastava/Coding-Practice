@@ -1,5 +1,7 @@
 package scaler.advancedDsa.hashingwithstrings;
 
+import java.util.Map;
+
 public class AQ1BoringSubstring {
     //    Problem Description
 //    You are given a string A of lowercase English alphabets. Rearrange the characters of the given string A such that there is no boring substring in A.
@@ -34,6 +36,13 @@ public class AQ1BoringSubstring {
     }
 
     public int solve(String A) {
+//        Map<Character,Character>
+//        for (int i = 0; i < A.length(); i++) {
+//            char ch = A.charAt(i);
+//            for (int j = 0; j < A.length(); j++) {
+//
+//            }
+//        }
         return 0;
     }
 }

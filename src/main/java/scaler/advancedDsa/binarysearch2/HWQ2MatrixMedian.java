@@ -1,7 +1,5 @@
 package scaler.advancedDsa.binarysearch2;
 
-import jdk.internal.joptsimple.internal.Rows;
-
 public class HWQ2MatrixMedian {
     //    Problem Description
 //    Given a matrix of integers A of size N x M in which each row is sorted.
