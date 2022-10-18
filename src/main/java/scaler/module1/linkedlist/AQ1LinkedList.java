@@ -63,7 +63,7 @@ public class AQ1LinkedList {
         if (head == null)
             return;
         Node trav = head;
-        if (position == 1  && head != null) {
+        if (position == 1) {
             head = head.next;
             return;
         }
