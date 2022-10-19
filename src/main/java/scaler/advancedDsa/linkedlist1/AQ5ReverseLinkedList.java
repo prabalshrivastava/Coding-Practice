@@ -1,6 +1,5 @@
 package scaler.advancedDsa.linkedlist1;
 
-import sun.security.util.Length;
 
 public class AQ5ReverseLinkedList {
     //    Problem Description
@@ -37,9 +36,8 @@ public class AQ5ReverseLinkedList {
         aQ5ReverseLinkedList.addLastNode(3);
         aQ5ReverseLinkedList.addLastNode(4);
         aQ5ReverseLinkedList.addLastNode(5);
-        aQ5ReverseLinkedList.print_ll();
-        aQ5ReverseLinkedList.reverseList(aQ5ReverseLinkedList.head);
-        aQ5ReverseLinkedList.print_ll();
+        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.head);
+        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.reverseList(aQ5ReverseLinkedList.head));
 
         AQ5ReverseLinkedList aQ5ReverseLinkedList1 = new AQ5ReverseLinkedList();
         aQ5ReverseLinkedList1.addLastNode(1);
@@ -48,17 +46,22 @@ public class AQ5ReverseLinkedList {
         aQ5ReverseLinkedList1.addLastNode(4);
         aQ5ReverseLinkedList1.addLastNode(5);
         aQ5ReverseLinkedList1.addLastNode(6);
-        aQ5ReverseLinkedList1.print_ll();
-        aQ5ReverseLinkedList1.reverseList(aQ5ReverseLinkedList1.head);
-        aQ5ReverseLinkedList1.print_ll();
+        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.head);
+        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.reverseList(aQ5ReverseLinkedList1.head));
     }
 
     public ListNode reverseList(ListNode A) {
         ListNode trav = A;
         ListNode newHead = null;
+
+        ListNode temp;
         while (trav != null) {
-            addLastNode(trav.val);//sc n with this
+            temp = trav.next;
+            trav.next = newHead;
+            newHead = trav;
+            trav = temp;
         }
+        return newHead;
     }
 
     void addLastNode(int value) {
@@ -73,9 +76,9 @@ public class AQ5ReverseLinkedList {
         trav.next = new ListNode(value);
     }
 
-    public void print_ll() {
+    public void print_ll(ListNode headPassed) {
         // Output each element followed by a space
-        ListNode trav = head;
+        ListNode trav = headPassed;
         if (trav == null)
             return;
         while (trav.next != null) {
