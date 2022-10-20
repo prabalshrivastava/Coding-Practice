@@ -35,41 +35,40 @@ public class AQ4ReverseLinkListII {
 //    In the second example, we want to reverse the highlighted part of the given linked list : 1 -> 4 -> 3 -> 2 -> 5
 //    Thus, the output is 5 -> 4 -> 3 -> 2 -> 1
     public static void main(String[] args) {
-        AQ4ReverseLinkListII aQ5ReverseLinkedList = new AQ4ReverseLinkListII();
-        aQ5ReverseLinkedList.addLastNode(1);
-        aQ5ReverseLinkedList.addLastNode(2);
-        aQ5ReverseLinkedList.addLastNode(3);
-        aQ5ReverseLinkedList.addLastNode(4);
-        aQ5ReverseLinkedList.addLastNode(5);
-        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.head);
-        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.reverseBetween(aQ5ReverseLinkedList.head, 2, 4));
+        AQ4ReverseLinkListII aQ4ReverseLinkListII = new AQ4ReverseLinkListII();
+        aQ4ReverseLinkListII.addLastNode(1);
+        aQ4ReverseLinkListII.addLastNode(2);
+        aQ4ReverseLinkListII.addLastNode(3);
+        aQ4ReverseLinkListII.addLastNode(4);
+        aQ4ReverseLinkListII.addLastNode(5);
+        aQ4ReverseLinkListII.print_ll(aQ4ReverseLinkListII.head);
+        aQ4ReverseLinkListII.print_ll(aQ4ReverseLinkListII.reverseBetween(aQ4ReverseLinkListII.head, 2, 4));
 
-        AQ4ReverseLinkListII aQ5ReverseLinkedList1 = new AQ4ReverseLinkListII();
-        aQ5ReverseLinkedList1.addLastNode(1);
-        aQ5ReverseLinkedList1.addLastNode(2);
-        aQ5ReverseLinkedList1.addLastNode(3);
-        aQ5ReverseLinkedList1.addLastNode(4);
-        aQ5ReverseLinkedList1.addLastNode(5);
-        aQ5ReverseLinkedList1.addLastNode(6);
-        aQ5ReverseLinkedList1.addLastNode(7);
-        aQ5ReverseLinkedList1.addLastNode(8);
-        aQ5ReverseLinkedList1.addLastNode(9);
-        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.head);
-        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.reverseBetween(aQ5ReverseLinkedList1.head, 3, 7));
+        AQ4ReverseLinkListII aQ4ReverseLinkListII1 = new AQ4ReverseLinkListII();
+        aQ4ReverseLinkListII1.addLastNode(1);
+        aQ4ReverseLinkListII1.addLastNode(2);
+        aQ4ReverseLinkListII1.addLastNode(3);
+        aQ4ReverseLinkListII1.addLastNode(4);
+        aQ4ReverseLinkListII1.addLastNode(5);
+        aQ4ReverseLinkListII1.addLastNode(6);
+        aQ4ReverseLinkListII1.addLastNode(7);
+        aQ4ReverseLinkListII1.addLastNode(8);
+        aQ4ReverseLinkListII1.addLastNode(9);
+        aQ4ReverseLinkListII1.print_ll(aQ4ReverseLinkListII1.head);
+        aQ4ReverseLinkListII1.print_ll(aQ4ReverseLinkListII1.reverseBetween(aQ4ReverseLinkListII1.head, 3, 7));
 
-        AQ4ReverseLinkListII aQ5ReverseLinkedList2 = new AQ4ReverseLinkListII();
-        aQ5ReverseLinkedList2.addLastNode(1);
-        aQ5ReverseLinkedList2.addLastNode(2);
-        aQ5ReverseLinkedList2.addLastNode(3);
-        aQ5ReverseLinkedList2.addLastNode(4);
-        aQ5ReverseLinkedList2.addLastNode(5);
-        aQ5ReverseLinkedList2.addLastNode(6);
-        aQ5ReverseLinkedList2.addLastNode(7);
-        aQ5ReverseLinkedList2.addLastNode(8);
-        aQ5ReverseLinkedList2.addLastNode(9);
-        aQ5ReverseLinkedList2.print_ll(aQ5ReverseLinkedList2.head);
-        aQ5ReverseLinkedList2.print_ll(aQ5ReverseLinkedList2.reverseBetween(aQ5ReverseLinkedList2.head, 1, 9));
-
+        AQ4ReverseLinkListII aQ4ReverseLinkListII2 = new AQ4ReverseLinkListII();
+        aQ4ReverseLinkListII2.addLastNode(1);
+        aQ4ReverseLinkListII2.addLastNode(2);
+        aQ4ReverseLinkListII2.addLastNode(3);
+        aQ4ReverseLinkListII2.addLastNode(4);
+        aQ4ReverseLinkListII2.addLastNode(5);
+        aQ4ReverseLinkListII2.addLastNode(6);
+        aQ4ReverseLinkListII2.addLastNode(7);
+        aQ4ReverseLinkListII2.addLastNode(8);
+        aQ4ReverseLinkListII2.addLastNode(9);
+        aQ4ReverseLinkListII2.print_ll(aQ4ReverseLinkListII2.head);
+        aQ4ReverseLinkListII2.print_ll(aQ4ReverseLinkListII2.reverseBetween(aQ4ReverseLinkListII2.head, 1, 9));
     }
 
     public ListNode reverseBetween(ListNode A, int B, int C) {
