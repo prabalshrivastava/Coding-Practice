@@ -42,49 +42,81 @@ public class AQ4ReverseLinkListII {
         aQ5ReverseLinkedList.addLastNode(4);
         aQ5ReverseLinkedList.addLastNode(5);
         aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.head);
-//        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.reverseBetween(aQ5ReverseLinkedList.head, 2, 4));
-        aQ5ReverseLinkedList.reverseBetween(aQ5ReverseLinkedList.head, 2, 4);
+        aQ5ReverseLinkedList.print_ll(aQ5ReverseLinkedList.reverseBetween(aQ5ReverseLinkedList.head, 2, 4));
 
-//        AQ4ReverseLinkListII aQ5ReverseLinkedList1 = new AQ4ReverseLinkListII();
-//        aQ5ReverseLinkedList1.addLastNode(1);
-//        aQ5ReverseLinkedList1.addLastNode(2);
-//        aQ5ReverseLinkedList1.addLastNode(3);
-//        aQ5ReverseLinkedList1.addLastNode(4);
-//        aQ5ReverseLinkedList1.addLastNode(5);
-//        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList.head);
-//        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList.reverseBetween(aQ5ReverseLinkedList.head, 1, 5));
+        AQ4ReverseLinkListII aQ5ReverseLinkedList1 = new AQ4ReverseLinkListII();
+        aQ5ReverseLinkedList1.addLastNode(1);
+        aQ5ReverseLinkedList1.addLastNode(2);
+        aQ5ReverseLinkedList1.addLastNode(3);
+        aQ5ReverseLinkedList1.addLastNode(4);
+        aQ5ReverseLinkedList1.addLastNode(5);
+        aQ5ReverseLinkedList1.addLastNode(6);
+        aQ5ReverseLinkedList1.addLastNode(7);
+        aQ5ReverseLinkedList1.addLastNode(8);
+        aQ5ReverseLinkedList1.addLastNode(9);
+        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.head);
+        aQ5ReverseLinkedList1.print_ll(aQ5ReverseLinkedList1.reverseBetween(aQ5ReverseLinkedList1.head, 3, 7));
+
+        AQ4ReverseLinkListII aQ5ReverseLinkedList2 = new AQ4ReverseLinkListII();
+        aQ5ReverseLinkedList2.addLastNode(1);
+        aQ5ReverseLinkedList2.addLastNode(2);
+        aQ5ReverseLinkedList2.addLastNode(3);
+        aQ5ReverseLinkedList2.addLastNode(4);
+        aQ5ReverseLinkedList2.addLastNode(5);
+        aQ5ReverseLinkedList2.addLastNode(6);
+        aQ5ReverseLinkedList2.addLastNode(7);
+        aQ5ReverseLinkedList2.addLastNode(8);
+        aQ5ReverseLinkedList2.addLastNode(9);
+        aQ5ReverseLinkedList2.print_ll(aQ5ReverseLinkedList2.head);
+        aQ5ReverseLinkedList2.print_ll(aQ5ReverseLinkedList2.reverseBetween(aQ5ReverseLinkedList2.head, 1, 9));
+
     }
 
     public ListNode reverseBetween(ListNode A, int B, int C) {
         int count = 1;
-        ListNode start = null;
-        ListNode end = null;
-        ListNode prev = null;
-        ListNode curr = head;
+        ListNode start;
+        ListNode prev;
+        ListNode curr = A;
         ListNode next = null;
-
-        while (curr != null && count != B - 1) {
-            count++;
-            curr = curr.next;
+        if (A == null || A.next == null) {
+            return A;
+        }
+        if (B != 1) {
+            while (curr != null && count != B - 1) {
+                count++;
+                curr = curr.next;
+            }
         }
 //        System.out.println(count + " - " + curr.val);
+        if (curr == null)
+            return A;
         start = curr;
         prev = curr;
+        curr = curr.next;
+//        System.out.printf("prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
         while (curr != null && count != C) {
             count++;
-            System.out.printf("prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
+            next = curr.next;
+//            System.out.printf("count(%s) - prev(%s) - curr(%s) - next(%s)%n", count, prev, curr, next);
             curr.next = prev;
             prev = curr;
             curr = next;
-            next = next.next;
         }
-        System.out.printf("prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
-        if (start != null) {
-            if (start.next.next != null)
-                start.next.next = next;
+//        System.out.printf("prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
+//        if (B == 1) {
+//            start.next = null;
+//            A = prev;
+//            return A;
+//        }
+        if (B == 1) {
             start.next = curr;
+            A = prev;
+            return A;
         }
 
+        if (start.next.next != null)
+            start.next.next = next;
+        start.next = prev;
         return A;
     }
 
