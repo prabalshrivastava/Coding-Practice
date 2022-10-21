@@ -75,8 +75,51 @@ public class AQ2KReverseLinkedList {
     public ListNode reverseList(ListNode A, int B) {
         if (B == 1)
             return A;
-
+        ListNode trav = A;
+        int count = 1;
+        ListNode previous = A;
+        boolean isFirst = true;
+        while (trav != null) {
+            ListNode start = trav;
+            while (trav != null && count != B) {
+                count++;
+                trav = trav.next;
+            }
+            ListNode end = trav;
+//            if (end != null)
+//                System.out.println(start.val + " - " + end.val);
+//            else
+//                System.out.println(start.val + " - " + null);
+            trav = trav.next;
+            if (isFirst) {
+                A = reverseRange(A, start, end, B);
+                isFirst = false;
+            } else {
+                previous.next = reverseRange(A, start, end, B);
+            }
+//            print_ll(A);
+//            System.out.println("");
+            count = 1;
+            previous = start;
+        }
         return A;
+    }
+
+    private ListNode reverseRange(ListNode headNode, ListNode start, ListNode end, int b) {
+//        System.out.printf("start(%s) - end(%s)%n", start, end);
+        ListNode prev = end.next;
+        ListNode curr = start;
+        ListNode next;
+        while (prev != end) {
+            next = curr.next;
+//            System.out.printf("prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+//            System.out.printf("--------->prev(%s) - curr(%s) - next(%s)%n", prev, curr, next);
+        }
+//        System.out.printf("start.next(%s) - end.next(%s)%n", start.next, end.next);
+        return end;
     }
 
 
