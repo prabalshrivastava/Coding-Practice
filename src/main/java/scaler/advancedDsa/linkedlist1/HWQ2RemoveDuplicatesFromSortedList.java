@@ -41,14 +41,19 @@ public class HWQ2RemoveDuplicatesFromSortedList {
 
         HWQ2RemoveDuplicatesFromSortedList hwQ2RemoveDuplicatesFromSortedList2 = new HWQ2RemoveDuplicatesFromSortedList();
         hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 1);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 1);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 1);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 1);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 2);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 2);
         hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 2);
         hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 3);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 3);
         hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 4);
-        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 5);
-        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 6);
-        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 7);
-        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 8);
-        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 9);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 4);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 4);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 4);
+        hwQ2RemoveDuplicatesFromSortedList2.head = LinkedListUtils.addLastNode(hwQ2RemoveDuplicatesFromSortedList2.head, 4);
         LinkedListUtils.print_ll(hwQ2RemoveDuplicatesFromSortedList2.head);
         LinkedListUtils.print_ll(hwQ2RemoveDuplicatesFromSortedList2.deleteDuplicates(hwQ2RemoveDuplicatesFromSortedList2.head));
 
@@ -57,6 +62,18 @@ public class HWQ2RemoveDuplicatesFromSortedList {
     ListNode head;
 
     public ListNode deleteDuplicates(ListNode A) {
+        ListNode trav = A;
+        ListNode start = trav;
+        while (trav != null) {
+            while (trav != null && trav.val == start.val) {
+                trav = trav.next;
+            }
+            start.next = trav;
+            start = trav;
+            if (trav != null)
+                trav = trav.next;
+            else break;
+        }
         return A;
     }
 }

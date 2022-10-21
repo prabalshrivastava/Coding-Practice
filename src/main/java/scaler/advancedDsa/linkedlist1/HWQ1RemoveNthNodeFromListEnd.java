@@ -78,6 +78,18 @@ public class HWQ1RemoveNthNodeFromListEnd {
     ListNode head;
 
     public ListNode removeNthFromEnd(ListNode A, int B) {
+        ListNode trav = A;
+        int count = 1;
+        while (trav != null && count != B - 1) {
+            trav = trav.next;
+            count++;
+        }
+        if (trav != null && trav.next != null)
+            trav.next = trav.next.next;
+        else {
+            A = A.next;
+            return A;
+        }
         return A;
     }
 }
