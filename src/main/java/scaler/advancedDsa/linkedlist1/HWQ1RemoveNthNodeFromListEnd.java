@@ -1,5 +1,8 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.LinkedListUtils;
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class HWQ1RemoveNthNodeFromListEnd {
 //    Problem Description
 //    Given a linked list A, remove the B-th node from the end of the list and return its head.

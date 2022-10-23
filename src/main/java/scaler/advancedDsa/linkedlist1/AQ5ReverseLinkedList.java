@@ -1,6 +1,8 @@
 package scaler.advancedDsa.linkedlist1;
 
 
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class AQ5ReverseLinkedList {
     //    Problem Description
 //    You are given a singly linked list having head node A. You have to reverse the linked list and return the head node of that reversed list.

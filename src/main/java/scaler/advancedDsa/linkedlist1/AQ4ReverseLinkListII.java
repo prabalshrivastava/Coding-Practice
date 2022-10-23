@@ -1,5 +1,7 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class AQ4ReverseLinkListII {
     //    Problem Description
 //    Reverse a linked list A from position B to C.

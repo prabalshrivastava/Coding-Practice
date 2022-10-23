@@ -1,5 +1,7 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class AQ1DeleteMiddleNodeOfALinkedList {
     //    Given a singly linked list, delete middle of the linked list.
 //    For example, if given linked list is 1->2->3->4->5 then linked list should be modified to 1->2->4->5

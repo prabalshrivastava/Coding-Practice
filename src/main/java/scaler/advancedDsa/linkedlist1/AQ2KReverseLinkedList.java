@@ -1,5 +1,7 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class AQ2KReverseLinkedList {
     //    Problem Description
 //    Given a singly linked list A and an integer B, reverse the nodes of the list B at a time and return the modified linked list.

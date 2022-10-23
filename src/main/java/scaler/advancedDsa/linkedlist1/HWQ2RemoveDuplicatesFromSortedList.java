@@ -1,5 +1,8 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.LinkedListUtils;
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class HWQ2RemoveDuplicatesFromSortedList {
     //    Problem Description
 //    Given a sorted linked list, delete all duplicates such that each element appears only once.

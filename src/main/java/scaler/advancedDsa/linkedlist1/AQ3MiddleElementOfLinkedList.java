@@ -1,5 +1,7 @@
 package scaler.advancedDsa.linkedlist1;
 
+import scaler.advancedDsa.linkedlist2.ListNode;
+
 public class AQ3MiddleElementOfLinkedList {
     //    Problem Description
 //    Given a linked list of integers, find and return the middle element of the linked list.
