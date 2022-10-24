@@ -1,4 +1,4 @@
-package scaler.advancedDsa.linkedlist2;
+package scaler.common;
 
 public class ListNode {
     public int val;

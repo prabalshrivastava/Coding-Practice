@@ -1,7 +1,7 @@
 package scaler.advancedDsa.linkedlist1;
 
-import scaler.advancedDsa.linkedlist2.LinkedListUtils;
-import scaler.advancedDsa.linkedlist2.ListNode;
+import scaler.common.LinkedListUtils;
+import scaler.common.ListNode;
 
 public class HWQ2RemoveDuplicatesFromSortedList {
     //    Problem Description

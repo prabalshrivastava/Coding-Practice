@@ -1,4 +1,4 @@
-package scaler.advancedDsa.linkedlist2;
+package scaler.common;
 
 public class LinkedListUtils {
     public static ListNode addLastNode(ListNode head, int value) {
@@ -36,7 +36,7 @@ public class LinkedListUtils {
         return head;
     }
 
-    static ListNode applyLoop(ListNode head1, int i) {
+    public static ListNode applyLoop(ListNode head1, int i) {
         if (head1 == null) {
             System.out.println("head : " + head1);
             return head1;

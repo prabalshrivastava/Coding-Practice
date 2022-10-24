@@ -1,6 +1,7 @@
 package scaler.advancedDsa.linkedlist2;
 
-import static scaler.advancedDsa.linkedlist2.LinkedListUtils.applyLoop;
+import scaler.common.LinkedListUtils;
+import scaler.common.ListNode;
 
 public class AQ2RemoveLoopFromLinkedList {
     //    Problem Description
@@ -39,12 +40,39 @@ public class AQ2RemoveLoopFromLinkedList {
         aq2RemoveLoopFromLinkedList.head = LinkedListUtils.addLastNode(aq2RemoveLoopFromLinkedList.head, 2);
         aq2RemoveLoopFromLinkedList.head = LinkedListUtils.addLastNode(aq2RemoveLoopFromLinkedList.head, 3);
         aq2RemoveLoopFromLinkedList.head = LinkedListUtils.addLastNode(aq2RemoveLoopFromLinkedList.head, 4);
-        applyLoop(aq2RemoveLoopFromLinkedList.head, 3);
+
+        LinkedListUtils.print_ll(aq2RemoveLoopFromLinkedList.head);
+        LinkedListUtils.applyLoop(aq2RemoveLoopFromLinkedList.head, 3);
+//        LinkedListUtils.print_ll(aq2RemoveLoopFromLinkedList.head);
+        LinkedListUtils.print_ll(aq2RemoveLoopFromLinkedList.solve(aq2RemoveLoopFromLinkedList.head));
     }
 
     ListNode head;
 
     public ListNode solve(ListNode A) {
+        ListNode slow = A;
+        ListNode fast = A;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast)
+                break;
+        }
+        ListNode fromHead = A;
+        ListNode fromMeetingPoint = fast;
+        ListNode previous = fromMeetingPoint;
+        boolean isFirst = true;
+        while (fromHead != fromMeetingPoint) {
+            fromHead = fromHead.next;
+            fromMeetingPoint = fromMeetingPoint.next;
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                previous = previous.next;
+            }
+        }
+        previous.next = null;
+
         return A;
     }
 }
