@@ -1,6 +1,5 @@
 package scaler.advancedDsa.linkedlist3;
 
-import jdk.internal.vm.compiler.word.Pointer;
 import scaler.common.ListNode;
 
 public class HWQ1FlattenALinkedList {
