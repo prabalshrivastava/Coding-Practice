@@ -35,40 +35,19 @@ public class HWQ1RemoveNthNodeFromListEnd {
 //    In the second example, 1 is the first and the last element.
 
     public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5};
         HWQ1RemoveNthNodeFromListEnd hwq1RemoveNthNodeFromListEnd = new HWQ1RemoveNthNodeFromListEnd();
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 1);
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 2);
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 3);
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 4);
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 5);
-        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd.head, 6);
-        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd.head);
-        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd.head, 2));
+        hwq1RemoveNthNodeFromListEnd.head = LinkedListUtils.addFromArrayAndPrint(arr, hwq1RemoveNthNodeFromListEnd.head);
+        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd.head, 5));
 
+        int[] arr1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         HWQ1RemoveNthNodeFromListEnd hwq1RemoveNthNodeFromListEnd1 = new HWQ1RemoveNthNodeFromListEnd();
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 1);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 2);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 3);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 4);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 5);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 6);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 7);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 8);
-        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd1.head, 9);
-        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd1.head);
+        hwq1RemoveNthNodeFromListEnd1.head = LinkedListUtils.addFromArrayAndPrint(arr1, hwq1RemoveNthNodeFromListEnd1.head);
         LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd1.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd1.head, 1));
 
+        int[] arr2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
         HWQ1RemoveNthNodeFromListEnd hwq1RemoveNthNodeFromListEnd2 = new HWQ1RemoveNthNodeFromListEnd();
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 1);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 2);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 3);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 4);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 5);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 6);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 7);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 8);
-        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addLastNode(hwq1RemoveNthNodeFromListEnd2.head, 9);
-        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd2.head);
+        hwq1RemoveNthNodeFromListEnd2.head = LinkedListUtils.addFromArrayAndPrint(arr2, hwq1RemoveNthNodeFromListEnd2.head);
         LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd2.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd2.head, 1));
 
         HWQ1RemoveNthNodeFromListEnd hwq1RemoveNthNodeFromListEnd3 = new HWQ1RemoveNthNodeFromListEnd();
@@ -76,23 +55,61 @@ public class HWQ1RemoveNthNodeFromListEnd {
         LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd3.head);
         LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd3.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd3.head, 1));
 
+        int[] arr4 = {20, 380, 349, 322, 389, 424, 429, 120, 64, 691, 677, 58, 327, 631, 916, 203, 484, 918, 596, 252, 509, 644, 33, 460};
+        HWQ1RemoveNthNodeFromListEnd hwq1RemoveNthNodeFromListEnd4 = new HWQ1RemoveNthNodeFromListEnd();
+        hwq1RemoveNthNodeFromListEnd4.head = LinkedListUtils.addFromArrayAndPrint(arr4, hwq1RemoveNthNodeFromListEnd4.head);
+        LinkedListUtils.print_ll(hwq1RemoveNthNodeFromListEnd4.removeNthFromEnd(hwq1RemoveNthNodeFromListEnd4.head, 82));
+
     }
 
     ListNode head;
 
     public ListNode removeNthFromEnd(ListNode A, int B) {
         ListNode trav = A;
-        int count = 1;
-        while (trav != null && count != B - 1) {
-            trav = trav.next;
-            count++;
+        int count = 0;
+        if (A == null) {
+            return A;
         }
-        if (trav != null && trav.next != null)
-            trav.next = trav.next.next;
-        else {
+        if (A.next == null && B == 1) {
             A = A.next;
             return A;
         }
+        while (trav != null) {
+            trav = trav.next;
+            count++;
+        }
+//        System.out.println("count : " + count);
+        int elementCount = count - B;
+//        System.out.println("element : " + elementCount);
+        if (B > count || elementCount == 0) {
+            return A.next;
+        }
+        count = 1;
+        trav = A;
+        while (trav != null && count != elementCount) {
+            trav = trav.next;
+            count++;
+        }
+//        System.out.println("trav : " + trav);
+        if (trav != null && trav.next != null) {
+            trav.next = trav.next.next;
+        }
         return A;
     }
+
+//    public ListNode removeNthFromEnd(ListNode A, int B) {
+//        ListNode trav = A;
+//        int count = 1;
+//        while (trav != null && count != B - 1) {
+//            trav = trav.next;
+//            count++;
+//        }
+//        if (trav != null && trav.next != null)
+//            trav.next = trav.next.next;
+//        else {
+//            A = A.next;
+//            return A;
+//        }
+//        return A;
+//    }
 }

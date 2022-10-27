@@ -36,6 +36,14 @@ public class LinkedListUtils {
         return head;
     }
 
+    public static ListNode addFromArrayAndPrint(int[] arr, ListNode head) {
+        for (int i = 0; i < arr.length; i++) {
+            head = addLastNode(head, arr[i]);
+        }
+        print_ll(head);
+        return head;
+    }
+
     public static ListNode applyLoop(ListNode head1, int i) {
         if (head1 == null) {
             System.out.println("head : " + head1);
