@@ -30,6 +30,9 @@ public class LinkedListUtils {
     }
 
     public static ListNode addFromArray(int[] arr, ListNode head) {
+        if (arr == null) {
+            return null;
+        }
         for (int i = 0; i < arr.length; i++) {
             head = addLastNode(head, arr[i]);
         }
@@ -37,9 +40,7 @@ public class LinkedListUtils {
     }
 
     public static ListNode addFromArrayAndPrint(int[] arr, ListNode head) {
-        for (int i = 0; i < arr.length; i++) {
-            head = addLastNode(head, arr[i]);
-        }
+        head = addFromArray(arr, head);
         print_ll(head);
         return head;
     }

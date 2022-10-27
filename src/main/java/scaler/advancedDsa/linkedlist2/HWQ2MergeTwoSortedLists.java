@@ -1,5 +1,7 @@
 package scaler.advancedDsa.linkedlist2;
 
+import scaler.advancedDsa.linkedlist1.AQ6LinkedList;
+import scaler.common.LinkedListUtils;
 import scaler.common.ListNode;
 
 public class HWQ2MergeTwoSortedLists {
@@ -31,10 +33,71 @@ public class HWQ2MergeTwoSortedLists {
 //    Explanation 2:
 //    We don't need to merge as B is empty.
     public static void main(String[] args) {
+        HWQ2MergeTwoSortedLists hwq2MergeTwoSortedListsA = new HWQ2MergeTwoSortedLists();
+        HWQ2MergeTwoSortedLists hwq2MergeTwoSortedListsB = new HWQ2MergeTwoSortedLists();
+        hwq2MergeTwoSortedListsA.head = LinkedListUtils.addFromArray(new int[]{5, 8, 20}, hwq2MergeTwoSortedListsA.head);
+        System.out.print("hwq2MergeTwoSortedListsA.head : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedListsA.head);
+        hwq2MergeTwoSortedListsB.head = LinkedListUtils.addFromArray(new int[]{4, 11, 15}, hwq2MergeTwoSortedListsB.head);
+        System.out.print("hwq2MergeTwoSortedListsB.head : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedListsB.head);
+        System.out.print("Merged : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedListsA.mergeTwoLists(hwq2MergeTwoSortedListsA.head, hwq2MergeTwoSortedListsB.head));
+
+
+        HWQ2MergeTwoSortedLists hwq2MergeTwoSortedLists1A = new HWQ2MergeTwoSortedLists();
+        HWQ2MergeTwoSortedLists hwq2MergeTwoSortedLists1B = new HWQ2MergeTwoSortedLists();
+        hwq2MergeTwoSortedLists1A.head = LinkedListUtils.addFromArray(new int[]{1, 2, 3}, hwq2MergeTwoSortedLists1A.head);
+        System.out.print("hwq2MergeTwoSortedLists1A.head : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedLists1A.head);
+        hwq2MergeTwoSortedLists1B.head = null;
+        System.out.print("hwq2MergeTwoSortedLists1B.head : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedLists1B.head);
+        System.out.print("Merged : ");
+        LinkedListUtils.print_ll(hwq2MergeTwoSortedLists1A.mergeTwoLists(hwq2MergeTwoSortedLists1A.head, hwq2MergeTwoSortedLists1B.head));
 
     }
 
+    ListNode head;
+
     public ListNode mergeTwoLists(ListNode A, ListNode B) {
-        return A;
+        ListNode h3;
+        ListNode tail;
+        ListNode travA = A;
+        ListNode travB = B;
+        if (A == null)
+            return B;
+        if (B == null)
+            return A;
+
+        if (travA.val < travB.val) {
+            h3 = travA;
+            tail = travA;
+            travA = travA.next;
+        } else {
+            h3 = travB;
+            tail = travB;
+            travB = travB.next;
+        }
+
+
+        while (travA != null && travB != null) {
+            if (travA.val < travB.val) {
+                tail.next = travA;
+                travA = travA.next;
+                tail = tail.next;
+            } else {
+                tail.next = travB;
+                travB = travB.next;
+                tail = tail.next;
+            }
+        }
+        if (travA != null) {
+            tail.next = travA;
+        }
+        if (travB != null) {
+            tail.next = travB;
+        }
+        return h3;
     }
 }
