@@ -28,12 +28,16 @@ public class HWQ1SortList {
 //    Explanation 2:
 //    The sorted form of [1] is [1].
     public static void main(String[] args) {
-        int[] input1A = {3, 4, 2, 8};
-        HWQ1SortList hwq1SortList1 = new HWQ1SortList();
-        LinkedListUtils.print_ll(hwq1SortList1.sortList(LinkedListUtils.addFromArrayAndPrint(input1A, hwq1SortList1.head)));
-        int[] input2A = {1};
-        HWQ1SortList hwq1SortList2 = new HWQ1SortList();
-        LinkedListUtils.print_ll(hwq1SortList2.sortList(LinkedListUtils.addFromArrayAndPrint(input2A, hwq1SortList2.head)));
+//        int[] input1A = {3, 4, 2, 8};
+//        HWQ1SortList hwq1SortList1 = new HWQ1SortList();
+//        LinkedListUtils.print_ll(hwq1SortList1.sortList(LinkedListUtils.addFromArrayAndPrint(input1A, hwq1SortList1.head)));
+//        int[] input2A = {1};
+//        HWQ1SortList hwq1SortList2 = new HWQ1SortList();
+//        LinkedListUtils.print_ll(hwq1SortList2.sortList(LinkedListUtils.addFromArrayAndPrint(input2A, hwq1SortList2.head)));
+
+        int[] input3A = {3, 4, 2, 8, 7, 5, 4};
+        HWQ1SortList hwq1SortList3 = new HWQ1SortList();
+        LinkedListUtils.print_ll(hwq1SortList3.sortList(LinkedListUtils.addFromArrayAndPrint(input3A, hwq1SortList3.head)));
     }
 
     ListNode head;
@@ -42,16 +46,20 @@ public class HWQ1SortList {
         if (A == null || A.next == null)
             return A;
         ListNode middle = findMiddle(A);
-        ListNode h1 = A;
+//        System.out.println("findmiddle returned : " + middle);
         ListNode h2 = middle.next;
         middle.next = null;
-        h1 = sortList(h1);
+//        System.out.println("Passing A:" + A);
+        A = sortList(A);
+//        System.out.println("Passing h2:" + h2);
         h2 = sortList(h2);
-        return mergeTwoLists(h1, h2);
+//        System.out.println("calling mergeTwoLists(A, h2)");
+        return mergeTwoLists(A, h2);
     }
 
 
     public ListNode findMiddle(ListNode A) {
+//        LinkedListUtils.print_ll(A);
         ListNode slow = A;
         ListNode fast = A;
         if (A == null)
@@ -60,11 +68,7 @@ public class HWQ1SortList {
             slow = slow.next;
             fast = fast.next.next;
         }
-        if (fast.next == null) {
-            return slow;
-        } else {
-            return slow.next;
-        }
+        return slow;
     }
 
 
