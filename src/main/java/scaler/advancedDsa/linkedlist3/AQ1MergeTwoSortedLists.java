@@ -1,5 +1,6 @@
 package scaler.advancedDsa.linkedlist3;
 
+import scaler.common.LinkedListUtils;
 import scaler.common.ListNode;
 
 public class AQ1MergeTwoSortedLists {
@@ -31,9 +32,71 @@ public class AQ1MergeTwoSortedLists {
 //    Explanation 2:
 //    We don't need to merge as B is empty.
     public static void main(String[] args) {
+        AQ1MergeTwoSortedLists aq1MergeTwoSortedListsA = new AQ1MergeTwoSortedLists();
+        AQ1MergeTwoSortedLists aq1MergeTwoSortedListsB = new AQ1MergeTwoSortedLists();
+        aq1MergeTwoSortedListsA.head = LinkedListUtils.addFromArray(new int[]{5, 8, 20}, aq1MergeTwoSortedListsA.head);
+        System.out.print("aq1MergeTwoSortedListsA.head : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedListsA.head);
+        aq1MergeTwoSortedListsB.head = LinkedListUtils.addFromArray(new int[]{4, 11, 15}, aq1MergeTwoSortedListsB.head);
+        System.out.print("aq1MergeTwoSortedListsB.head : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedListsB.head);
+        System.out.print("Merged : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedListsA.mergeTwoLists(aq1MergeTwoSortedListsA.head, aq1MergeTwoSortedListsB.head));
+
+
+        AQ1MergeTwoSortedLists aq1MergeTwoSortedLists1A = new AQ1MergeTwoSortedLists();
+        AQ1MergeTwoSortedLists aq1MergeTwoSortedLists1B = new AQ1MergeTwoSortedLists();
+        aq1MergeTwoSortedLists1A.head = LinkedListUtils.addFromArray(new int[]{1, 2, 3}, aq1MergeTwoSortedLists1A.head);
+        System.out.print("aq1MergeTwoSortedLists1A.head : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedLists1A.head);
+        aq1MergeTwoSortedLists1B.head = null;
+        System.out.print("aq1MergeTwoSortedLists1B.head : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedLists1B.head);
+        System.out.print("Merged : ");
+        LinkedListUtils.print_ll(aq1MergeTwoSortedLists1A.mergeTwoLists(aq1MergeTwoSortedLists1A.head, aq1MergeTwoSortedLists1B.head));
 
     }
+
+    ListNode head;
+
     public ListNode mergeTwoLists(ListNode A, ListNode B) {
-        return A;
+        ListNode h3;
+        ListNode tail;
+        ListNode travA = A;
+        ListNode travB = B;
+        if (A == null)
+            return B;
+        if (B == null)
+            return A;
+
+        if (travA.val < travB.val) {
+            h3 = travA;
+            tail = travA;
+            travA = travA.next;
+        } else {
+            h3 = travB;
+            tail = travB;
+            travB = travB.next;
+        }
+
+
+        while (travA != null && travB != null) {
+            if (travA.val < travB.val) {
+                tail.next = travA;
+                travA = travA.next;
+                tail = tail.next;
+            } else {
+                tail.next = travB;
+                travB = travB.next;
+                tail = tail.next;
+            }
+        }
+        if (travA != null) {
+            tail.next = travA;
+        }
+        if (travB != null) {
+            tail.next = travB;
+        }
+        return h3;
     }
 }
