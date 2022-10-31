@@ -34,13 +34,13 @@ public class HWQ2MinXORValue {
 
     public int findMinXor(int[] A) {
         int minXor = Integer.MAX_VALUE;
-        for (int i = 0; i < A.length; i++) {
-            for (int j = i + 1; j < A.length; j++) {
-                minXor = Math.min(A[i] ^ A[j], minXor);
-            }
+        Arrays.sort(A);
+        for (int i = 0; i < A.length - 1; i++) {
+            minXor = Math.min(A[i] ^ A[i + 1], minXor);
         }
         return minXor;
     }
+
     public int findMinXorOn2(int[] A) {
         int minXor = Integer.MAX_VALUE;
         for (int i = 0; i < A.length; i++) {
