@@ -51,10 +51,10 @@ public class AQ2DoubleCharacterTrouble {
                 stack.push(A.charAt(i));
             }
         }
-        String ans = "";
+        StringBuilder ans = new StringBuilder();
         while (!stack.isEmpty()) {
-            ans = stack.pop() + ans;
+            ans.insert(0, stack.pop());
         }
-        return ans;
+        return ans.toString();
     }
 }
