@@ -42,6 +42,10 @@ public class HWQ2NIntegersContainingOnly12And3 {
         System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(8)));
         System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(9)));
         System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(10)));
+        System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(11)));
+        System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(12)));
+        System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(13)));
+        System.out.println(Arrays.toString(new HWQ2NIntegersContainingOnly12And3().solve(14)));
 
     }
 

@@ -1,6 +1,9 @@
 package scaler.advancedDsa.queue;
 
+import scaler.common.LinkedListUtils;
+
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public class AQ1PerfectNumbers {
@@ -41,9 +44,51 @@ public class AQ1PerfectNumbers {
 //            3. 1111
 //            4. 1221
     public static void main(String[] args) {
+        System.out.println("1 : " + new AQ1PerfectNumbers().solve(1));//11
+        System.out.println("2 : " + new AQ1PerfectNumbers().solve(2));//22
+        System.out.println("3 : " + new AQ1PerfectNumbers().solve(3));//1111
+        System.out.println("4 : " + new AQ1PerfectNumbers().solve(4));//1221
+        System.out.println("5 : " + new AQ1PerfectNumbers().solve(5));//2112
+        System.out.println("6 : " + new AQ1PerfectNumbers().solve(6));//2222
+        System.out.println("7 : " + new AQ1PerfectNumbers().solve(7));//111111
+        System.out.println("8 : " + new AQ1PerfectNumbers().solve(8));//112211
+        System.out.println("9 : " + new AQ1PerfectNumbers().solve(9));//121121
+        System.out.println("10 : " + new AQ1PerfectNumbers().solve(10));//211112
     }
 
     public String solve(int A) {
-        return null;
+        if (A == 1)
+            return "11";
+        if (A == 2)
+            return "22";
+
+        Queue<Integer> perfectNoQueue = new LinkedList<>();
+        perfectNoQueue.offer(1);
+        perfectNoQueue.offer(2);
+        int count = 2;
+        while (true) {
+            Integer current = perfectNoQueue.peek();
+            int proccessing = (current * 10) + 1;
+            perfectNoQueue.offer(proccessing);
+            System.out.println(perfectNoQueue);
+            count++;
+            if (count == A) {
+                System.out.println( proccessing);
+                StringBuilder peeked = new StringBuilder(proccessing + "");
+                System.out.println("peeked : " + peeked);
+                peeked.append(peeked.reverse());
+                return peeked.toString();
+            }
+            proccessing = (current * 10) + 2;
+            perfectNoQueue.offer(proccessing);
+            count++;
+            if (count == A) {
+                System.out.println( perfectNoQueue.peek());
+                StringBuilder peeked = new StringBuilder(proccessing + "");
+                System.out.println("peeked : " + peeked);
+                return peeked.toString() + peeked.reverse();
+            }
+            perfectNoQueue.poll();
+        }
     }
 }
