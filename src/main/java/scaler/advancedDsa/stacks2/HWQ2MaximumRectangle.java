@@ -1,6 +1,5 @@
 package scaler.advancedDsa.stacks2;
 
-import jdk.internal.joptsimple.internal.Rows;
 
 public class HWQ2MaximumRectangle {
     //    Given a 2D binary matrix of integers A containing 0's and 1's of size N x M.

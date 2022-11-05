@@ -1,5 +1,8 @@
 package scaler.advancedDsa.queue;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class AQ2TaskScheduling {
     //    Problem Description
 //    A CPU has N tasks to be performed. It is to be noted that the tasks have to be completed in a specific order to avoid deadlock. In every clock cycle, the CPU can either perform a task or move it to the back of the queue. You are given the current state of the scheduler queue in array A and the required order of the tasks in array B.
@@ -47,6 +50,37 @@ public class AQ2TaskScheduling {
     }
 
     public int solve(int[] A, int[] B) {
-        return 0;
+        Queue<Integer> queueA = new LinkedList<>();
+        Queue<Integer> queueB = new LinkedList<>();
+        for (int i = 0; i < A.length; i++) {
+            queueA.offer(A[i]);
+            queueB.offer(B[i]);
+        }
+//        System.out.println("queueA : " + queueA);
+//        System.out.println("queueB : " + queueB);
+
+        int currentPriority = queueB.peek();
+        int clockCycle = 1;
+        while (queueB.size() != 0) {
+            if (currentPriority == queueA.peek()) {
+//                System.out.println("executing : " + queueA.peek());
+                //execute task
+                queueA.poll();
+                queueB.poll();
+//                System.out.println(" Queue : " + queueB);
+                if (queueB.size() == 0)
+                    return clockCycle;
+                currentPriority = queueB.peek();
+            } else {
+                //move the tasks in queue A
+//                System.out.println("moving : " + queueA.peek());
+//                System.out.println("moving : " + queueA.peek() + " Queue : " + queueA);
+                queueA.offer(queueA.poll());
+            }
+//            System.out.println("queueA : " + queueA);
+//            System.out.println("queueB : " + queueB);
+            clockCycle++;
+        }
+        return clockCycle;
     }
 }

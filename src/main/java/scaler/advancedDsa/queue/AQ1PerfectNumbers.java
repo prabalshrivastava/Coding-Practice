@@ -53,7 +53,7 @@ public class AQ1PerfectNumbers {
         System.out.println("7 : " + new AQ1PerfectNumbers().solve(7));//111111
         System.out.println("8 : " + new AQ1PerfectNumbers().solve(8));//112211
         System.out.println("9 : " + new AQ1PerfectNumbers().solve(9));//121121
-        System.out.println("10 : " + new AQ1PerfectNumbers().solve(10));//211112
+        System.out.println("10 : " + new AQ1PerfectNumbers().solve(10));//122221
     }
 
     public String solve(int A) {
@@ -68,24 +68,20 @@ public class AQ1PerfectNumbers {
         int count = 2;
         while (true) {
             Integer current = perfectNoQueue.peek();
+
             int proccessing = (current * 10) + 1;
             perfectNoQueue.offer(proccessing);
-            System.out.println(perfectNoQueue);
             count++;
             if (count == A) {
-                System.out.println( proccessing);
                 StringBuilder peeked = new StringBuilder(proccessing + "");
-                System.out.println("peeked : " + peeked);
-                peeked.append(peeked.reverse());
-                return peeked.toString();
+                return peeked.toString() + peeked.reverse();
             }
+
             proccessing = (current * 10) + 2;
             perfectNoQueue.offer(proccessing);
             count++;
             if (count == A) {
-                System.out.println( perfectNoQueue.peek());
                 StringBuilder peeked = new StringBuilder(proccessing + "");
-                System.out.println("peeked : " + peeked);
                 return peeked.toString() + peeked.reverse();
             }
             perfectNoQueue.poll();
