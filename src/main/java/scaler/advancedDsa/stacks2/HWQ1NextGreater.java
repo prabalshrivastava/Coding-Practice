@@ -2,6 +2,7 @@ package scaler.advancedDsa.stacks2;
 
 import javax.lang.model.util.Elements;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class HWQ1NextGreater {
     //    Problem Description
@@ -39,12 +40,35 @@ public class HWQ1NextGreater {
 //    As the array is in descending order, there is no next greater element for all the elements.
     public static void main(String[] args) {
         int[] input1A = {4, 5, 2, 10};
-        System.out.println(Arrays.toString(new HWQ1NextGreater().nextGreater(input1A)));
+        System.out.println(Arrays.toString(new HWQ1NextGreater().nextGreater(input1A)));//[5, 10, 10, -1]
         int[] input2A = {3, 2, 1};
-        System.out.println(Arrays.toString(new HWQ1NextGreater().nextGreater(input2A)));
+        System.out.println(Arrays.toString(new HWQ1NextGreater().nextGreater(input2A)));//[-1, -1, -1]
     }
 
     public int[] nextGreater(int[] A) {
-        return A;
+        Stack<Integer> nextGreaterStack = new Stack<>();
+        int[] ansArr = new int[A.length];
+        for (int i = A.length - 1; i >= 0; i--) {
+            if (nextGreaterStack.isEmpty()) {
+                nextGreaterStack.push(A[i]);
+                ansArr[i] = -1;
+            } else {
+                if (A[i] < nextGreaterStack.peek()) {
+                    ansArr[i] = nextGreaterStack.peek();
+                    nextGreaterStack.push(A[i]);
+                } else {
+                    while (!nextGreaterStack.isEmpty() && A[i] >= nextGreaterStack.peek()) {
+                        nextGreaterStack.pop();
+                    }
+                    if (nextGreaterStack.isEmpty()) {
+                        ansArr[i] = -1;
+                    } else {
+                        ansArr[i] = nextGreaterStack.peek();
+                    }
+                    nextGreaterStack.push(A[i]);
+                }
+            }
+        }
+        return ansArr;
     }
 }

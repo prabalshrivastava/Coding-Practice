@@ -2,6 +2,7 @@ package scaler.advancedDsa.stacks2;
 
 import javax.lang.model.util.Elements;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class AQ1NearestSmallerElement {
     //    Problem Description
@@ -42,12 +43,44 @@ public class AQ1NearestSmallerElement {
 //    index 3: No element less than 1 in left of 1, G[3] = -1
     public static void main(String[] args) {
         int[] input1A = {4, 5, 2, 10, 8};
-        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input1A)));
+        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input1A)));//[-1, 4, -1, 2, 2]
         int[] input2A = {3, 2, 1};
-        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input2A)));
+        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input2A)));//[-1, -1, -1]
+        int[] input3A = {4, 5, 2, 10, 18, 2};
+        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input3A)));//[-1, 4, -1, 2, 10, -1]
+        int[] input4A = {4, 6, 10, 11, 7, 6, 3, 5};
+        System.out.println(Arrays.toString(new AQ1NearestSmallerElement().prevSmaller(input4A)));//[-1, 4, 6, 10, 6, 4, -1, 3]
     }
 
     public int[] prevSmaller(int[] A) {
-        return A;
+        Stack<Integer> nearestElementStack = new Stack<>();
+        int[] ansArr = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            if (nearestElementStack.isEmpty()) {
+                nearestElementStack.push(A[i]);
+                ansArr[i] = -1;
+            } else {
+                Integer topOfStack = nearestElementStack.peek();
+                if (topOfStack < A[i]) {
+                    ansArr[i] = topOfStack;
+                    nearestElementStack.push(A[i]);
+                } else {
+//                    System.out.println("topOfStack >= A[i] -> %s>=%s : %s",topOfStack,A[i],);
+                    while (topOfStack >= A[i]) {
+                        nearestElementStack.pop();
+                        if (!nearestElementStack.isEmpty()) {
+                            topOfStack = nearestElementStack.peek();
+                        } else
+                            break;
+                    }
+                    if (nearestElementStack.isEmpty())
+                        ansArr[i] = -1;
+                    else
+                        ansArr[i] = topOfStack;
+                    nearestElementStack.push(A[i]);
+                }
+            }
+        }
+        return ansArr;
     }
 }
