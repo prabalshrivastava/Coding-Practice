@@ -1,5 +1,8 @@
 package scaler.advancedDsa.stacks2;
 
+import java.util.Arrays;
+import java.util.Stack;
+
 public class AQ3MaxAndMin {
     //    Problem Description
 //    Given an array of integers A.
@@ -42,9 +45,61 @@ public class AQ3MaxAndMin {
         System.out.println(new AQ3MaxAndMin().solve(input1A));
         int[] input2A = {4, 7, 3, 8};
         System.out.println(new AQ3MaxAndMin().solve(input2A));
+        int[] input3A = {9, 7, 3, 5, 4, 2, 6, 1, 8};
+        System.out.println(new AQ3MaxAndMin().solve(input3A));
+
     }
 
     public int solve(int[] A) {
+        int[] ansLeft = new int[A.length];
+        int[] leftGreaterArr = getLeftGreaterArr(A);
+        int[] rightGreaterArr = getRightGreaterArr(A);
+        System.out.println(Arrays.toString(leftGreaterArr));
         return 0;
+    }
+
+    private int[] getRightGreaterArr(int[] A) {
+        Stack<Integer> rightGreaterStack = new Stack<>();
+        int[] rightGreaterArr = new int[A.length];
+        for (int i = A.length - 1; i >= 0; i--) {
+            if (rightGreaterStack.isEmpty()) {
+                rightGreaterArr[i] = -1;
+                rightGreaterStack.push(i);
+            } else {
+                if (A[i] <= A[rightGreaterStack.peek()]) {
+                    rightGreaterArr[i] = rightGreaterStack.peek();
+                    rightGreaterStack.push(i);
+                } else {
+
+                }
+            }
+        }
+        return new int[0];
+    }
+
+    private int[] getLeftGreaterArr(int[] A) {
+        Stack<Integer> leftGreaterStack = new Stack<>();
+        int[] leftGreaterArr = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            if (leftGreaterStack.isEmpty()) {
+                leftGreaterStack.push(i);
+                leftGreaterArr[i] = -1;
+            } else {
+                if (A[i] >= A[leftGreaterStack.peek()]) {
+                    while (!leftGreaterStack.isEmpty() && A[i] >= A[leftGreaterStack.peek()]) {
+                        leftGreaterStack.pop();
+                    }
+                    if (leftGreaterStack.isEmpty())
+                        leftGreaterArr[i] = -1;
+                    else
+                        leftGreaterArr[i] = leftGreaterStack.peek();
+                    leftGreaterStack.push(i);
+                } else {
+                    leftGreaterArr[i] = leftGreaterStack.peek();
+                    leftGreaterStack.push(i);
+                }
+            }
+        }
+        return leftGreaterArr;
     }
 }
