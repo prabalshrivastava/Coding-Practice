@@ -6,6 +6,7 @@ import scaler.module1.trees.TreeNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Stack;
 
 public class AQ1InorderTraversal {
 //    Problem Description
@@ -41,6 +42,19 @@ public class AQ1InorderTraversal {
 //    Explanation 2:
 //    The Inorder Traversal of the given tree is [6, 1, 3, 2].
 
+    public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.right = new TreeNode(2);
+        treeNode.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ1InorderTraversal().inorderTraversal(treeNode)));
+
+        TreeNode treeNode1 = new TreeNode(1);
+        treeNode1.right = new TreeNode(2);
+        treeNode1.left = new TreeNode(6);
+        treeNode1.right.left = new TreeNode(3);
+        System.out.println(Arrays.toString(new AQ1InorderTraversal().inorderTraversal(treeNode1)));
+    }
+
     public int[] inorderTraversal(TreeNode A) {
         //left root right
         List<Integer> list = new ArrayList<>();
@@ -49,22 +63,16 @@ public class AQ1InorderTraversal {
     }
 
     private void inOrder(TreeNode A, List<Integer> list) {
-
-    }
-
-    public static void main(String[] args) {
-        TreeNode treeNode = new TreeNode(1);
-        treeNode.right = new TreeNode(2);
-        treeNode.right.left = new TreeNode(3);
-        System.out.println(Arrays.toString(new scaler.module1.trees.AQ1InorderTraversal().inorderTraversal(treeNode)));
-
-        TreeNode treeNode1 = new TreeNode(1);
-        treeNode1.right = new TreeNode(2);
-        treeNode1.left = new TreeNode(6);
-        treeNode1.right.left = new TreeNode(3);
-        System.out.println(Arrays.toString(new scaler.module1.trees.AQ1InorderTraversal().inorderTraversal(treeNode1)));
+        TreeNode curr = A;
+        Stack<TreeNode> treeNodesStack = new Stack<>();
+        while (!treeNodesStack.isEmpty() || curr != null) {
+            while (curr != null) {
+                treeNodesStack.push(curr);
+                curr = curr.left;
+            }
+            curr = treeNodesStack.pop();
+            list.add(curr.val);
+            curr = curr.right;
+        }
     }
 }
-
-//Definition for binary tree
-
