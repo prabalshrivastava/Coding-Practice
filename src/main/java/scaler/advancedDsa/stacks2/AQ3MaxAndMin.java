@@ -47,15 +47,87 @@ public class AQ3MaxAndMin {
         System.out.println(new AQ3MaxAndMin().solve(input2A));
         int[] input3A = {9, 7, 3, 5, 4, 2, 6, 1, 8};
         System.out.println(new AQ3MaxAndMin().solve(input3A));
-
     }
 
     public int solve(int[] A) {
         int[] ansLeft = new int[A.length];
         int[] leftGreaterArr = getLeftGreaterArr(A);
         int[] rightGreaterArr = getRightGreaterArr(A);
-        System.out.println(Arrays.toString(leftGreaterArr));
-        return 0;
+        int[] leftSmallerArr = getLeftSmallerArr(A);
+        int[] rightSmallerArr = getRightSmallerArr(A);
+//        System.out.println(Arrays.toString(leftGreaterArr));
+//        System.out.println(Arrays.toString(rightGreaterArr));
+//        System.out.println(Arrays.toString(leftSmallerArr));
+//        System.out.println(Arrays.toString(rightSmallerArr));
+
+        long ans = 0;
+        for (int i = 0; i < A.length; i++) {
+            long max = getModdedAns(A[i] * getModdedAns(i - leftGreaterArr[i]) * getModdedAns(rightGreaterArr[i] - i));
+            long min = getModdedAns(A[i] * getModdedAns(i - leftSmallerArr[i]) * getModdedAns(rightSmallerArr[i] - i));
+            ans = getModdedAns(ans + max - min);
+        }
+        return (int) getModdedAns(ans);
+    }
+
+    private long getModdedAns(long sum) {
+        if (sum < 0)
+            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
+        else
+            sum = (long) (sum % (Math.pow(10, 9) + 7));
+        return sum;
+    }
+
+
+    private int[] getRightSmallerArr(int[] A) {
+        Stack<Integer> rightSmallerStack = new Stack<>();
+        int[] rightSmallerArr = new int[A.length];
+        for (int i = A.length - 1; i >= 0; i--) {
+            if (rightSmallerStack.isEmpty()) {
+                rightSmallerArr[i] = A.length;
+                rightSmallerStack.push(i);
+            } else {
+                if (A[i] <= A[rightSmallerStack.peek()]) {
+                    while (!rightSmallerStack.isEmpty() && A[i] <= A[rightSmallerStack.peek()]) {
+                        rightSmallerStack.pop();
+                    }
+                    if (rightSmallerStack.isEmpty()) {
+                        rightSmallerArr[i] = A.length;
+                    } else {
+                        rightSmallerArr[i] = rightSmallerStack.peek();
+                    }
+                } else {
+                    rightSmallerArr[i] = rightSmallerStack.peek();
+                }
+                rightSmallerStack.push(i);
+            }
+        }
+        return rightSmallerArr;
+    }
+
+    private int[] getLeftSmallerArr(int[] A) {
+        Stack<Integer> leftSmallerStack = new Stack<>();
+        int[] leftSmallerArr = new int[A.length];
+        for (int i = 0; i < A.length; i++) {
+            if (leftSmallerStack.isEmpty()) {
+                leftSmallerArr[i] = -1;
+                leftSmallerStack.push(i);
+            } else {
+                if (A[i] <= A[leftSmallerStack.peek()]) {
+                    while (!leftSmallerStack.isEmpty() && A[i] <= A[leftSmallerStack.peek()]) {
+                        leftSmallerStack.pop();
+                    }
+                    if (leftSmallerStack.isEmpty()) {
+                        leftSmallerArr[i] = -1;
+                    } else {
+                        leftSmallerArr[i] = leftSmallerStack.peek();
+                    }
+                } else {
+                    leftSmallerArr[i] = leftSmallerStack.peek();
+                }
+                leftSmallerStack.push(i);
+            }
+        }
+        return leftSmallerArr;
     }
 
     private int[] getRightGreaterArr(int[] A) {
@@ -63,18 +135,26 @@ public class AQ3MaxAndMin {
         int[] rightGreaterArr = new int[A.length];
         for (int i = A.length - 1; i >= 0; i--) {
             if (rightGreaterStack.isEmpty()) {
-                rightGreaterArr[i] = -1;
+                rightGreaterArr[i] = A.length;
                 rightGreaterStack.push(i);
             } else {
                 if (A[i] <= A[rightGreaterStack.peek()]) {
                     rightGreaterArr[i] = rightGreaterStack.peek();
                     rightGreaterStack.push(i);
                 } else {
-
+                    while (!rightGreaterStack.isEmpty() && A[i] > A[rightGreaterStack.peek()]) {
+                        rightGreaterStack.pop();
+                    }
+                    if (rightGreaterStack.isEmpty()) {
+                        rightGreaterArr[i] = A.length;
+                    } else {
+                        rightGreaterArr[i] = rightGreaterStack.peek();
+                    }
+                    rightGreaterStack.push(i);
                 }
             }
         }
-        return new int[0];
+        return rightGreaterArr;
     }
 
     private int[] getLeftGreaterArr(int[] A) {
