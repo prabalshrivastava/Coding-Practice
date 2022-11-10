@@ -52,8 +52,9 @@ public class HWQ2PreorderTraversal {
     private void preOrder(TreeNode A, List<Integer> list) {
         TreeNode curr = A;
         Stack<TreeNode> treeNodeStack = new Stack<>();
-        while (!treeNodeStack.isEmpty() && curr != null) {
+        while (!treeNodeStack.isEmpty() || curr != null) {
             while (curr != null) {
+                list.add(curr.val);
                 treeNodeStack.push(curr);
                 curr = curr.left;
             }
