@@ -5,7 +5,6 @@ import scaler.module1.trees.TreeNode;
 import java.util.*;
 
 public class AQ3LevelOrder {
-    //    Problem Description
 //    Given a binary tree, return the level order traversal of its nodes' values. (i.e., from left to right, level by level).
 //    Problem Constraints
 //1 <= number of nodes <= 105
