@@ -1,5 +1,6 @@
 package scaler.advancedDsa.trees1;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
 
 import java.util.Arrays;
@@ -39,20 +40,26 @@ public class AQ2BinaryTreeFromInorderAndPostorder {
     public static void main(String[] args) {
         int[] input1A = {2, 1, 3};
         int[] input1B = {2, 3, 1};
-        System.out.println(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input1A, input1B));
+//        System.out.println(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input1A, input1B));
         int[] input2A = {6, 1, 3, 2};
         int[] input2B = {6, 3, 2, 1};
-        System.out.println(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input2A, input2B));
+//        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input2A, input2B))));
+        int[] input3A = {1};
+        int[] input3B = {1};
+        System.out.println(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input3A, input3B));
+//        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ2BinaryTreeFromInorderAndPostorder().buildTree(input3A, input3B))));
     }
 
     public TreeNode buildTree(int[] A, int[] B) {
-        buildTreeNodes(A, B, 0, A.length - 1, 0, A.length - 1);
-        return null;
+        return buildTreeNodes(A, B, 0, A.length - 1, 0, B.length - 1);
     }
 
     TreeNode buildTreeNodes(int[] inorder, int[] postorder, int pos, int poe, int ins, int ine) {
         System.out.println("inorder :" + Arrays.toString(inorder) + " postorder :" + Arrays.toString(postorder) + " pos :" + pos + " poe :" + poe + " ins :" + ins + " ine :" + ine);
+        if (pos > poe)
+            return null;
         int rootVal = postorder[poe];
+        System.out.println("root : " + rootVal);
         int idx = -1;
         for (int i = 0; i < inorder.length; i++) {
             if (rootVal == inorder[i]) {
@@ -61,9 +68,10 @@ public class AQ2BinaryTreeFromInorderAndPostorder {
             }
         }
         int l = idx - ins;
+        System.out.println("idx : " + idx + " l :" + l);
         TreeNode root = new TreeNode(rootVal);
         root.left = buildTreeNodes(inorder, postorder, pos, pos + l - 1, ins, idx - 1);
-        root.right = buildTreeNodes(inorder, postorder, pos + l, poe, idx + 1, ine);
+        root.right = buildTreeNodes(inorder, postorder, pos + l, poe - 1, idx + 1, ine);
         return root;
     }
 }

@@ -1,7 +1,11 @@
 package scaler.advancedDsa.trees1;
 
-import com.google.gson.annotations.Since;
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AQ4DeserializeBinaryTree {
     //    Problem Description
@@ -44,12 +48,43 @@ public class AQ4DeserializeBinaryTree {
 //    Since 3 has left child as NULL while 4 and 5 each has both NULL child.
     public static void main(String[] args) {
         int[] input1A = {1, 2, 3, 4, 5, -1, -1, -1, -1, -1, -1};
-        System.out.println(new AQ4DeserializeBinaryTree().solve(input1A));
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ4DeserializeBinaryTree().solve(input1A))));
         int[] input2A = {1, 2, 3, 4, 5, -1, 6, -1, -1, -1, -1, -1, -1};
-        System.out.println(new AQ4DeserializeBinaryTree().solve(input2A));
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ4DeserializeBinaryTree().solve(input2A))));
+        int[] input3A = {1, 2, 4, -1, 3, -1, 5, 7, -1, -1, 6, -1, 8, -1, -1, -1, -1};
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ4DeserializeBinaryTree().solve(input3A))));
     }
 
     public TreeNode solve(int[] A) {
-        return null;
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode root = new TreeNode(A[0]);
+        TreeNode curr;
+        queue.offer(root);
+        for (int i = 1; i < A.length; i++) {
+            curr = queue.peek();
+            if (curr == null) {
+                queue.poll();
+                continue;
+            }
+            if (A[i] == -1)
+                curr.left = null;
+            else {
+                curr.left = new TreeNode(A[i]);
+                queue.offer(curr.left);
+            }
+            i++;
+
+            if (i >= A.length) {
+                break;
+            }
+            if (A[i] == -1)
+                curr.right = null;
+            else {
+                curr.right = new TreeNode(A[i]);
+                queue.offer(curr.right);
+            }
+            queue.poll();
+        }
+        return root;
     }
 }

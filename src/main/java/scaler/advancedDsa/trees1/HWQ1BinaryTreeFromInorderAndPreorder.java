@@ -54,6 +54,8 @@ public class HWQ1BinaryTreeFromInorderAndPreorder {
     }
 
     private TreeNode buildTreeNodes(int[] preorder, int[] inorder, int prs, int pre, int ins, int ine) {
+        System.out.println("inorder :" + Arrays.toString(inorder) + " preorder :" + Arrays.toString(preorder) + " prs :" + prs + " pre :" + pre + " ins :" + ins + " ine :" + ine);
+
         //initialize x
         if (prs > pre) {
             return null;
