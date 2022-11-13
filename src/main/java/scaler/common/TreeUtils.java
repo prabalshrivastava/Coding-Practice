@@ -64,4 +64,38 @@ public class TreeUtils {
 //        System.out.println(map);
         return ans;
     }
+
+
+    public static TreeNode mapArrayToTree(int[] A) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode root = new TreeNode(A[0]);
+        TreeNode curr;
+        queue.offer(root);
+        for (int i = 1; i < A.length; i++) {
+            curr = queue.peek();
+            if (curr == null) {
+                queue.poll();
+                continue;
+            }
+            if (A[i] == -1)
+                curr.left = null;
+            else {
+                curr.left = new TreeNode(A[i]);
+                queue.offer(curr.left);
+            }
+            i++;
+
+            if (i >= A.length) {
+                break;
+            }
+            if (A[i] == -1)
+                curr.right = null;
+            else {
+                curr.right = new TreeNode(A[i]);
+                queue.offer(curr.right);
+            }
+            queue.poll();
+        }
+        return root;
+    }
 }

@@ -1,6 +1,9 @@
 package scaler.advancedDsa.trees2;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.Arrays;
 
 public class AQ2VerticalOrderTraversal {
     //    Problem Description
@@ -39,9 +42,16 @@ public class AQ2VerticalOrderTraversal {
 //    Example Explanation
 //    Explanation 1:    First row represent the verical line 1 and so on.
     public static void main(String[] args) {
+        int[] input1 = {8262, -1, 411, -1, -1};
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input1))));
+        int[] input2 = {6, 3, 7, 2, 5, -1, 9, -1, -1, -1, -1, -1, -1};
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input2))));
+        int[] input3 = {1, 3, 7, 2, -1, -1, 9, -1, -1, -1, -1};
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input3))));
     }
 
     public int[][] verticalOrderTraversal(TreeNode A) {
+
         return new int[0][];
     }
 }

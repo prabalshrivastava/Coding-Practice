@@ -1,6 +1,10 @@
 package scaler.advancedDsa.trees2;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import javax.management.Query;
+import java.util.*;
 
 public class AQ1RightViewOfBinaryTree {
     //    Problem Description
@@ -41,8 +45,35 @@ public class AQ1RightViewOfBinaryTree {
 //    Explanation 2:
 //    Right view is described.
     public static void main(String[] args) {
+        int[] input1 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, -1, -1, -1, -1, -1, -1, -1};
+        System.out.println(Arrays.toString(new AQ1RightViewOfBinaryTree().solve(TreeUtils.mapArrayToTree(input1))));
+        int[] input2 = new int[]{1, 2, 3, -1, 4, -1, -1, -1, 5, -1, -1};
+        System.out.println(Arrays.toString(new AQ1RightViewOfBinaryTree().solve(TreeUtils.mapArrayToTree(input2))));
     }
+
     public int[] solve(TreeNode A) {
-        return new int[0];
+        Queue<TreeNode> treeNodeQueue = new LinkedList<>();
+        treeNodeQueue.offer(A);
+        treeNodeQueue.offer(null);
+        TreeNode curr = A;
+        List<Integer> ansList = new ArrayList<>();
+        TreeNode prev = A;
+        while (treeNodeQueue.size() > 1) {
+            curr = treeNodeQueue.peek();
+            if (curr != null) {
+                if (curr.left != null) {
+                    treeNodeQueue.offer(curr.left);
+                }
+                if (curr.right != null) {
+                    treeNodeQueue.offer(curr.right);
+                }
+            } else {
+                treeNodeQueue.offer(null);
+                ansList.add(prev.val);
+            }
+            prev = treeNodeQueue.poll();
+        }
+        ansList.add(prev.val);
+        return ansList.stream().mapToInt(Integer::intValue).toArray();
     }
 }

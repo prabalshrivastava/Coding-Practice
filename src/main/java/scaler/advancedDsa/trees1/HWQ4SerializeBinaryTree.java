@@ -3,6 +3,8 @@ package scaler.advancedDsa.trees1;
 import com.google.gson.annotations.Since;
 import scaler.module1.trees.TreeNode;
 
+import java.util.*;
+
 public class HWQ4SerializeBinaryTree {
     //    Problem Description
 //    Given the root node of a Binary Tree denoted by A. You have to Serialize the given Binary Tree in the described format.
@@ -42,10 +44,49 @@ public class HWQ4SerializeBinaryTree {
 //    The Level Order Traversal of the given tree will be [1, 2, 3, 4, 5, -1, 6, -1, -1, -1, -1, -1, -1].
 //    Since 3 has left child as NULL while 4 and 5 each has both NULL child.
     public static void main(String[] args) {
+        TreeNode treeNode = new TreeNode(1);
+        treeNode.left = new TreeNode(2);
+        treeNode.right = new TreeNode(3);
+        treeNode.left.left = new TreeNode(4);
+        treeNode.left.right = new TreeNode(5);
+        System.out.println(Arrays.toString(new HWQ4SerializeBinaryTree().solve(treeNode)));
 
+        TreeNode treeNode1 = new TreeNode(1);
+        treeNode1.left = new TreeNode(2);
+        treeNode1.right = new TreeNode(3);
+        treeNode1.left.left = new TreeNode(4);
+        treeNode1.left.right = new TreeNode(5);
+        treeNode1.right.right = new TreeNode(6);
+        System.out.println(Arrays.toString(new HWQ4SerializeBinaryTree().solve(treeNode1)));
     }
 
     public int[] solve(TreeNode A) {
-        return new int[0];
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(A);
+        TreeNode curr = A;
+        List<Integer> ansList = new ArrayList<>();
+        ansList.add(A.val);
+        while (!queue.isEmpty()) {
+            curr = queue.peek();
+            if (curr != null) {
+                if (curr.left != null) {
+                    queue.offer(curr.left);
+                    ansList.add(curr.left.val);
+                } else {
+                    ansList.add(-1);
+                }
+                if (curr.right != null) {
+                    queue.offer(curr.right);
+                    ansList.add(curr.right.val);
+                } else {
+                    ansList.add(-1);
+                }
+                queue.poll();
+            } else {
+                ansList.add(-1);
+            }
+        }
+        System.out.println(queue);
+        return ansList.stream().mapToInt(Integer::intValue).toArray();
     }
 }
