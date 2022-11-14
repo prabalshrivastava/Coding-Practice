@@ -3,7 +3,7 @@ package scaler.advancedDsa.trees2;
 import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class AQ2VerticalOrderTraversal {
     //    Problem Description
@@ -43,15 +43,58 @@ public class AQ2VerticalOrderTraversal {
 //    Explanation 1:    First row represent the verical line 1 and so on.
     public static void main(String[] args) {
         int[] input1 = {8262, -1, 411, -1, -1};
-        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input1))));
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input1))));//[[8262], [411]]
+
         int[] input2 = {6, 3, 7, 2, 5, -1, 9, -1, -1, -1, -1, -1, -1};
-        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input2))));
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input2))));//[[2], [3], [6, 5], [7], [9]]
+
         int[] input3 = {1, 3, 7, 2, -1, -1, 9, -1, -1, -1, -1};
-        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input3))));
+        System.out.println(Arrays.deepToString(new AQ2VerticalOrderTraversal().verticalOrderTraversal(TreeUtils.mapArrayToTree(input3))));//[[2], [3], [1], [7], [9]]
     }
 
     public int[][] verticalOrderTraversal(TreeNode A) {
+        Map.Entry<TreeNode, Integer> curr = new AbstractMap.SimpleEntry<>(A, 0);
+        Queue<Map.Entry<TreeNode, Integer>> queue = new LinkedList<>();
+        Map<Integer, List<TreeNode>> map = new HashMap<>();
+        List<TreeNode> initList = new ArrayList<>();
+        initList.add(curr.getKey());
+        map.put(0, initList);
+        queue.offer(curr);
+        int maxLevel = 0;
+        int minLevel = 0;
+        while (!queue.isEmpty()) {
+            curr = queue.peek();
+            if (curr != null) {
+                TreeNode left = curr.getKey().left;
+                if (left != null) {
+                    int leftLevel = curr.getValue() - 1;
+                    minLevel = Math.min(minLevel, leftLevel);
+                    queue.offer(new AbstractMap.SimpleEntry<>(left, leftLevel));
+                    List<TreeNode> list = map.getOrDefault(leftLevel, new ArrayList<>());
+                    list.add(left);
+                    map.put(leftLevel, list);
+                }
 
-        return new int[0][];
+                TreeNode right = curr.getKey().right;
+                if (right != null) {
+                    int rightLevel = curr.getValue() + 1;
+                    maxLevel = Math.max(maxLevel, rightLevel);
+                    queue.offer(new AbstractMap.SimpleEntry<>(right, rightLevel));
+                    List<TreeNode> list = map.getOrDefault(rightLevel, new ArrayList<>());
+                    list.add(right);
+                    map.put(rightLevel, list);
+                }
+            }
+            queue.poll();
+        }
+//        System.out.println(map);
+
+        int[][] ans = new int[maxLevel - minLevel + 1][];
+        int count = 0;
+        for (int i = minLevel; i <= maxLevel; i++) {
+            List<TreeNode> current = map.getOrDefault(i, new ArrayList<>());
+            ans[count++] = current.stream().mapToInt(value -> value.val).toArray();
+        }
+        return ans;
     }
 }
