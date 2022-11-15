@@ -63,6 +63,7 @@ public class AQ4BalancedBinaryTree {
     public int isBalanced(TreeNode A) {
         int leftDepth = depthOfDifference(A.left);
         int rightDepth = depthOfDifference(A.right);
+        return leftDepth;
     }
 
     private int depthOfDifference(TreeNode A) {
