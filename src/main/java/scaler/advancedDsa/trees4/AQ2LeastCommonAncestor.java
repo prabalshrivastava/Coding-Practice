@@ -58,6 +58,23 @@ public class AQ2LeastCommonAncestor {
         System.out.println(new AQ2LeastCommonAncestor().lca(TreeUtils.mapArrayToTree(input5A), 31, 32));//
     }
 
+//    public int lca(TreeNode A, int B, int C) {
+    //will work with BST
+//        TreeNode temp = A;
+//        while (temp != null) {
+//            System.out.print(temp.val + ",");
+//            if (B < temp.val && C < temp.val) {
+//                temp = temp.left;
+//            } else if (B > temp.val && C > temp.val) {
+//                temp = temp.right;
+//            } else {
+//                return temp.val;
+//            }
+//        }
+//        System.out.println("---");
+//        return -1;
+//    }
+
     public int lca(TreeNode A, int B, int C) {
         Stack<TreeNode> treeNodeStack1 = new Stack<>();
         findElementPath(A, B, treeNodeStack1);
@@ -77,9 +94,9 @@ public class AQ2LeastCommonAncestor {
 
         int i = 0;
         int min = Math.min(list1.size(), list2.size());
-        System.out.println(list1);
-        System.out.println(list2);
-        System.out.println("min " + min);
+//        System.out.println(list1);
+//        System.out.println(list2);
+//        System.out.println("min " + min);
 
         if (list1.isEmpty() || list2.isEmpty()) {
             return -1;
@@ -88,7 +105,7 @@ public class AQ2LeastCommonAncestor {
             i++;
         }
 //        if (i == min)
-            i--;
+        i--;
         return list1.get(i);
     }
 
