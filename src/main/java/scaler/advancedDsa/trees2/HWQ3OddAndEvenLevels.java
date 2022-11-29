@@ -1,6 +1,11 @@
 package scaler.advancedDsa.trees2;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class HWQ3OddAndEvenLevels {
     //    Q3. Odd and Even Levels
@@ -47,10 +52,66 @@ public class HWQ3OddAndEvenLevels {
 //    Sum of nodes at odd level = 5
 //    Sum of ndoes at even level = 12
     public static void main(String[] args) {
+        int[] input1 = new int[]{1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.println(new HWQ3OddAndEvenLevels().solve(TreeUtils.mapArrayToTree(input1)));
+        int[] input2 = new int[]{1, 2, 10, -1, 4};
+        System.out.println(new HWQ3OddAndEvenLevels().solve(TreeUtils.mapArrayToTree(input2)));
     }
 
     public int solve(TreeNode A) {
-        return 0;
+        Queue<TreeNode> treeNodeQueue = new LinkedList<>();
+        treeNodeQueue.offer(A);
+        treeNodeQueue.offer(null);
+        TreeNode curr = A;
+        int level = 1;
+        long oddSum = 0;
+        long evenSum = 0;
+        while (treeNodeQueue.size() > 1) {
+            //1,null
+            //null,2,3
+            //2,3,null
+            //3,null,4,5
+            //null,4,5,6,7
+            //4,5,6,7,null
+            //5,6,7,null,8
+            //6,7,null,8
+            //7,null,8
+            //null,8
+            //8,null
+            //null
+            curr = treeNodeQueue.peek();
+            treeNodeQueue.poll();
+//            System.out.print(treeNodeQueue.poll() + " - ");
+            if (curr == null) {
+                treeNodeQueue.offer(null);
+                level++;
+//                System.out.print("\nlevel : " + level + " - ");
+                continue;
+            }
+            if (level % 2 == 0) {
+                evenSum = evenSum + curr.val;
+            } else {
+                oddSum = oddSum + curr.val;
+            }
+            if (curr.left != null) {
+//                if (level % 2 == 0) {
+//                    evenSum = evenSum + curr.left.val;
+//                } else {
+//                    oddSum = oddSum + curr.left.val;
+//                }
+                treeNodeQueue.offer(curr.left);
+            }
+            if (curr.right != null) {
+//                if (level % 2 == 0) {
+//                    evenSum = evenSum + curr.right.val;
+//                } else {
+//                    oddSum = oddSum + curr.right.val;
+//                }
+                treeNodeQueue.offer(curr.right);
+            }
+        }
+//        System.out.println("evenSum : " + evenSum);
+//        System.out.println("oddSum : " + oddSum);
+        return (int) (oddSum - evenSum);
     }
-
 }
