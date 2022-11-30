@@ -39,6 +39,7 @@ public class HWQ1UniqueElements {
                 previousDup = A[i];
                 if (i + 2 < A.length) {
                     if (A[i + 1] + 1 == A[i + 2]) {
+
                     } else {
                         count++;
                     }
