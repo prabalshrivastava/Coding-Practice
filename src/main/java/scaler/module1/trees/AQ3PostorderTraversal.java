@@ -1,5 +1,8 @@
 package scaler.module1.trees;
 
+import scaler.advancedDsa.trees2.HWQ2ZigZagLevelOrderTraversalBT;
+import scaler.common.TreeUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,5 +66,8 @@ public class AQ3PostorderTraversal {
         treeNode1.left = new TreeNode(6);
         treeNode1.right.left = new TreeNode(3);
         System.out.println(Arrays.toString(new AQ3PostorderTraversal().postorderTraversal(treeNode1)));
+
+        int[] input1 = new int[]{1, 2, 3,4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+        System.out.println(Arrays.toString(new AQ3PostorderTraversal().postorderTraversal(TreeUtils.mapArrayToTree(input1))));
     }
 }
