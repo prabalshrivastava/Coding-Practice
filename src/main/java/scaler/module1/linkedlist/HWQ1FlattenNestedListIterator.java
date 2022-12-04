@@ -21,20 +21,41 @@ public class HWQ1FlattenNestedListIterator {
 //    The values of the integers in the nested list are in the range [-1e6, 1e6].
 
 
-
-
 //     // This is the interface that allows for creating nested lists.
 //     // You should not implement it, or speculate about its implementation.
 
+
     class NestedIterator {
-        NestedIterator(ArrayList<NestedInteger> nestedList) {
+        ArrayList<Integer> flatList = new ArrayList();
+        int currentIndex = 0;
+
+
+        void extractIntegers(NestedInteger nestedInteger) {
+            if (nestedInteger != null) {
+                if (nestedInteger.isInteger()) {
+                    flatList.add(nestedInteger.getInteger());
+                } else {
+                    for (NestedInteger ni : nestedInteger.getList()) {
+                        extractIntegers(ni);
+                    }
+                }
+            }
         }
+
+        NestedIterator(ArrayList<NestedInteger> nestedList) {
+            for (NestedInteger nestedInteger : nestedList) {
+                extractIntegers(nestedInteger);
+            }
+        }
+
         int next() {
-            return 0;
+            Integer ni = flatList.get(currentIndex);
+            currentIndex++;
+            return ni;
         }
 
         boolean hasNext() {
-            return false;
+            return currentIndex < flatList.size();
         }
     }
 
