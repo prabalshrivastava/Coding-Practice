@@ -3,10 +3,7 @@ package scaler.advancedDsa.trees1;
 import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class HWQ3PostorderTraversal {
     //    Problem Description
@@ -55,33 +52,67 @@ public class HWQ3PostorderTraversal {
 
         int[] input1 = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
         System.out.println(Arrays.toString(new HWQ3PostorderTraversal().postorderTraversal(TreeUtils.mapArrayToTree(input1))));
+        System.out.println(Arrays.toString(new HWQ3PostorderTraversal().postorderTraversal1(TreeUtils.mapArrayToTree(input1))));
     }
+
+//    public int[] postorderTraversal(TreeNode A) {
+//        List<Integer> list = new ArrayList<>();
+//        TreeNode curr = A;
+//        Stack<AbstractMap.Entry<TreeNode, Integer>> treeNodeStack = new Stack<>();
+////        treeNodeStack.push(new AbstractMap.SimpleEntry<>(A, 0));
+//        while (curr != null || !treeNodeStack.isEmpty()) {
+//            while (curr != null) {
+//                treeNodeStack.push(new AbstractMap.SimpleEntry<>(curr, 0));
+//                curr = curr.left;
+//            }
+//            curr = treeNodeStack.peek().getKey();
+//            if (treeNodeStack.peek().getValue() == 0) {
+//                treeNodeStack.peek().setValue(1);
+//                curr = curr.right;
+//            } else if (treeNodeStack.peek().getValue() == 1) {
+//                list.add(curr.val);
+//                treeNodeStack.pop();
+//                curr = treeNodeStack.peek().getKey();
+//            }
+//        }
+//        return list.stream().mapToInt(Integer::intValue).toArray();
+//    }
 
     public int[] postorderTraversal(TreeNode A) {
         List<Integer> list = new ArrayList<>();
-        TreeNode curr = A;
         Stack<TreeNode> treeNodeStack = new Stack<>();
         treeNodeStack.push(A);
-        while (curr != null) {
-            curr = treeNodeStack.peek();
-            if (curr.left != null || curr.right != null) {
-                treeNodeStack.push(curr);
-            }
 
-            curr = curr.left;
-            if (curr != null && (curr.left != null || curr.right != null)) {
-                treeNodeStack.push(curr);
-            }
-
-            if (curr != null) {
-                curr = curr.right;
-                if (curr != null && (curr.left != null || curr.right != null)) {
-                    treeNodeStack.push(curr);
-                }
-            }
-
+        TreeNode curr;
+        while (!treeNodeStack.isEmpty()) {
+            curr = treeNodeStack.pop();
             list.add(curr.val);
+            if (curr.left != null) {
+                treeNodeStack.push(curr.left);
+            }
+            if (curr.right != null) {
+                treeNodeStack.push(curr.right);
+            }
         }
+        Collections.reverse(list);
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public int[] postorderTraversal1(TreeNode A) {
+        List<Integer> list = new ArrayList<>();
+        Stack<TreeNode> treeNodeStack = new Stack<>();
+        treeNodeStack.push(A);
+        TreeNode curr;
+        while (!treeNodeStack.isEmpty()) {
+            curr = treeNodeStack.pop();
+            if (curr.left != null)
+                treeNodeStack.push(curr.left);
+            if (curr.right != null)
+                treeNodeStack.push(curr.right);
+            list.add(curr.val);
+        }
+        Collections.reverse(list);
+        return list.stream().mapToInt(Integer::intValue).toArray();
+    }
+
 }

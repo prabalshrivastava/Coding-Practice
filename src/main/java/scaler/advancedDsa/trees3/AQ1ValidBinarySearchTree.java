@@ -92,7 +92,7 @@ public class AQ1ValidBinarySearchTree {
         if (curr == null)
             return true;
         boolean isLeftValidBST = isValid(curr.left);
-        if (previous != null && previous.val >= curr.val) {
+        if (previous != null && curr.val <= previous.val) {
             return false;
         }
         previous = curr;

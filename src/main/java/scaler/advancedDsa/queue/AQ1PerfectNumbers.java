@@ -54,6 +54,7 @@ public class AQ1PerfectNumbers {
         System.out.println("8 : " + new AQ1PerfectNumbers().solve(8));//112211
         System.out.println("9 : " + new AQ1PerfectNumbers().solve(9));//121121
         System.out.println("10 : " + new AQ1PerfectNumbers().solve(10));//122221
+        System.out.println("10 : " + new AQ1PerfectNumbers().solve(100000));//21111221212111122111121212211112
     }
 
     public String solve(int A) {
@@ -62,14 +63,14 @@ public class AQ1PerfectNumbers {
         if (A == 2)
             return "22";
 
-        Queue<Integer> perfectNoQueue = new LinkedList<>();
-        perfectNoQueue.offer(1);
-        perfectNoQueue.offer(2);
+        Queue<Long> perfectNoQueue = new LinkedList<>();
+        perfectNoQueue.offer(1L);
+        perfectNoQueue.offer(2L);
         int count = 2;
         while (true) {
-            Integer current = perfectNoQueue.peek();
+            Long current = perfectNoQueue.peek();
 
-            int proccessing = (current * 10) + 1;
+            long proccessing = (current * 10) + 1;
             perfectNoQueue.offer(proccessing);
             count++;
             if (count == A) {
