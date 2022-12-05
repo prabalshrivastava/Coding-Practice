@@ -1,6 +1,9 @@
 package scaler.advancedDsa.trees4;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.HashMap;
 
 public class HWQ1CommonNodesInTwoBST {
     //    Problem Description
@@ -23,7 +26,7 @@ public class HWQ1CommonNodesInTwoBST {
 //            / \
 //            2   8
 //            \   \
-//            3   15
+//            3     15
 //            /
 //            9
 //            Tree B:
@@ -64,9 +67,47 @@ public class HWQ1CommonNodesInTwoBST {
 //                                            Common Nodes are : 7, 2, 1, 10, 15, 11
 //                                    So answer is 7 + 2 + 1 + 10 + 15 + 11 = 46
     public static void main(String[] args) {
-
+        int[] input1A = {5, 2, 8, -1, 3, -1, 15, -1, -1, 9};
+        int[] input2A = {7, 1, 10, -1, 2, -1, 15, -1, -1, 11};
+        System.out.println(new HWQ1CommonNodesInTwoBST().solve(TreeUtils.mapArrayToTree(input1A), TreeUtils.mapArrayToTree(input2A)));
     }
+
     public int solve(TreeNode A, TreeNode B) {
-        return 0;
+        HashMap<Integer, Integer> mapA = new HashMap<>();
+        HashMap<Integer, Integer> mapB = new HashMap<>();
+        preOrder(A, mapA);
+        return (int) preOrderSum(B, mapA);
+    }
+
+    private long preOrderSum(TreeNode B, HashMap<Integer, Integer> map) {
+        long sum = 0;
+        if (B == null)
+            return sum;
+        if (map.containsKey(B.val)) {
+            sum = getModdedNumber(sum + B.val);
+            Integer freq = map.getOrDefault(B.val, 0);
+            if (freq <= 0)
+                map.remove(B.val);
+        }
+        sum = sum + getModdedNumber(preOrderSum(B.left, map));
+        sum = sum + getModdedNumber(preOrderSum(B.right, map));
+        return getModdedNumber(sum);
+    }
+
+    private long getModdedNumber(long sum) {
+        if (sum < 0)
+            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
+        else
+            sum = (long) (sum % (Math.pow(10, 9) + 7));
+        return sum;
+    }
+
+
+    private void preOrder(TreeNode A, HashMap<Integer, Integer> map) {
+        if (A == null)
+            return;
+        map.put(A.val, map.getOrDefault(A.val, 0) + 1);
+        preOrder(A.left, map);
+        preOrder(A.right, map);
     }
 }

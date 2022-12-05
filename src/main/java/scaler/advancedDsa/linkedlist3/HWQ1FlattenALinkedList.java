@@ -55,7 +55,62 @@ public class HWQ1FlattenALinkedList {
 //                |
 //                7
     }
+
     ListNode flatten(ListNode root) {
+        ListNode ansList = root;
+        ListNode right = root;
+        while (right != null) {
+            right = right.right;
+            mergeTwoLists(ansList, right);
+        }
         return root;
+    }
+
+    public ListNode mergeTwoLists(ListNode A, ListNode B) {
+        if (A == null)
+            return B;
+        if (B == null)
+            return A;
+        ListNode travA = A;
+        ListNode travB = B;
+        ListNode head = null;
+        ListNode tail = null;
+        if (A.val <= B.val) {
+            head = A;
+            tail = A;
+            travA = travA.down;
+        } else {
+            head = B;
+            tail = B;
+            travB = travB.down;
+        }
+        while (travA != null && travB != null) {
+            if (travA.val <= travB.val) {
+                tail.down = travA;
+                travA = travA.down;
+                tail = tail.down;
+            } else {
+                tail.down = travB;
+                travB = travB.down;
+                tail = tail.down;
+            }
+        }
+        if (travA != null) {
+            tail.down = travA;
+        }
+        if (travB != null) {
+            tail.down = travB;
+        }
+        return head;
+    }
+
+    class ListNode {
+        int val;
+        ListNode right, down;
+
+        ListNode(int x) {
+            val = x;
+            right = down = null;
+        }
     }
 }
