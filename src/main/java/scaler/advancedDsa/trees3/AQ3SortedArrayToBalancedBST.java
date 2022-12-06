@@ -1,6 +1,9 @@
 package scaler.advancedDsa.trees3;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.Arrays;
 
 public class AQ3SortedArrayToBalancedBST {
     //    Problem Description
@@ -33,13 +36,41 @@ public class AQ3SortedArrayToBalancedBST {
 //    You need to return the root node of the Binary Tree.
     public static void main(String[] args) {
         int[] input1A = {1, 2, 3};
-        System.out.println(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input1A));
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input1A))));
         int[] input2A = {1, 2, 3, 5, 10};
-        System.out.println(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input2A));
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input2A))));
+        int[] input3A = {1, 2, 3, 4};
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input3A))));
+        int[] input4A = {90, 228, 245, 290, 397, 471, 572, 649, 688, 710, 823, 829, 830, 859, 932, 939, 962};
+        System.out.println(Arrays.deepToString(TreeUtils.levelOrder(new AQ3SortedArrayToBalancedBST().sortedArrayToBST(input4A))));
     }
 
     public TreeNode sortedArrayToBST(final int[] A) {
-
-        return null;
+        int mid = A.length / 2;
+        int i = mid;
+        int j = mid;
+        TreeNode treeNode = new TreeNode(A[mid]);
+        TreeNode left = treeNode;
+        TreeNode right = treeNode;
+        i--;
+        j++;
+//        System.out.println(mid);
+        while (j < A.length) {
+//            System.out.printf("i:%s - j:%s%n", i, j);
+            if (i != mid) {
+                left.left = new TreeNode(A[i]);
+                left = left.left;
+                i--;
+            }
+            if (j != mid) {
+                right.right = new TreeNode(A[j]);
+                right = right.right;
+                j++;
+            }
+        }
+        if (i >= 0) {
+            left.left = new TreeNode(A[i]);
+        }
+        return treeNode;
     }
 }

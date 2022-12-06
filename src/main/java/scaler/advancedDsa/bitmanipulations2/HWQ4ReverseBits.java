@@ -27,8 +27,26 @@ public class HWQ4ReverseBits {
 //            00000000000000000000000000000011
 //            =>      11000000000000000000000000000000
 
-    public long reverse(long a) {
-        return a;
+    public long reverse(long A) {
+        long n = A;
+        int count = 0;
+        StringBuilder s = new StringBuilder();
+        while (n != 0) {
+            long remainder = n % 2;
+            s.insert(0,remainder);
+            n = n / 2;
+        }
+//        System.out.println(s);
+        s = new StringBuilder(String.format("%" + 32 + "s", s.toString()).replace(' ', '0'));
+//        System.out.println(s);
+        s.reverse();
+//        System.out.println(s);
+        long ans = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            ans += (long) (Integer.parseInt(String.valueOf(s.charAt(i))) * Math.pow(2, count));
+            count++;
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
