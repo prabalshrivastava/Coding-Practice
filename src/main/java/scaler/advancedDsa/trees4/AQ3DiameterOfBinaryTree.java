@@ -45,7 +45,21 @@ public class AQ3DiameterOfBinaryTree {
     }
 
     public int solve(TreeNode A) {
+        diameter(A);
+        return diameter;
+    }
 
-        return 0;
+    int diameter = Integer.MIN_VALUE;
+
+    private int diameter(TreeNode A) {
+        if (A == null)
+            return -1;
+        int lh = diameter(A.left);
+        int rh = diameter(A.right);
+        int height = Math.max(lh, rh) + 1;
+        int diameter = lh + rh + 2;
+//        System.out.println(A + " lh : " + lh + " - rh : " + rh + " - height : " + height + " diameter : " + diameter);
+        this.diameter = Math.max(this.diameter, diameter);
+        return height;
     }
 }

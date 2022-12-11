@@ -3,6 +3,8 @@ package scaler.advancedDsa.trees5;
 import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
 
+import java.util.Queue;
+
 public class HWQ1SymmetricBinaryTree {
 //    Problem Description
 //    Given a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
@@ -43,6 +45,8 @@ public class HWQ1SymmetricBinaryTree {
         System.out.println(new HWQ1SymmetricBinaryTree().isSymmetric(TreeUtils.mapArrayToTree(input2A)));
         int[] input3A = {67, 0, 4, 4, 10, 6, 6, 10, 16, 3, 14, 9, 9, 14, 3, 16, 13, -1, 7, 11, -1, -1, -1, 15, 15, -1, -1, -1, 11, 7, -1, 13, -1, 12, -1, 1, -1, -1, -1, -1, -1, -1, -1, -1, 1, -1, 12, -1, 8, -1, 5, 2, 2, 5, -1, 8, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
         System.out.println(new HWQ1SymmetricBinaryTree().isSymmetric(TreeUtils.mapArrayToTree(input3A)));
+        int[] input4A = {1, 2, 2, 3, 4, 4, 3, 5, 6, 7, 8, 8, 7, 6, 5};
+        System.out.println(new HWQ1SymmetricBinaryTree().isSymmetric(TreeUtils.mapArrayToTree(input4A)));
     }
 
 //    public int isSymmetric(TreeNode A) {
@@ -75,20 +79,26 @@ public class HWQ1SymmetricBinaryTree {
 //        return 1;
 //    }
 
-    public int isSymmetric(TreeNode A) {
-        boolean left = preorder(A.left, A.right);
-        return left ? 1 : 0;
-    }
+//    public int isSymmetric(TreeNode A) {
+//        boolean left = preorder(A.left, A.right);
+//        return left ? 1 : 0;
+//    }
+//
+//    boolean preorder(TreeNode A, TreeNode B) {
+//        if ((A == null && B != null) || (A != null && B == null))
+//            return false;
+//        if (A == B)
+//            return true;
+//        if (A.val == B.val)
+//            return true;
+//        boolean left = preorder(A.left, B.left);
+//        boolean right = preorder(A.right, B.right);
+//        return left && right;
+//    }
 
-    boolean preorder(TreeNode A, TreeNode B) {
-        if ((A == null && B != null) || (A != null && B == null))
-            return false;
-        if (A == B)
-            return true;
-        if (A.val == B.val)
-            return true;
-        boolean left = preorder(A.left, B.left);
-        boolean right = preorder(A.right, B.right);
-        return left && right;
+
+
+    public int isSymmetric(TreeNode A) {
+        Queue
     }
 }
