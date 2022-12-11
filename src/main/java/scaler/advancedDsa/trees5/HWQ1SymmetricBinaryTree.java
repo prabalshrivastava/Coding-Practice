@@ -3,6 +3,7 @@ package scaler.advancedDsa.trees5;
 import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class HWQ1SymmetricBinaryTree {
@@ -79,26 +80,49 @@ public class HWQ1SymmetricBinaryTree {
 //        return 1;
 //    }
 
-//    public int isSymmetric(TreeNode A) {
-//        boolean left = preorder(A.left, A.right);
-//        return left ? 1 : 0;
-//    }
-//
-//    boolean preorder(TreeNode A, TreeNode B) {
-//        if ((A == null && B != null) || (A != null && B == null))
-//            return false;
-//        if (A == B)
-//            return true;
-//        if (A.val == B.val)
-//            return true;
-//        boolean left = preorder(A.left, B.left);
-//        boolean right = preorder(A.right, B.right);
-//        return left && right;
-//    }
-
-
-
     public int isSymmetric(TreeNode A) {
-        Queue
+        boolean left = preorder(A.left, A.right);
+        return left ? 1 : 0;
     }
+
+    boolean preorder(TreeNode left, TreeNode right) {
+        if (left == null || right == null) {
+            if (left == right) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (left.val == right.val) {
+            boolean leftResult = preorder(left.left, right.right);
+            boolean rightResult = preorder(left.right, right.left);
+            return leftResult && rightResult;
+        } else
+            return false;
+    }
+
+
+    //level order will not work in this
+//    public int isSymmetric(TreeNode A) {
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(A);
+//        queue.offer(null);
+//        TreeNode curr;
+//        while (queue.size() > 1) {
+//            curr = queue.poll();
+//            if (curr == null) {
+//                System.out.println("");
+//                queue.offer(null);
+//                continue;
+//            }
+//            System.out.print(curr.val + "\t");
+//            if (curr.left != null)
+//                queue.offer(curr.left);
+//            if (curr.right != null)
+//                queue.offer(curr.right);
+//
+//        }
+//        System.out.println("\n----------------------------------------------------");
+//        return 0;
+//    }
 }
