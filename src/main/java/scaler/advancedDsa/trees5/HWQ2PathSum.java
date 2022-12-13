@@ -42,7 +42,14 @@ public class HWQ2PathSum {
 //    Explanation 2:
 //    There is no path which has sum -1.
     public int hasPathSum(TreeNode A, int B) {
-        return B;
+        if(A == null)
+            return 0;
+        if(A.left == null && A.right == null && A.val == B){
+            return 1;
+        }
+        if(hasPathSum(A.left,B-A.val) == 1 || hasPathSum(A.right,B-A.val) == 1 )
+            return 1;
+        return 0;
     }
 
     public static void main(String[] args) {
