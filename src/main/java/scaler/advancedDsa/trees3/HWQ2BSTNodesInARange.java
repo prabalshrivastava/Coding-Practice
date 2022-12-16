@@ -1,6 +1,9 @@
 package scaler.advancedDsa.trees3;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.Arrays;
 
 public class HWQ2BSTNodesInARange {
 //    Problem Description
@@ -46,9 +49,28 @@ public class HWQ2BSTNodesInARange {
 //    Nodes which are in range [2, 20] are : [8, 6, 7]
 
     public static void main(String[] args) {
+        int[] input2 = new int[]{15, 12, 20, 10, 14, 16, 27, 8};
+        System.out.println(new HWQ2BSTNodesInARange().solve(TreeUtils.mapArrayToTree(input2), 12, 20));
 
+        int[] input1 = new int[]{8, 6, 21, 1, 7};
+        System.out.println(new HWQ2BSTNodesInARange().solve(TreeUtils.mapArrayToTree(input1), 2, 20));
     }
+
+    int count = 0;
+
     public int solve(TreeNode A, int B, int C) {
-        return B;
+        preOrder(A, B, C);
+        return count;
+    }
+
+    private void preOrder(TreeNode A, int B, int C) {
+        if (A == null)
+            return;
+        if (B <= A.val && A.val <= C) {
+            count++;
+//            System.out.println(A.val + " -> " + count);
+        }
+        preOrder(A.left, B, C);
+        preOrder(A.right, B, C);
     }
 }

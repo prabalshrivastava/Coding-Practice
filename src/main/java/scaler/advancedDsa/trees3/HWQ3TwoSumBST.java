@@ -1,6 +1,9 @@
 package scaler.advancedDsa.trees3;
 
+import scaler.common.TreeUtils;
 import scaler.module1.trees.TreeNode;
+
+import java.util.HashSet;
 
 public class HWQ3TwoSumBST {
     //    Problem Description
@@ -36,9 +39,58 @@ public class HWQ3TwoSumBST {
 //    Explanation 2:
 //    No such pair exists
     public static void main(String[] args) {
+        int[] input1 = new int[]{10, 9, 20};
+        System.out.println(new HWQ3TwoSumBST().t2Sum(TreeUtils.mapArrayToTree(input1), 19));
+        int[] input2 = new int[]{10, 9, 20};
+        System.out.println(new HWQ3TwoSumBST().t2Sum(TreeUtils.mapArrayToTree(input2), 40));
+        int[] input3 = new int[]{7, 10, 9, 20, -1, -1, -1, -1};
+        System.out.println(new HWQ3TwoSumBST().t2Sum(TreeUtils.mapArrayToTree(input3), 19));
     }
 
     public int t2Sum(TreeNode A, int B) {
-        return B;
+        HashSet<Integer> hashSet = new HashSet();
+        preOrder(A, B, hashSet);
+        return isElementFound ? 1 : 0;
     }
+
+    boolean isElementFound = false;
+
+    private void preOrder(TreeNode A, int B, HashSet<Integer> hashSet) {
+        if (A == null)
+            return;
+        if (hashSet.contains(B - A.val))
+            isElementFound = true;
+        else
+            hashSet.add(A.val);
+        preOrder(A.left, B, hashSet);
+        preOrder(A.right, B, hashSet);
+    }
+
+//
+//    private void preOrder(TreeNode A, int B, TreeNode root) {
+//        if (A == null)
+//            return;
+//        isElementFound = findElement(root, B - A.val);
+//        isElementFound = findElement(root, B - A.val);
+//        preOrder(A.left, B, root);
+//        preOrder(A.right, B, root);
+//    }
+//
+//    private boolean findElement(TreeNode A, int element) {
+//        if (A == null)
+//            return false;
+//        System.out.println("Searching : " + element + " A : " + A);
+//        TreeNode curr = A;
+//        while (curr != null) {
+//            if (element == curr.val) {
+//                System.out.println("found : " + curr);
+//                return true;
+//            } else if (element < curr.val) {
+//                curr = curr.left;
+//            } else {
+//                curr = curr.right;
+//            }
+//        }
+//        return false;
+//    }
 }
