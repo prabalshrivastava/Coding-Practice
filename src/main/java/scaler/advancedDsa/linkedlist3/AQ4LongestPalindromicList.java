@@ -3,6 +3,7 @@ package scaler.advancedDsa.linkedlist3;
 import scaler.common.LinkedListUtils;
 import scaler.common.ListNode;
 
+import java.util.List;
 import java.util.Map;
 
 public class AQ4LongestPalindromicList {
@@ -48,46 +49,75 @@ public class AQ4LongestPalindromicList {
     ListNode head;
 
     public int solve(ListNode A) {
-        if (A == null)
-            return 0;
-        if (A.next == null)
-            return 1;
-        ListNode dummy = new ListNode(Integer.MIN_VALUE);
-        dummy.next = A;
-        A = dummy;
-//        ListNode prev = dummy;
-        ListNode prev = A;
-        ListNode curr = prev.next;
-        ListNode next = null;
-        boolean isfirst = true;
+        ListNode curr = A;
+        ListNode prev = null;
         int ans = Integer.MIN_VALUE;
         while (curr != null) {
-            next = curr.next;
+            ListNode next = curr.next;
+            ans = Math.max(ans, count(prev, curr) * 2);
+            ans = Math.max(ans, (count(prev, next) * 2) + 1);
             curr.next = prev;
             prev = curr;
             curr = next;
-            if (isfirst) {
-                dummy.next = null;
-                isfirst = false;
-            }
-            System.out.print("curr : ");
-            LinkedListUtils.print_ll(prev);
-            System.out.print("next : ");
-            LinkedListUtils.print_ll(curr);
-            ListNode p1 = prev;
-            ListNode p2 = curr;
-            int count = 1;
-            while (p1 != null && p2 != null && p1.val == p2.val) {
-                count++;
-                p1 = p1.next;
-                p2 = p2.next;
-            }
-            ans = Math.max(count, ans);
-            System.out.println("ans : " + ans);
-            System.out.println("");
-
         }
-
-        return ans * 2;
+        return ans;
     }
+
+    int count(ListNode backward, ListNode forward) {
+        int count = 0;
+        while (forward != null && backward != null) {
+            if (forward.val == backward.val) {
+                count++;
+            } else {
+                break;
+            }
+            forward = forward.next;
+            backward = backward.next;
+        }
+        return count;
+    }
+
+//    public int solve(ListNode A) {
+//        if (A == null)
+//            return 0;
+//        if (A.next == null)
+//            return 1;
+//        ListNode dummy = new ListNode(Integer.MIN_VALUE);
+//        dummy.next = A;
+//        A = dummy;
+////        ListNode prev = dummy;
+//        ListNode prev = A;
+//        ListNode curr = prev.next;
+//        ListNode next = null;
+//        boolean isfirst = true;
+//        int ans = Integer.MIN_VALUE;
+//        while (curr != null) {
+//            next = curr.next;
+//            curr.next = prev;
+//            prev = curr;
+//            curr = next;
+//            if (isfirst) {
+//                dummy.next = null;
+//                isfirst = false;
+//            }
+//            System.out.print("curr : ");
+//            LinkedListUtils.print_ll(prev);
+//            System.out.print("next : ");
+//            LinkedListUtils.print_ll(curr);
+//            ListNode p1 = prev;
+//            ListNode p2 = curr;
+//            int count = 1;
+//            while (p1 != null && p2 != null && p1.val == p2.val) {
+//                count++;
+//                p1 = p1.next;
+//                p2 = p2.next;
+//            }
+//            ans = Math.max(count, ans);
+//            System.out.println("ans : " + ans);
+//            System.out.println("");
+//
+//        }
+//
+//        return ans * 2;
+//    }
 }
