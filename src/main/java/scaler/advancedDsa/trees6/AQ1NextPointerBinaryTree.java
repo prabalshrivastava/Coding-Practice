@@ -67,15 +67,16 @@ public class AQ1NextPointerBinaryTree {
         TreeLinkNode previous = root;
         while (queue.size() > 1) {
             TreeLinkNode curr = queue.poll();
-            if (previous != null && previous != root) {
-                previous.next = curr;
-//                System.out.println(previous + " -> " + previous.next);
-            }
+//            if (previous != null && previous != root) {
+//                previous.next = curr;
+////                System.out.println(previous + " -> " + previous.next);
+//            }
 //            System.out.print(curr);
             if (curr == null) {
                 queue.offer(null);
                 continue;
             }
+            curr.next = queue.peek();
             if (curr.left != null) {
                 queue.offer(curr.left);
             }

@@ -33,6 +33,7 @@ public class AQ2QuickSort {
     }
 
     private int[] solve(int[] input2A) {
+
         return new int[0];
     }
 }
