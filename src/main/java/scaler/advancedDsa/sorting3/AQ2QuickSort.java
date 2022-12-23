@@ -32,8 +32,39 @@ public class AQ2QuickSort {
         System.out.println(Arrays.toString(new AQ2QuickSort().solve(input2A)));
     }
 
-    private int[] solve(int[] input2A) {
+    public int[] solve(int[] A) {
+        quickSort(A, 0, A.length - 1);
+        return A;
+    }
 
-        return new int[0];
+    private void quickSort(int[] A, int l, int r) {
+        if (l >= r) {
+            return;
+        }
+        int idx = rearrange(A, l, r);
+        quickSort(A, l, idx - 1);
+        quickSort(A, idx + 1, r);
+    }
+
+    private int rearrange(int[] A, int l, int r) {
+        int p1 = l + 1;
+        int p2 = r;
+        while (p1 <= p2) {
+            if (A[p1] <= A[l]) {
+                p1++;
+            } else if (A[p2] > A[l]) {
+                p2--;
+            } else {
+                int temp = A[p1];
+                A[p1] = A[p2];
+                A[p2] = temp;
+                p1++;
+                p2--;
+            }
+        }
+        int temp = A[l];
+        A[l] = A[p2];
+        A[p2] = temp;
+        return p2;
     }
 }
