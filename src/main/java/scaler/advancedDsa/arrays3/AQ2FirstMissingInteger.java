@@ -48,5 +48,6 @@ public class AQ2FirstMissingInteger {
 //            max = Math.max(A[i], max);
             
         }
+        return max;
     }
 }
