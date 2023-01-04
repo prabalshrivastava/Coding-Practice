@@ -1,9 +1,6 @@
 package scaler.advancedDsa.hashing2;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class HWQ2CompareSortedSubarrays {
     //    Problem Description
@@ -58,8 +55,49 @@ public class HWQ2CompareSortedSubarrays {
         System.out.println(Arrays.toString(new HWQ2CompareSortedSubarrays().solve(input2A, input2B)));
     }
 
-    //tle
     public int[] solve(int[] A, int[][] B) {
+        int[] ans = new int[B.length];
+        HashMap<Integer, Long> mapOfRandomNo = new HashMap<>();
+        long[] randomPrefixSum = new long[A.length];
+        
+        for (int i = 0; i < A.length; i++) {
+            Long randomNo = mapOfRandomNo.getOrDefault(A[i], (long) getModdedNumber(new Random().nextInt()));
+            if (i == 0) randomPrefixSum[i] = getModdedNumber((randomPrefixSum[i] + randomNo));
+            else
+                randomPrefixSum[i] = getModdedNumber((randomPrefixSum[i - 1] + randomNo));
+        }
+//        System.out.println(Arrays.toString(randomPrefixSum));
+
+        for (int i = 0; i < B.length; i++) {
+            int l1 = B[i][0];
+            int r1 = B[i][1];
+            int l2 = B[i][2];
+            int r2 = B[i][3];
+
+            if (r1 - l1 != r2 - l2) {
+                ans[i] = 0;
+                continue;
+            }
+            long sum1 = 0;
+            long sum2 = 0;
+            if (l1 == 0) {
+                sum1 = randomPrefixSum[r1];
+            } else {
+                sum1 = (randomPrefixSum[r1] - randomPrefixSum[l1]);
+            }
+            if (l2 == 0) {
+                sum2 = randomPrefixSum[r2];
+            } else {
+                sum2 = (randomPrefixSum[r2] - randomPrefixSum[l2]);
+            }
+            System.out.println(sum1 + " - " + sum2);
+            ans[i] = sum1 == sum2 ? 1 : 0;
+        }
+        return ans;
+    }
+
+    //tle
+    public int[] solve_tle(int[] A, int[][] B) {
         int[] ans = new int[B.length];
         for (int i = 0; i < B.length; i++) {
             int l1 = B[i][0];
@@ -87,5 +125,14 @@ public class HWQ2CompareSortedSubarrays {
             ans[i] = tempAns;
         }
         return ans;
+    }
+
+    long getModdedNumber(long A) {
+        long C = (long) (Math.pow(10, 9) + 7);
+        if (A < 0) {
+//            System.out.println(A);
+            return (A + C) % C;
+        } else
+            return A % C;
     }
 }

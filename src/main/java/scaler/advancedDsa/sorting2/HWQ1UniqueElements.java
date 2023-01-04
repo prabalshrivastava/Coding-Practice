@@ -31,23 +31,41 @@ public class HWQ1UniqueElements {
 
     public int solve(int[] A) {
         Arrays.sort(A);
-        System.out.println(Arrays.toString(A));
-        int count = 0;
-        int previousDup = Integer.MAX_VALUE;
-        for (int i = 0; i < A.length - 1; i++) {
-            if (A[i] == A[i + 1]) {
-                previousDup = A[i];
-                if (i + 2 < A.length) {
-                    if (A[i + 1] + 1 == A[i + 2]) {
-
-                    } else {
-                        count++;
-                    }
-                }
+//        System.out.println(Arrays.toString(A));
+        int ans = 0;
+        int elem = 1;
+        for (int i = 0; i < A.length; i++) {
+            if (A[i] >= elem) {
+                elem = A[i];
+            } else {
+                ans = ans + (elem - A[i]);
+//                A[i] = elem;
             }
+            elem++;
+//            System.out.println(elem);
         }
-        return count;
+        return ans;
     }
+
+//    public int solve(int[] A) {
+//        Arrays.sort(A);
+//        System.out.println(Arrays.toString(A));
+//        int count = 0;
+//        int previousDup = Integer.MAX_VALUE;
+//        for (int i = 0; i < A.length - 1; i++) {
+//            if (A[i] == A[i + 1]) {
+//                previousDup = A[i];
+//                if (i + 2 < A.length) {
+//                    if (A[i + 1] + 1 == A[i + 2]) {
+//
+//                    } else {
+//                        count++;
+//                    }
+//                }
+//            }
+//        }
+//        return count;
+//    }
 
     public static void main(String[] args) {
         int[] input1A = {1, 1, 3};
