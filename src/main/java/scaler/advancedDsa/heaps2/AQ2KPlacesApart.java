@@ -52,7 +52,8 @@ public class AQ2KPlacesApart {
         System.out.println(Arrays.toString(new AQ2KPlacesApart().solve(input2A, input2B)));
     }
 
-    public int[] solve(int[] A, int B) {
+    public int[] solve(int[] A, int B)
+    {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         int[] ans = new int[A.length];
         for (int i = 0; i < B; i++) {
