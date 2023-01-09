@@ -3,6 +3,8 @@ package scaler.advancedDsa.hashing2;
 import java.util.HashMap;
 import java.util.Map;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 public class AQ2CountRightTriangles {
 //    Problem Description
 //    Given two arrays of integers A and B of size N each, where each pair (A[i], B[i]) for 0 <= i < N represents a unique point (x, y) in 2D Cartesian plane.
@@ -57,14 +59,6 @@ public class AQ2CountRightTriangles {
             count = getModdedSum(count);
         }
         return (int) getModdedSum(count);
-    }
-
-    private long getModdedSum(long sum) {
-        if (sum < 0)
-            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
-        else
-            sum = (long) (sum % (Math.pow(10, 9) + 7));
-        return sum;
     }
 
     public static void main(String[] args) {

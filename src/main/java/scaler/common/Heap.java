@@ -25,6 +25,70 @@ public class Heap {
         return A;
     }
 
+    public static int getMinFromMinHeap(int[] A) {
+        if (A != null)
+            return A[0];
+        else
+            return Integer.MAX_VALUE;
+    }
+
+    public static int getMaxFromMaxHeap(int[] A) {
+        if (A != null)
+            return A[0];
+        else
+            return Integer.MIN_VALUE;
+    }
+
+    public static int[] extractMaxFromMaxHeap(int[] A) {
+        int[] arr = new int[A.length - 1];
+        int max = A[A.length - 1];
+        A[0] = A[A.length - 1];
+        for (int i = 0; i < A.length - 1; i++) {
+            arr[i] = A[i];
+        }
+        buildMaxHeap(arr);
+        return arr;
+    }
+
+    public static int[] extractMinFromMinHeap(int[] A) {
+        int[] arr = new int[A.length - 1];
+        int min = A[A.length - 1];
+        A[0] = A[A.length - 1];
+        for (int i = 0; i < A.length - 1; i++) {
+            arr[i] = A[i];
+        }
+        buildMinHeap(arr);
+        return arr;
+    }
+
+    public static int[] insertMinHeap(int[] A, int newElement) {
+        int[] arr = new int[A.length + 1];
+        int i = 0;
+        for (; i < A.length; i++) {
+            arr[i] = A[i];
+        }
+        arr[i] = newElement;
+//        for (int j = (arr.length / 2) - 1; j >= 0; j--) {
+//            minHeapify(arr, j);
+//        }
+        buildMinHeap(arr);
+        return arr;
+    }
+
+    public static int[] insertMaxHeap(int[] A, int newElement) {
+        int[] arr = new int[A.length + 1];
+        int i = 0;
+        for (; i < A.length; i++) {
+            arr[i] = A[i];
+        }
+        arr[i] = newElement;
+//        for (int j = (arr.length / 2) - 1; j >= 0; j--) {
+//            maxHeapify(arr, j);
+//        }
+        buildMaxHeap(arr);
+        return arr;
+    }
+
     public static void minHeapify(int[] A, int i) {
         while (2 * i + 1 < A.length) {
             int rc;

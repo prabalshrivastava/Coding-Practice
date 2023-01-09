@@ -3,6 +3,8 @@ package scaler.advancedDsa.maths.modularArithmetic;
 import java.util.HashMap;
 import java.util.Map;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 public class AQ5PairSumDivisibleByM {
 //    Problem Description
 //    Given an array of integers A and an integer B, find and return the number of pairs in A whose sum is divisible by B.
@@ -68,14 +70,6 @@ public class AQ5PairSumDivisibleByM {
             ans = getModdedSum(ans + ((mid * (mid - 1)) / 2));
         }
         return (int) getModdedSum(ans);
-    }
-
-    private long getModdedSum(long sum) {
-        if (sum < 0)
-            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
-        else
-            sum = (long) (sum % (Math.pow(10, 9) + 7));
-        return sum;
     }
 
 }

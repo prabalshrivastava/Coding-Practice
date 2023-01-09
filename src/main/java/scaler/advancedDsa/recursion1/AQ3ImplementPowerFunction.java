@@ -1,5 +1,7 @@
 package scaler.advancedDsa.recursion1;
 
+import static scaler.common.CommonUtils.getModdedNumber;
+
 public class AQ3ImplementPowerFunction {
 //    Problem Description
 //    Implement pow(A, B) % C.
@@ -57,13 +59,5 @@ public class AQ3ImplementPowerFunction {
         } else {
             return getModdedNumber(A * x2, C);
         }
-    }
-
-    long getModdedNumber(long A, long C) {
-        if (A < 0) {
-//            System.out.println(A);
-            return (A + C) % C;
-        } else
-            return A % C;
     }
 }

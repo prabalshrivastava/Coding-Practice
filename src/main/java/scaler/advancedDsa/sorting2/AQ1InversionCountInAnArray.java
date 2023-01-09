@@ -1,6 +1,8 @@
 package scaler.advancedDsa.sorting2;
 
 
+import static scaler.common.CommonUtils.getModdedNumber;
+
 public class AQ1InversionCountInAnArray {
     //    Problem Description
 //    Given an array of integers A. If i < j and A[i] > A[j], then the pair (i, j) is called an inversion of A. Find the total number of inversions of A modulo (109 + 7).
@@ -89,13 +91,5 @@ public class AQ1InversionCountInAnArray {
             a[index++] = ans[i];
         }
         return count;
-    }
-
-    long getModdedNumber(long A, long C) {
-        if (A < 0) {
-//            System.out.println(A);
-            return (A + C) % C;
-        } else
-            return A % C;
     }
 }

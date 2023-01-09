@@ -52,6 +52,7 @@ public class AQ2ConnectRopes {
     public int solve(int[] A) {
         Heap.buildMinHeap(A);
         System.out.println(Arrays.toString(A));
+
         return 0;
     }
 }

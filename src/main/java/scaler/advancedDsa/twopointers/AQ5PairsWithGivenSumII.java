@@ -101,5 +101,4 @@ public class AQ5PairsWithGivenSumII {
         } else
             return A % C;
     }
-
 }

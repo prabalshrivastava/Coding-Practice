@@ -1,5 +1,7 @@
 package scaler.advancedDsa.binarysearch2;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 public class AQ4AthMagicalNumber {
     //    Problem Description
 //    You are given three positive integers, A, B, and C.
@@ -54,13 +56,6 @@ public class AQ4AthMagicalNumber {
     }
 
 
-    private long getModdedSum(long sum) {
-        if (sum < 0)
-            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
-        else
-            sum = (long) (sum % (Math.pow(10, 9) + 7));
-        return sum;
-    }
     private long countOfFactors(long mid, long a, long b, long lcm) {
         return (mid / a) + (mid / b) - (mid / lcm);
     }

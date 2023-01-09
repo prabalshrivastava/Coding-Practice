@@ -1,5 +1,7 @@
 package scaler.advancedDsa.arrays2;
 
+import scaler.common.CommonUtils;
+
 import java.util.Arrays;
 
 public class AQ2SubMatrixSumQueries {
@@ -61,7 +63,7 @@ public class AQ2SubMatrixSumQueries {
             pf[i] = new long[A[i].length];
             for (int j = 0; j < A[i].length; j++) {
                 sum = sum + A[i][j];
-                pf[i][j] = getModdedSum(sum);
+                pf[i][j] = CommonUtils.getModdedSum(sum);
             }
         }
 //        System.out.println("row wise  : " + Arrays.deepToString(pf));
@@ -69,7 +71,7 @@ public class AQ2SubMatrixSumQueries {
             long sum = 0;
             for (int i = 0; i < A.length; i++) {
                 sum = sum + pf[i][j];
-                pf[i][j] = getModdedSum(sum);
+                pf[i][j] = CommonUtils.getModdedSum(sum);
             }
         }
 //        System.out.println("col wise  : " + Arrays.deepToString(pf));
@@ -100,25 +102,17 @@ public class AQ2SubMatrixSumQueries {
 //        System.out.println(sum);
         if (a1 > 0)
             sum = (sum - pf[a1 - 1][b2]);
-        sum = getModdedSum(sum);
+        sum = CommonUtils.getModdedSum(sum);
 
 //        System.out.println(sum);
         if (b1 > 0)
             sum = (sum - pf[a2][b1 - 1]);
-        sum = getModdedSum(sum);
+        sum = CommonUtils.getModdedSum(sum);
 //        System.out.println(sum);
         if (a1 > 0 && b1 > 0)
             sum = (sum + pf[a1 - 1][b1 - 1]);
 //        System.out.println(sum);
-        sum = getModdedSum(sum);
-        return sum;
-    }
-
-    private long getModdedSum(long sum) {
-        if (sum < 0)
-            sum = (long) ((sum + (Math.pow(10, 9) + 7)) % (Math.pow(10, 9) + 7));
-        else
-            sum = (long) (sum % (Math.pow(10, 9) + 7));
+        sum = CommonUtils.getModdedSum(sum);
         return sum;
     }
 
