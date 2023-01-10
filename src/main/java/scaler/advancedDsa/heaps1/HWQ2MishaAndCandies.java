@@ -48,9 +48,12 @@ public class HWQ2MishaAndCandies {
         int[] input2A = new int[]{1, 2, 1};
         int input2B = 2;
         System.out.println(new HWQ2MishaAndCandies().solve(input2A, input2B));
-        int[] input3A = new int[]{5,4,3,2,1};
+        int[] input3A = new int[]{5, 4, 3, 2, 1};
         int input3B = 6;
         System.out.println(new HWQ2MishaAndCandies().solve(input3A, input3B));
+        int[] input4A = new int[]{705};
+        int input4B = 895;
+        System.out.println(new HWQ2MishaAndCandies().solve(input4A, input4B));
     }
 
     public int solve(int[] A, int B) {
@@ -60,10 +63,12 @@ public class HWQ2MishaAndCandies {
         }
         System.out.println(minHeap);
         int ans = 0;
-        while (!minHeap.isEmpty() && minHeap.peek() < B) {
+        while (!minHeap.isEmpty() && minHeap.peek() <= B) {
             Integer removed = minHeap.poll();
             ans = ans + (removed / 2);
             int remaining = removed - (removed / 2);
+            if (minHeap.isEmpty())
+                break;
             Integer poll = minHeap.poll();
             if (poll > B)
                 break;
