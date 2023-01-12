@@ -1,9 +1,13 @@
 package scaler.advancedDsa.heaps1;
 
+import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class HWQ3BthSmallestPrimeFraction {
-//    Problem Description
+
+  //    Problem Description
 //    Given a sorted array of integers A which contains 1 and some number of primes.
 //            Then, for every p < q in the list, we consider the fraction p / q.
 //    What is the B-th smallest fraction considered?
@@ -38,18 +42,57 @@ public class HWQ3BthSmallestPrimeFraction {
 //    The fractions to be considered in sorted order are:
 //            [1/7]
 //    The first fraction is 1/7.
-    public static void main(String[] args) {
-        int[] input1A = {1, 2, 3, 5};
-        int input1B = 3;
-        System.out.println(Arrays.toString(new HWQ3BthSmallestPrimeFraction().solve(input1A, input1B)));
-        int[] input2A = {1, 7};
-        int input2B = 1;
-        System.out.println(Arrays.toString(new HWQ3BthSmallestPrimeFraction().solve(input2A, input2B)));
-    }
+  public static void main(String[] args) {
+    int[] input1A = {1, 2, 3, 5};
+    int input1B = 3;
+    System.out.println(Arrays.toString(new HWQ3BthSmallestPrimeFraction().solve(input1A, input1B)));
+    int[] input2A = {1, 7};
+    int input2B = 1;
+    System.out.println(Arrays.toString(new HWQ3BthSmallestPrimeFraction().solve(input2A, input2B)));
+    int[] input3A = {1, 719, 983, 9293, 11321, 14447, 16411, 17881, 22079, 28297};
+    int input3B = 42;
+    System.out.println(Arrays.toString(
+        new HWQ3BthSmallestPrimeFraction().solveUsingAbstractMap(input3A, input3B)));
+  }
 
-    public int[] solve(int[] A, int B) {
-
-        return A;
+  public int[] solveUsingAbstractMap(int[] A, int B) {
+    PriorityQueue<AbstractMap.SimpleEntry<Integer, Integer>> minHeap = new PriorityQueue<>(
+        (o1, o2) -> {
+          return (o1.getKey() / o1.getValue()) - (o2.getKey() / o2.getValue());
+        });
+    for (int i = 0; i < A.length; i++) {
+      for (int j = i + 1; j < A.length; j++) {
+        minHeap.add(new AbstractMap.SimpleEntry<Integer, Integer>(A[i], A[j]));
+      }
     }
+    System.out.println(minHeap);
+    int[] ans = new int[2];
+    for (int i = 0; i < B; i++) {
+      SimpleEntry<Integer, Integer> poll = minHeap.poll();
+      ans[0] = poll.getKey();
+      ans[1] = poll.getValue();
+    }
+    return ans;
+  }
+
+  public int[] solve(int[] A, int B) {
+    PriorityQueue<int[]> minHeap = new PriorityQueue<>((o1, o2) -> {
+      return (o1[0] * o2[1]) - (o2[0] * o1[1]);
+    });
+    for (int i = 0; i < A.length; i++) {
+      for (int j = i + 1; j < A.length; j++) {
+        int[] arr = new int[2];
+        arr[0] = A[i];
+        arr[1] = A[j];
+        minHeap.add(arr);
+      }
+    }
+//    System.out.println(minHeap);
+    int[] ans = new int[2];
+    for (int i = 0; i < B; i++) {
+      ans = minHeap.poll();
+    }
+    return ans;
+  }
 }
 
