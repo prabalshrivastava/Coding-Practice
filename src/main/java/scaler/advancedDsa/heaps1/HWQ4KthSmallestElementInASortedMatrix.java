@@ -31,7 +31,7 @@ public class HWQ4KthSmallestElementInASortedMatrix {
 //  B = 12
 //  Example Output
 //  DocFinder.Output 1:
-//      17
+//      17x
 //  Output 2:
 //      16
 //  Example Explanation
