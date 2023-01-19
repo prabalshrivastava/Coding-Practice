@@ -33,16 +33,17 @@ public class AQ2FibonacciNumber {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int n = scanner.nextInt();
+    System.out.println(new AQ2FibonacciNumber().fib(n));
     System.out.println(new AQ2FibonacciNumber().fib(n, new int[n + 1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(0, new int[1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(1, new int[1 + 1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(2, new int[2 + 1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(3, new int[3 + 1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(4, new int[4 + 1]));
-//    System.out.println(new AQ2FibonacciNumber().fib(5, new int[5 + 1]));
+    System.out.println(new AQ2FibonacciNumber().fib(0, new int[1]));
+    System.out.println(new AQ2FibonacciNumber().fib(1, new int[1 + 1]));
+    System.out.println(new AQ2FibonacciNumber().fib(2, new int[2 + 1]));
+    System.out.println(new AQ2FibonacciNumber().fib(3, new int[3 + 1]));
+    System.out.println(new AQ2FibonacciNumber().fib(4, new int[4 + 1]));
+    System.out.println(new AQ2FibonacciNumber().fib(5, new int[5 + 1]));
   }
 
-  int fib(int n, int[] fibArr) {
+    int fib(int n, int[] fibArr) {
     if (n <= 1) {
       return n;
     }
@@ -53,5 +54,21 @@ public class AQ2FibonacciNumber {
     int fib = fib(n - 1, fibArr) + fib(n - 2, fibArr);
     fibArr[n] = fib;
     return fib;
+  }
+  int fib(int n) {
+    if (n <= 1) {
+      return 1;
+    }
+    int prev = 0;
+    int next = 1;
+//    System.out.println(prev);
+//    System.out.println(next);
+    for (int i = 2; i <= n; i++) {
+      int temp = next;
+      next = next + prev;
+      prev = temp;
+//      System.out.println(next);
+    }
+    return next;
   }
 }
