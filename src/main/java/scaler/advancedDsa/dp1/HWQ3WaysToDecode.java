@@ -1,7 +1,6 @@
 package scaler.advancedDsa.dp1;
 
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+
 
 public class HWQ3WaysToDecode {
 

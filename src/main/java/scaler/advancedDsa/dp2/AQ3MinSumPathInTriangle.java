@@ -1,8 +1,7 @@
 package scaler.advancedDsa.dp2;
 
 import java.util.ArrayList;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+
 
 public class AQ3MinSumPathInTriangle {
 //  Problem Description
@@ -44,11 +43,12 @@ public class AQ3MinSumPathInTriangle {
         {4, 1, 8, 3}
     };
     int[][] input2A = new int[0][];
-    System.out.println(new AQ3MinSumPathInTriangle().minimumTotal(input1A));
+//    System.out.println(new AQ3MinSumPathInTriangle().minimumTotal(input1A));
 //    input2A = new int[][]{{1}};
 //    System.out.println(new AQ3MinSumPathInTriangle().minimumTotal(input2A));
   }
 
   public int minimumTotal(ArrayList<ArrayList<Integer>> a) {
+    return 0;
   }
 }

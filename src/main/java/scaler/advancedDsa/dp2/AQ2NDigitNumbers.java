@@ -1,8 +1,7 @@
 package scaler.advancedDsa.dp2;
 
 import com.google.gson.annotations.Since;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+
 
 public class AQ2NDigitNumbers {
 
