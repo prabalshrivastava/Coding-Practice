@@ -51,9 +51,58 @@ public class HWQ1MaximumSumValue {
     int input2C = -10;
     int input2D = 3;
     System.out.println(new HWQ1MaximumSumValue().solve(input2A, input2B, input2C, input2D));
+
+    int a[] = {-1, -2, -3, -4, -5};
+    int x = 1, y = 2, z = -3;
+    System.out.println(new HWQ1MaximumSumValue().solve(a, x, y, z));//12
+
+    int[] A = {-21, 34, 3, 46, 8, -47, -47};
+    int B = -13;
+    int C = 10;
+    int D = 9;
+    System.out.println(new HWQ1MaximumSumValue().solve(A, B, C, D));//1147
+  }
+
+  public int solve_WrongSolution(int[] A, int B, int C, int D) {
+    int[][] dp = new int[3][A.length];
+    for (int i = 0; i < A.length; i++) {
+      dp[0][i] = A[i] * B;
+      dp[1][i] = A[i] * C;
+      dp[2][i] = A[i] * D;
+    }
+    int max0 = Integer.MIN_VALUE;
+    int max1 = Integer.MIN_VALUE;
+    int max2 = Integer.MIN_VALUE;
+    for (int i = 0; i < dp[0].length; i++) {
+      max0 = Math.max(max0, dp[0][i]);
+      max1 = Math.max(max1, dp[1][i]);
+      max2 = Math.max(max2, dp[2][i]);
+    }
+    return max0 + max1 + max2;
+  }
+
+  public int solve_wrongSolution(int[] A, int B, int C, int D) {
+    int max0 = Integer.MIN_VALUE;
+    int max1 = Integer.MIN_VALUE;
+    int max2 = Integer.MIN_VALUE;
+    for (int i = 0; i < A.length; i++) {
+      max0 = Math.max(max0, A[i] * B);
+      max1 = Math.max(max1, A[i] * C);
+      max2 = Math.max(max2, A[i] * D);
+    }
+    return max0 + max1 + max2;
   }
 
   public int solve(int[] A, int B, int C, int D) {
-    return B;
+    int[][] dp = new int[3][A.length];
+    dp[0][0] = A[0] * B;
+    dp[1][0] = dp[0][0] + A[0] * C;
+    dp[2][0] = dp[1][0] + A[0] * D;
+    for (int i = 1; i < A.length; i++) {
+      dp[0][i] = Math.max(dp[0][i - 1], A[i] * B);
+      dp[1][i] = Math.max(dp[1][i - 1], dp[0][i] + A[i] * C);
+      dp[2][i] = Math.max(dp[2][i - 1], dp[1][i] + A[i] * D);
+    }
+    return dp[2][A.length - 1];
   }
 }

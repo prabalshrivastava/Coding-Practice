@@ -41,11 +41,96 @@ public class AQ4MaxSumWithoutAdjacentElements {
     int[][] input2A = {{1, 2, 3, 4}, {2, 3, 4, 5}};
     System.out.println(new AQ4MaxSumWithoutAdjacentElements().adjacent(input2A));
 
-    int[][] input3A = {
-        {16, 5, 54, 55, 36, 82, 61, 77, 66, 61},
-        {31, 30, 36, 70, 9, 37, 1, 11, 68, 14}
-    };
+    int[][] input3A = {{16, 5, 54, 55, 36, 82, 61, 77, 66, 61},
+        {31, 30, 36, 70, 9, 37, 1, 11, 68, 14}};
     System.out.println(new AQ4MaxSumWithoutAdjacentElements().adjacent(input3A));
+
+    int[][] input4A = {
+        {2, 6, 6, 1, 16, 6, 15},
+        {9, 16, 5, 4, 20, 3, 3}
+    };
+    System.out.println(new AQ4MaxSumWithoutAdjacentElements().adjacent(input4A));
+    int[][] input5A = {
+        {14, 10},
+        {14, 12}
+    };
+    System.out.println(new AQ4MaxSumWithoutAdjacentElements().adjacent(input5A));
+  }
+
+  public int adjacent(int[][] A) {
+    for (int j = 0; j < A[0].length; j++) {
+      A[0][j] = Math.max(A[0][j], A[1][j]);
+      A[1][j] = -1;
+    }
+//    System.out.println(Arrays.toString(arr));
+    int max;
+//    max = findMaxRecursiveTopDown(A, A[0].length - 1);
+    max = findMaxIterativeBottomUp(A, A[0].length - 1);
+//    System.out.println(Arrays.deepToString(A));
+    return max;
+  }
+
+  private int findMaxIterativeBottomUp(int[][] A, int n) {
+    if (A[0].length == 1) {
+      return A[0][0];
+    }
+    if (A[0].length == 2) {
+      return Math.max(A[0][0], A[0][1]);
+    }
+
+    A[1][0] = A[0][0];
+    int ans = Math.max(A[0][0], A[0][1]);
+    A[1][1] = ans;
+//    System.out.println(ans);
+    for (int i = 2; i < A[0].length; i++) {
+      int alone = A[0][i];
+      int excluded = A[1][i - 2];
+      int included = A[0][i] + A[1][i - 2];
+      A[1][i] = Math.max(ans, Math.max(Math.max(alone, excluded), included));
+      ans = A[1][i];
+//      System.out.println("ans : " + ans);
+    }
+    return A[1][A[0].length - 1];
+  }
+
+
+  private int findMaxRecursiveTopDown(int[][] A, int n) {
+    if (A[1][n] != -1) {
+      return A[1][n];
+    }
+    int ans = Integer.MIN_VALUE;
+    for (int i = n; i >= 0; i--) {
+      if (i - 2 >= 0) {
+        ans = Math.max(ans, Math.max(Math.max(A[0][i], A[0][i] + findMaxRecursiveTopDown(A, i - 2)),
+            findMaxRecursiveTopDown(A, i - 2)));
+      } else {
+        ans = Math.max(ans, A[0][i]);
+      }
+      A[1][n] = ans;
+    }
+    System.out.println("n : " + n + " -> ans : " + ans);
+    return ans;
+  }
+
+  public int adjacent_tle(int[][] A) {
+    int[] arr = new int[A[0].length];
+    for (int j = 0; j < A[0].length; j++) {
+      arr[j] = Math.max(A[0][j], A[1][j]);
+    }
+//    System.out.println(Arrays.toString(arr));
+    return max(arr, arr.length - 1);
+  }
+
+  private int max(int[] A, int n) {
+    int ans = Integer.MIN_VALUE;
+    for (int i = n; i >= 0; i--) {
+      if (i - 2 >= 0) {
+        ans = Math.max(ans, Math.max(Math.max(A[i], A[i] + max(A, i - 2)), max(A, i - 2)));
+      } else {
+        ans = Math.max(ans, A[i]);
+      }
+    }
+    return ans;
   }
 
   public int adjacent_failing(int[][] A) {
