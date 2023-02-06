@@ -1,5 +1,7 @@
 package scaler.advancedDsa.dp2;
 
+import java.util.Arrays;
+
 public class AQ1UniquePathsInAGrid {
 
   //  Problem Description
@@ -37,7 +39,41 @@ public class AQ1UniquePathsInAGrid {
 //  Explanation 2:
 //  It is not possible to reach (n, m) from (1, 1). So, ans is 0.
   public int uniquePathsWithObstacles(int[][] A) {
-    return 0;
+    System.out.println("before : " + Arrays.deepToString(A));
+    for (int i = 0; i < A.length; i++) {
+      for (int j = 0; j < A[0].length; j++) {
+        if (A[i][j] == 1) {
+          A[i][j] = 0;
+        } else {
+          if (i == 0 || j == 0) {
+            if (i > 0) {
+              A[i][j] = A[i - 1][j];
+            }
+            if (j > 0) {
+              A[i][j] = A[i][j - 1];
+            }
+            if (i == 0 && j == 0) {
+              A[i][j] = 1;
+            }
+          }
+        }
+      }
+    }
+    System.out.println("before processing : " + Arrays.deepToString(A));
+    int i = uniquePathsWithObstaclesRecursively(A, A.length - 1, A[0].length - 1);
+    System.out.println(Arrays.deepToString(A));
+    return i;
+  }
+
+  private int uniquePathsWithObstaclesRecursively(int[][] A, int i, int j) {
+    if (i == 0 || j == 0) {
+      return A[i][j];
+    }
+
+    int first = uniquePathsWithObstaclesRecursively(A, i - 1, j);
+    int second = uniquePathsWithObstaclesRecursively(A, i, j - 1);
+    A[i][j] = first + second;
+    return A[i][j];
   }
 
   public static void main(String[] args) {
