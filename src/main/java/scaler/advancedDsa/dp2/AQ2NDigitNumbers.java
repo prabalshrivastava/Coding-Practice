@@ -1,7 +1,8 @@
 package scaler.advancedDsa.dp2;
 
-import com.google.gson.annotations.Since;
 
+import java.util.Arrays;
+import scaler.common.CommonUtils;
 
 public class AQ2NDigitNumbers {
 
@@ -38,12 +39,63 @@ public class AQ2NDigitNumbers {
   public static void main(String[] args) {
     int input1A = 2;
     int input1B = 4;
-    System.out.println(new AQ2NDigitNumbers().solve(input1A,input1B));
+    System.out.println(new AQ2NDigitNumbers().solve(input1A, input1B));
     int input2A = 1;
     int input2B = 3;
-    System.out.println(new AQ2NDigitNumbers().solve(input2A,input2B));
+    System.out.println(new AQ2NDigitNumbers().solve(input2A, input2B));
+    System.out.println(new AQ2NDigitNumbers().solve(3, 4));
   }
+
   public int solve(int A, int B) {
-    return A;
+    int[][] dp = new int[A + 1][B + 1];
+    for (int i = 0; i < dp.length; i++) {
+      Arrays.fill(dp[i], -1);
+    }
+//    return findNoOfDigitsRecursive(A, B, dp);
+    Arrays.fill(dp[0], 0);
+    for (int i = 0; i < dp[1].length; i++) {
+      if (i < 10) {
+        dp[1][i] = 1;
+      } else {
+        dp[1][i] = 0;
+      }
+    }
+    System.out.println(Arrays.deepToString(dp));
+    return findNoOfDigitsIterative(A, B, dp);
+  }
+
+  private int findNoOfDigitsIterative(int noOfDigits, int sum, int[][] dp) {
+    if (dp[noOfDigits][sum] != -1) {
+      return dp[noOfDigits][sum];
+    }
+    for (int i = 0; i <= noOfDigits; i++) {
+      for (int j = 0; j <= sum; j++) {
+        dp[i][j] = dp[i - 1][sum - j];
+      }
+    }
+    return dp[noOfDigits][sum];
+  }
+
+  private int findNoOfDigitsRecursive(int noOfDigits, int sum, int[][] dp) {
+    if (noOfDigits == 1) {
+      if (1 <= sum && sum < 10) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+    if (sum < 0) {
+      return 0;
+    }
+    if (dp[noOfDigits][sum] != -1) {
+      return dp[noOfDigits][sum];
+    }
+    int ways = 0;
+    for (int i = 0; i < 10; i++) {
+      ways = CommonUtils.getModdedIntSum(
+          ways + findNoOfDigitsRecursive(noOfDigits - 1, sum - i, dp));
+    }
+    dp[noOfDigits][sum] = ways;
+    return ways;
   }
 }
