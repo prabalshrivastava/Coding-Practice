@@ -47,9 +47,9 @@ public class AQ2LargestRectangleInHistogram {
     public int largestRectangleArea(int[] A) {
         int[] nextSmallElementsOnLeftIndexes = extractNextSmallElementsOnLeftIndexes(A);
         int[] nextSmallElementsOnRightIndexes = extractNextSmallElementsOnRightIndexes(A);
-//        System.out.println(Arrays.toString(A));
-//        System.out.println(Arrays.toString(nextSmallElementsOnLeftIndexes));
-//        System.out.println(Arrays.toString(nextSmallElementsOnRightIndexes));
+        System.out.println(Arrays.toString(A));
+        System.out.println(Arrays.toString(nextSmallElementsOnLeftIndexes));
+        System.out.println(Arrays.toString(nextSmallElementsOnRightIndexes));
         int ansArea = Integer.MIN_VALUE;
         for (int i = 0; i < A.length; i++) {
             int leftIndex = nextSmallElementsOnLeftIndexes[i];

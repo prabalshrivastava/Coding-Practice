@@ -1,52 +1,43 @@
-package scaler.advancedDsa.dp2;
+package leetcode;
 
-import java.util.Arrays;
 import java.util.Stack;
 
-//Problem Description
-//    Given a 2-D binary matrix A of size N x M filled with 0's and 1's, find the largest rectangle containing only ones and return its area.
-//    Problem Constraints
-//    1 <= N, M <= 100
-//    Input Format
-//    The first argument is a 2-D binary array A.
-//    Output Format
-//    Return an integer denoting the area of the largest rectangle containing only ones.
-//    Example Input
-//    Input 1:
-//    A = [
-//    [1, 1, 1]
-//    [0, 1, 1]
-//    [1, 0, 0]
-//    ]
-//    Input 2:
-//    A = [
-//    [0, 1, 0]
-//    [1, 1, 1]
-//    ]
-//    Example Output
-//    Output 1:
-//    4
-//    Output 2:
-//    3
-//    Example Explanation
-//    Explanation 1:
-//    As the max area rectangle is created by the 2x2 rectangle created by (0, 1), (0, 2), (1, 1) and (1, 2).
-//    Explanation 2:
-//    As the max area rectangle is created by the 1x3 rectangle created by (1, 0), (1, 1) and (1, 2).
-public class HWQ1MaxRectangleInBinaryMatrix {
+public class Q85MaximalRectangle {
 
+  //  Given a rows x cols binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+//  Example 1:
+//  Input: matrix = [["1","0","1","0","0"],["1","0","1","1","1"],["1","1","1","1","1"],["1","0","0","1","0"]]
+//  Output: 6
+//  Explanation: The maximal rectangle is shown in the above picture.
+//      Example 2:
+//  Input: matrix = [["0"]]
+//  Output: 0
+//  Example 3:
+//  Input: matrix = [["1"]]
+//  Output: 1
+//  Constraints:
+//  rows == matrix.length
+//  cols == matrix[i].length
+//1 <= row, cols <= 200
+//  matrix[i][j] is '0' or '1'.
   public static void main(String[] args) {
-    int[][] input1A = {{0, 0, 1}, {0, 1, 1}, {1, 1, 1}};
-    System.out.println(new HWQ1MaxRectangleInBinaryMatrix().maximalRectangle(input1A));
+    char[][] input1A = {{'0', '0', '1'}, {'0', '1', '1'}, {'1', '1', '1'}};
+    System.out.println(new Q85MaximalRectangle().maximalRectangle(input1A));
 
-    int[][] input2A = {{0, 1, 0, 1}, {1, 0, 1, 0}};
-    System.out.println(new HWQ1MaxRectangleInBinaryMatrix().maximalRectangle(input2A));
+    char[][] input2A = {{'0', '1', '0', '1'}, {'1', '0', '1', '0'}};
+    System.out.println(new Q85MaximalRectangle().maximalRectangle(input2A));
 
-    int[][] input3A = {{0, 1, 0, 1}, {1, 1, 1, 1}, {1, 1, 0, 0}};
-    System.out.println(new HWQ1MaxRectangleInBinaryMatrix().maximalRectangle(input3A));
+    char[][] input3A = {{'0', '1', '0', '1'}, {'1', '1', '1', '1'}, {'1', '1', '0', '0'}};
+    System.out.println(new Q85MaximalRectangle().maximalRectangle(input3A));
   }
 
-  public int maximalRectangle(int[][] A) {
+  public int maximalRectangle(char[][] matrix) {
+    int[][] A = new int[matrix.length][matrix[0].length];
+    for (int i = 0; i < A.length; i++) {
+      for (int j = 0; j < A[i].length; j++) {
+        A[i][j] = matrix[i][j] - '0';
+      }
+    }
     int ans = largestRectangleArea(A[0]);
     for (int i = 1; i < A.length; i++) {
       for (int j = 0; j < A[i].length; j++) {
