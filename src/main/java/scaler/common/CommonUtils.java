@@ -24,4 +24,12 @@ public class CommonUtils {
         } else
             return A % C;
     }
+
+    public static int getModdedNumberInt(long A, long C) {
+        if (A < 0) {
+//            System.out.println(A);
+            return (int) ((A + C) % C);
+        } else
+            return (int) (A % C);
+    }
 }
