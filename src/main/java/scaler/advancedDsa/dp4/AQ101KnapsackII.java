@@ -1,7 +1,6 @@
 package scaler.advancedDsa.dp4;
 
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+
 import scaler.advancedDsa.dp3.AQ101Knapsack;
 
 public class AQ101KnapsackII {
