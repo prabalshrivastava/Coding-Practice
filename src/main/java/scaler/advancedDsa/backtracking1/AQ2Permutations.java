@@ -2,6 +2,7 @@ package scaler.advancedDsa.backtracking1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -34,38 +35,52 @@ public class AQ2Permutations {
 //  Example Explanation
 //  All the possible permutation of array [1, 2, 3].
 
-  ArrayList<Integer> list = new ArrayList<>();
 
   public int[][] permute(int[] A) {
-    HashSet<Integer> setOfIndexes = new HashSet<>();
-    int fact = 1;
     List<Integer> list = new ArrayList<>();
     for (int i = 0; i < A.length; i++) {
       list.add(A[i]);
-      setOfIndexes.add(i);
-      fact = fact * (i + 1);
     }
-//    System.out.println(fact);
-//    System.out.println(setOfIndexes);
-    int[][] arr = new int[fact][A.length];
-
-    permutations(list);
-    return null;
+    List<List<Integer>> res = permutations(list);
+//    System.out.println(res);
+    int[][] arr = new int[res.size()][];
+    for (int i = 0; i < res.size(); i++) {
+      arr[i] = new int[res.get(i).size()];
+      for (int j = 0; j < res.get(i).size(); j++) {
+        arr[i][j] = res.get(i).get(j);
+      }
+    }
+    return arr;
   }
 
-  private void permutations(List<Integer> a) {
-//    if (a.size() == 1) {
-//      System.out.println(a);
-//      return;
-//    }
-    System.out.println("-->" + a);
-    for (int i = 0; i < a.size(); i++) {
-      Integer element = a.get(i);
-      a.remove(element);
-      permutations(a);
-      a.add(element);
-      System.out.println(a);
+  private List<List<Integer>> permutations(List<Integer> nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (nums.size() == 1) {
+      List<Integer> list = new ArrayList<>(nums);
+//      System.out.println(list);
+      return Collections.singletonList(list);
     }
+    List<List<Integer>> permutations;
+//    result.add(new ArrayList<>(nums));
+    for (int i = 0; i < nums.size(); i++) {
+      List<Integer> copy = new ArrayList<>(nums);
+      Integer element = copy.get(i);
+//      System.out.println("removing " + element + " from " + copy);
+      copy.remove(element);
+      permutations = permutations(copy);
+      for (int j = 0; j < permutations.size(); j++) {
+//        System.out.print("adding : " + element + " to " + permutations);
+        permutations.get(j).add(element);
+//        System.out.println(" -> permutations : " + permutations);
+      }
+      result.addAll(permutations);
+//      System.out.print("adding " + element + " to " + copy);
+      copy.add(element);
+//      System.out.println(" originalList : " + copy);
+    }
+
+//    System.out.println("result : " + result);
+    return result;
   }
 
   public static void main(String[] args) {
