@@ -1,8 +1,7 @@
 package scaler.advancedDsa.backtracking1;
 
-import jdk.internal.joptsimple.internal.Rows;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+import java.util.Arrays;
+import java.util.HashSet;
 
 public class AQ3UniquePathsIII {
 
@@ -48,8 +47,65 @@ public class AQ3UniquePathsIII {
     System.out.println(new AQ3UniquePathsIII().solve(B));
   }
 
-  public int solve(int[][] A) {
+  int ans = 0;
 
-    return 0;
+  public int solve(int[][] A) {
+    HashSet<String> hashSet = new HashSet<>();
+    int[][] dp = new int[A.length][];
+    int startI = -1;
+    int startJ = -1;
+    int totalZeroes = 0, zeroCount = 0;
+    for (int i = 0; i < A.length; i++) {
+      dp[i] = new int[A[i].length];
+      for (int j = 0; j < A[i].length; j++) {
+        if (A[i][j] == 1) {
+          startI = i;
+          startJ = j;
+        } else if (A[i][j] == 0) {
+          totalZeroes++;
+        }
+        dp[i][j] = -1;
+      }
+    }
+    ways(A, startI, startJ, totalZeroes, zeroCount);
+//    System.out.println(Arrays.deepToString(A));
+    return ans;
+  }
+
+  private int ways(int[][] A, int i, int j, int totalZeroes,
+      int zeroCount) {
+////    System.out.printf("A[%s][%s]\t", i, j);
+    //base case's
+    //boundary scenarios and blocked regions
+    if (i >= A.length || j >= A[0].length || i < 0 || j < 0 || A[i][j] < 0) {
+      return 0;
+    }
+    if (A[i][j] == 2) {
+      if (totalZeroes == zeroCount) {
+//        System.out.printf("totalZeroes[%s] == zeroCount[%s]%n", totalZeroes, zeroCount);
+        ans++;
+        return 1;
+      }
+      return 0;
+    }
+    if (A[i][j] == 0) {
+      zeroCount++;
+    }
+    A[i][j] = -2;
+//    System.out.printf("A[%s][%s]\t", i, j);
+    int up;
+    int left;
+    int down;
+    int right;
+////    System.out.print("up : ");
+    up = ways(A, i - 1, j, totalZeroes, zeroCount);
+////    System.out.print("left : ");
+    left = ways(A, i, j - 1, totalZeroes, zeroCount);
+////    System.out.print("down : ");
+    down = ways(A, i + 1, j, totalZeroes, zeroCount);
+////    System.out.print("right : ");
+    right = ways(A, i, j + 1, totalZeroes, zeroCount);
+    A[i][j] = 0;
+    return up + left + down + right;
   }
 }
