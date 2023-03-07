@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AQ2Permutations {
 
@@ -42,7 +43,6 @@ public class AQ2Permutations {
       list.add(A[i]);
     }
     List<List<Integer>> res = permutations(list);
-//    System.out.println(res);
     int[][] arr = new int[res.size()][];
     for (int i = 0; i < res.size(); i++) {
       arr[i] = new int[res.get(i).size()];
@@ -85,5 +85,6 @@ public class AQ2Permutations {
 
   public static void main(String[] args) {
     System.out.println(Arrays.deepToString(new AQ2Permutations().permute(new int[]{1, 2, 3})));
+    System.out.println(Arrays.deepToString(new AQ2Permutations().permute(new int[]{1, 1, 2})));
   }
 }

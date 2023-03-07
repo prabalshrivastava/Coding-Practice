@@ -1,8 +1,9 @@
 package scaler.advancedDsa.backtracking1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
+import java.util.Collections;
+import java.util.List;
 
 public class AQ4AllUniquePermutations {
 
@@ -42,9 +43,54 @@ public class AQ4AllUniquePermutations {
     System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations().permute(input1A)));
     int[] input2A = {1, 2};
     System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations().permute(input2A)));
+    int[] input3A = {10, 9, 10, 9, 10};
+    System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations().permute(input3A)));
   }
 
   public int[][] permute(int[] A) {
-    return new int[0][];
+    List<Integer> list = new ArrayList<>();
+    for (int i = 0; i < A.length; i++) {
+      list.add(A[i]);
+    }
+    Collections.sort(list);
+    List<List<Integer>> res = permutation(list);
+    int[][] arr = new int[res.size()][];
+    for (int i = 0; i < res.size(); i++) {
+      arr[i] = new int[res.get(i).size()];
+      for (int j = 0; j < res.get(i).size(); j++) {
+        arr[i][j] = res.get(i).get(j);
+      }
+    }
+    return arr;
+  }
+
+
+  private List<List<Integer>> permutation(List<Integer> list) {
+    List<List<Integer>> result = new ArrayList<>();
+//    System.out.println(list);
+    if (list.size() == 1) {
+      List<Integer> list1 = new ArrayList<>(list);
+      return Collections.singletonList(list1);
+    }
+    List<List<Integer>> permutation = new ArrayList<>();
+    for (int i = 0; i < list.size(); i++) {
+      List<Integer> copyList = new ArrayList<>(list);
+      Integer element = copyList.get(i);
+      while (i + 1 < list.size() && list.get(i + 1).equals(element)) {
+        i++;
+      }
+//      System.out.println("removing : " + element + " -> " + copyList);
+      copyList.remove(element);
+      permutation = permutation(copyList);
+//      System.out.println("permutation : " + permutation);
+      for (int j = 0; j < permutation.size(); j++) {
+        permutation.get(j).add(element);
+      }
+//      System.out.println("after adding permutation : " + permutation);
+      result.addAll(permutation);
+      copyList.add(element);
+//      System.out.println("\n\n\n");
+    }
+    return result;
   }
 }
