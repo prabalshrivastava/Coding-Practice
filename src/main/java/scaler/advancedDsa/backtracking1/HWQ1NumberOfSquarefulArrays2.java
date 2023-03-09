@@ -1,8 +1,10 @@
 package scaler.advancedDsa.backtracking1;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import scaler.common.CommonUtils;
 
 public class HWQ1NumberOfSquarefulArrays2 {
 
@@ -43,66 +45,31 @@ public class HWQ1NumberOfSquarefulArrays2 {
   }
 
   public int solve(int[] A) {
-    int ans = 0;
-    List<List<Integer>> permute = permute(A);
-    for (int i = 0; i < permute.size(); i++) {
-      boolean isSquareFul = true;
-      if (permute.get(i).size() == 1) {
-        int sum = permute.get(i).get(0);
-        double sqrt = Math.sqrt(sum);
-        if (sqrt != Math.floor(sqrt)) {
-          isSquareFul = false;
-        }
-      }
-      for (int j = 0; j < permute.get(i).size() - 1; j++) {
-        int sum = permute.get(i).get(j) + permute.get(i).get(j + 1);
-        double sqrt = Math.sqrt(sum);
-        if (sqrt != Math.floor(sqrt)) {
-          isSquareFul = false;
-          break;
-        }
-      }
-      if (isSquareFul) {
-        ans++;
-      }
-    }
-    return ans;
+    permutation(A, 0);
   }
 
-  public List<List<Integer>> permute(int[] A) {
-    List<Integer> list = new ArrayList<>();
-    for (int i = 0; i < A.length; i++) {
-      list.add(A[i]);
-    }
-    Collections.sort(list);
-    return permutation(list);
-  }
+  List<List<Integer>> result = new ArrayList<>();
 
 
-  private List<List<Integer>> permutation(List<Integer> list) {
-    List<List<Integer>> result = new ArrayList<>();
-    if (list.size() == 1) {
-      List<Integer> list1 = new ArrayList<>(list);
-      return Collections.singletonList(list1);
+  private void permutation(int[] A, int idx) {
+    Map<Integer, Integer> map = new HashMap<>();
+    if (idx == A.length) {
+      result.add(CommonUtils.arrayToList(A));
+      return;
     }
-    List<List<Integer>> permutation;
-    for (int i = 0; i < list.size(); i++) {
-      List<Integer> copyList = new ArrayList<>(list);
-      Integer element = copyList.get(i);
-//      while (i + 1 < list.size() && list.get(i + 1).equals(element)) {
-//        i++;
-//      }
-      if (i > 0 && list.get(i - 1).equals(element)) {
+    for (int i = idx; i < A.length; i++) {
+      if (map.containsKey(A[i])) {
         continue;
+      } else {
+        map.put(A[i], 1);
       }
-      copyList.remove(element);
-      permutation = permutation(copyList);
-      for (int j = 0; j < permutation.size(); j++) {
-        permutation.get(j).add(element);
-      }
-      result.addAll(permutation);
-      copyList.add(element);
+      CommonUtils.swap(A, idx, i);
+      permutation(A, idx + 1);
+      CommonUtils.swap(A, i, idx);
     }
-    return result;
+  }
+
+  public static boolean isPerfectSquare(int sum) {
+    return Math.sqrt(sum) == (int) Math.sqrt(sum);
   }
 }
