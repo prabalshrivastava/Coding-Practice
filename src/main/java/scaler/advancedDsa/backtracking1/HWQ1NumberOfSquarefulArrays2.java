@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class HWQ1NumberOfSquarefulArrays {
+public class HWQ1NumberOfSquarefulArrays2 {
 
   //  Problem Description
 //  Given an array of integers A, the array is squareful if for every pair of adjacent elements, their sum is a perfect square.
@@ -33,13 +33,13 @@ public class HWQ1NumberOfSquarefulArrays {
 //  Permutation are [1, 8, 17] and [17, 8, 1].
   public static void main(String[] args) {
     int[] input1A = {2, 2, 2};
-    System.out.println(new HWQ1NumberOfSquarefulArrays().solve(input1A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input1A));
     int[] input2A = {1, 17, 8};
-    System.out.println(new HWQ1NumberOfSquarefulArrays().solve(input2A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input2A));
     int[] input3A = {41};
-    System.out.println(new HWQ1NumberOfSquarefulArrays().solve(input3A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input3A));
     int[] input4A = {2262, 238, 123, 21, 15, 21, 4, 60, 40, 60, 40};
-    System.out.println(new HWQ1NumberOfSquarefulArrays().solve(input4A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input4A));
   }
 
   public int solve(int[] A) {
