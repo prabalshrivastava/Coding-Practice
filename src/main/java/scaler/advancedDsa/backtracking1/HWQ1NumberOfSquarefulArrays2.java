@@ -1,5 +1,8 @@
 package scaler.advancedDsa.backtracking1;
 
+import static scaler.common.CommonUtils.arrayToList;
+import static scaler.common.CommonUtils.swap;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +10,7 @@ import java.util.Map;
 import scaler.common.CommonUtils;
 
 public class HWQ1NumberOfSquarefulArrays2 {
+
 
   //  Problem Description
 //  Given an array of integers A, the array is squareful if for every pair of adjacent elements, their sum is a perfect square.
@@ -46,15 +50,38 @@ public class HWQ1NumberOfSquarefulArrays2 {
 
   public int solve(int[] A) {
     permutation(A, 0);
+    for (int i = 0; i < result.size(); i++) {
+      boolean isSquareFul = true;
+      if (result.get(i).size() == 1) {
+        int sum = result.get(i).get(0);
+        double sqrt = Math.sqrt(sum);
+        if (sqrt != Math.floor(sqrt)) {
+          isSquareFul = false;
+        }
+      }
+      for (int j = 0; j < result.get(i).size() - 1; j++) {
+        int sum = result.get(i).get(j) + result.get(i).get(j + 1);
+        double sqrt = Math.sqrt(sum);
+        if (sqrt != Math.floor(sqrt)) {
+          isSquareFul = false;
+          break;
+        }
+      }
+      if (isSquareFul) {
+        ans++;
+      }
+    }
+    return ans;
   }
 
+  private int ans;
   List<List<Integer>> result = new ArrayList<>();
 
 
   private void permutation(int[] A, int idx) {
     Map<Integer, Integer> map = new HashMap<>();
     if (idx == A.length) {
-      result.add(CommonUtils.arrayToList(A));
+      result.add(arrayToList(A));
       return;
     }
     for (int i = idx; i < A.length; i++) {
@@ -63,13 +90,9 @@ public class HWQ1NumberOfSquarefulArrays2 {
       } else {
         map.put(A[i], 1);
       }
-      CommonUtils.swap(A, idx, i);
+      swap(A, idx, i);
       permutation(A, idx + 1);
-      CommonUtils.swap(A, i, idx);
+      swap(A, i, idx);
     }
-  }
-
-  public static boolean isPerfectSquare(int sum) {
-    return Math.sqrt(sum) == (int) Math.sqrt(sum);
   }
 }
