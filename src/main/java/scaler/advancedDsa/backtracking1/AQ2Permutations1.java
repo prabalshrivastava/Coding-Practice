@@ -1,6 +1,5 @@
 package scaler.advancedDsa.backtracking1;
 
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import scaler.common.CommonUtils;
 
-public class AQ4AllUniquePermutations1 {
+public class AQ2Permutations1 {
 
   //  Problem Description
 //  Given an array A of size N denoting collection of numbers that might contain duplicates, return all possible unique permutations.
@@ -43,23 +42,23 @@ public class AQ4AllUniquePermutations1 {
 //  All the possible unique permutation of array [1, 2].
   public static void main(String[] args) {
     int[] input1A = {1, 1, 2};
-    System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations1().permute(input1A)));
+    System.out.println(Arrays.deepToString(new AQ2Permutations1().permute(input1A)));
     int[] input2A = {1, 2};
-    System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations1().permute(input2A)));
+    System.out.println(Arrays.deepToString(new AQ2Permutations1().permute(input2A)));
     int[] input3A = {10, 9, 10, 9, 10};
-    System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations1().permute(input3A)));
+    System.out.println(Arrays.deepToString(new AQ2Permutations1().permute(input3A)));
     int[] input4A = {1, 2, 3};
-    System.out.println(Arrays.deepToString(new AQ4AllUniquePermutations1().permute(input4A)));
+    System.out.println(Arrays.deepToString(new AQ2Permutations1().permute(input4A)));
     System.out.println();
   }
 
   List<List<Integer>> result = new ArrayList<>();
 
   public int[][] permute(int[] A) {
-    Arrays.sort(A);
-//    for (int i = 0; i < A.length; i++) {
-//      map.put(A[i], map.getOrDefault(A[i], 0) + 1);
-//    }
+    Map<Integer, Integer> map = new HashMap<>();
+    for (int i = 0; i < A.length; i++) {
+      map.put(A[i], map.getOrDefault(A[i], 0) + 1);
+    }
     permutation(A, 0);
     int[][] resArr = new int[result.size()][];
     for (int i = 0; i < result.size(); i++) {
@@ -73,17 +72,12 @@ public class AQ4AllUniquePermutations1 {
 
 
   private void permutation(int[] A, int idx) {
-    Map<Integer, Integer> map = new HashMap<>();
     if (idx == A.length) {
       result.add(CommonUtils.arrayToList(A));
       return;
     }
+//    System.out.println(Arrays.toString(A));
     for (int i = idx; i < A.length; i++) {
-      if (map.containsKey(A[i])) {
-        continue;
-      } else {
-        map.put(A[i], 1);
-      }
       CommonUtils.swap(A, idx, i);
       permutation(A, idx + 1);
       CommonUtils.swap(A, i, idx);
