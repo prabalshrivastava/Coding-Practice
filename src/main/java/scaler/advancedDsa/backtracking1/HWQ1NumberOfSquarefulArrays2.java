@@ -50,28 +50,8 @@ public class HWQ1NumberOfSquarefulArrays2 {
 
   public int solve(int[] A) {
     permutation(A, 0);
-    for (int i = 0; i < result.size(); i++) {
-      boolean isSquareFul = true;
-      if (result.get(i).size() == 1) {
-        int sum = result.get(i).get(0);
-        double sqrt = Math.sqrt(sum);
-        if (sqrt != Math.floor(sqrt)) {
-          isSquareFul = false;
-        }
-      }
-      for (int j = 0; j < result.get(i).size() - 1; j++) {
-        int sum = result.get(i).get(j) + result.get(i).get(j + 1);
-        double sqrt = Math.sqrt(sum);
-        if (sqrt != Math.floor(sqrt)) {
-          isSquareFul = false;
-          break;
-        }
-      }
-      if (isSquareFul) {
-        ans++;
-      }
-    }
-    return ans;
+    System.out.println(result);
+    return result.size();
   }
 
   private int ans;
@@ -87,12 +67,20 @@ public class HWQ1NumberOfSquarefulArrays2 {
     for (int i = idx; i < A.length; i++) {
       if (map.containsKey(A[i])) {
         continue;
-      } else {
-        map.put(A[i], 1);
       }
-      swap(A, idx, i);
-      permutation(A, idx + 1);
-      swap(A, i, idx);
+      map.put(A[i], 1);
+      if (isSquareFull(A[i], A[idx])) {
+        swap(A, idx, i);
+        permutation(A, idx + 1);
+        swap(A, i, idx);
+      }
     }
+  }
+
+  private boolean isSquareFull(long Ai, long Aidx) {
+    long sum = Ai + Aidx;
+    boolean isSquareFull = Math.sqrt(sum) == (long) Math.sqrt(sum);
+    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
+    return isSquareFull;
   }
 }
