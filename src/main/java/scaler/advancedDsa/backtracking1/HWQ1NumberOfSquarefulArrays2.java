@@ -80,7 +80,7 @@ public class HWQ1NumberOfSquarefulArrays2 {
   private boolean isSquareFull(long Ai, long Aidx) {
     long sum = Ai + Aidx;
     boolean isSquareFull = Math.sqrt(sum) == (long) Math.sqrt(sum);
-    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
+//    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
     return isSquareFull;
   }
 }
