@@ -1,5 +1,7 @@
 package scaler.advancedDsa.dp1;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 import scaler.common.CommonUtils;
 
 public class AQ1Stairs {
@@ -44,7 +46,7 @@ public class AQ1Stairs {
     long next = 1;
     for (int i = 2; i <= A + 1; i++) {
       long temp = next;
-      next = CommonUtils.getModdedSum(prev + next);
+      next= getModdedSum(prev + next);
 //      System.out.println("i: " + i + " - " + next);
       prev = temp;
     }

@@ -1,5 +1,7 @@
 package scaler.advancedDsa.heaps1;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 import scaler.common.CommonUtils;
 import scaler.common.Heap;
 
@@ -61,7 +63,7 @@ public class AQ1MagicianAndChocolates {
         long ans = 0;
         for (int i = 0; i < A; i++) {
             int removedElement = maxHeap.poll();
-            ans = CommonUtils.getModdedSum(ans + removedElement);
+            ans= getModdedSum(ans + removedElement);
             maxHeap.add(removedElement / 2);
         }
         return (int) ans;

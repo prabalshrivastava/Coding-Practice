@@ -1,6 +1,8 @@
 package scaler.advancedDsa.dp2;
 
 
+import static scaler.common.CommonUtils.getModdedIntSum;
+
 import java.util.Arrays;
 import scaler.common.CommonUtils;
 
@@ -92,7 +94,7 @@ public class AQ2NDigitNumbers {
     }
     int ways = 0;
     for (int i = 0; i < 10; i++) {
-      ways = CommonUtils.getModdedIntSum(
+      ways= getModdedIntSum(
           ways + findNoOfDigitsRecursive(noOfDigits - 1, sum - i, dp));
     }
     dp[noOfDigits][sum] = ways;

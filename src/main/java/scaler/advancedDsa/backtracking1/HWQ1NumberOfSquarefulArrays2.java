@@ -4,6 +4,7 @@ import static scaler.common.CommonUtils.arrayToList;
 import static scaler.common.CommonUtils.swap;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,9 @@ import scaler.common.CommonUtils;
 
 public class HWQ1NumberOfSquarefulArrays2 {
 
+
+  public HWQ1NumberOfSquarefulArrays2() {
+  }
 
   //  Problem Description
 //  Given an array of integers A, the array is squareful if for every pair of adjacent elements, their sum is a perfect square.
@@ -39,29 +43,49 @@ public class HWQ1NumberOfSquarefulArrays2 {
 //  Permutation are [1, 8, 17] and [17, 8, 1].
   public static void main(String[] args) {
     int[] input1A = {2, 2, 2};
-    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input1A));
+//    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input1A));
     int[] input2A = {1, 17, 8};
     System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input2A));
     int[] input3A = {41};
     System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input3A));
     int[] input4A = {2262, 238, 123, 21, 15, 21, 4, 60, 40, 60, 40};
-    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input4A));
+//    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input4A));
   }
 
   public int solve(int[] A) {
+    if (A.length == 1) {
+      if (Math.sqrt(A[0]) == (long) Math.sqrt(A[0])) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
     permutation(A, 0);
-    System.out.println(result);
+//    System.out.println(result);
     return result.size();
   }
 
-  private int ans;
-  List<List<Integer>> result = new ArrayList<>();
+  List<int[]> result = new ArrayList<>();
 
 
   private void permutation(int[] A, int idx) {
     Map<Integer, Integer> map = new HashMap<>();
     if (idx == A.length) {
-      result.add(arrayToList(A));
+      boolean isSquareFull = true;
+//      System.out.println(Arrays.toString(A));
+      result.add(A);
+//      for (int i = 0; i < A.length - 1; i++) {
+//        isSquareFull = isSquareFull && isSquareFull(A[i], A[i + 1]);
+//      }
+//      if (A.length > 1) {
+//        if (isSquareFull) {
+//          result.add(A);
+//        }
+//      } else {
+//        if (Math.sqrt(A[0]) == (long) Math.sqrt(A[0])) {
+//          result.add(A);
+//        }
+//      }
       return;
     }
     for (int i = idx; i < A.length; i++) {
@@ -69,18 +93,24 @@ public class HWQ1NumberOfSquarefulArrays2 {
         continue;
       }
       map.put(A[i], 1);
-      if (isSquareFull(A[i], A[idx])) {
-        swap(A, idx, i);
-        permutation(A, idx + 1);
-        swap(A, i, idx);
+      swap(A, idx, i);
+      System.out.println(Arrays.toString(A));
+      if (i + 1 < A.length) {
+        System.out.printf("A[%s]=%s - A[%s]=%s%n", i, A[i], i + 1, A[i + 1]);
+      } else {
+        System.out.printf("A[%s]=%s - A[%s]=%s%n", i, A[i], i + 1, "outofbound");
       }
+      if (i + 1 < A.length && isSquareFull(A[i], A[i + 1])) {
+        permutation(A, idx + 1);
+      }
+      swap(A, i, idx);
     }
   }
 
   private boolean isSquareFull(long Ai, long Aidx) {
     long sum = Ai + Aidx;
     boolean isSquareFull = Math.sqrt(sum) == (long) Math.sqrt(sum);
-//    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
+    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
     return isSquareFull;
   }
 }

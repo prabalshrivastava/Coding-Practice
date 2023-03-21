@@ -1,6 +1,8 @@
 package scaler.advancedDsa.dp1;
 
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 import java.util.Arrays;
 import scaler.common.CommonUtils;
 
@@ -80,7 +82,7 @@ public class HWQ3WaysToDecode {
     if (10 <= twoDigit && twoDigit <= 26) {
       pick2Digit = countWaysImproved(A, n - 2, dp);//if the number lies between 10-26
     }
-    dp[n] = (int) CommonUtils.getModdedSum(pick1Digit + pick2Digit);
+    dp[n] = (int) getModdedSum(pick1Digit + pick2Digit);
     return dp[n];
   }
 

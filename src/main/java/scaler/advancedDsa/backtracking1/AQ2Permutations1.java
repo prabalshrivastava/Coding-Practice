@@ -1,5 +1,7 @@
 package scaler.advancedDsa.backtracking1;
 
+import static scaler.common.CommonUtils.swap;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -78,9 +80,9 @@ public class AQ2Permutations1 {
     }
 //    System.out.println(Arrays.toString(A));
     for (int i = idx; i < A.length; i++) {
-      CommonUtils.swap(A, idx, i);
+      swap(A, idx, i);
       permutation(A, idx + 1);
-      CommonUtils.swap(A, i, idx);
+      swap(A, i, idx);
     }
   }
 }

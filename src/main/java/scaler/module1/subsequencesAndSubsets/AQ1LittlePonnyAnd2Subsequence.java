@@ -1,7 +1,12 @@
 package scaler.module1.subsequencesAndSubsets;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class AQ1LittlePonnyAnd2Subsequence {
-    //    Problem Description
+
+  //    Problem Description
 //    Little Ponny has been given a string A, and he wants to find out the lexicographically minimum subsequence from it of size >= 2. Can you help him?
 //    A string a is lexicographically smaller than string b, if the first different letter in a and b is smaller in a. For example, "abc" is lexicographically smaller than "acc" because the first different letter is 'b' and 'c' which is smaller in "abc".
 //    Problem Constraints
@@ -26,14 +31,32 @@ public class AQ1LittlePonnyAnd2Subsequence {
 //            "aa" is the lexicographically minimum subsequence from A.
 //            Explanation 2:
 //            "da" is the lexicographically minimum subsequence from A.
-    public String solve(String A) {
-        return A;
+  public String solveBruteForce(String A) {
+    List<String> list = new ArrayList<>();
+    for (int i = 0; i <= Math.pow(2, A.length()); i++) {
+      StringBuilder stringBuilder = new StringBuilder();
+      for (int j = 0; j < A.length(); j++) {
+        if ((1 << j & i) != 0) {
+          stringBuilder.append(A.charAt(j));
+        }
+      }
+      if (stringBuilder.length() >= 2) {
+        list.add(stringBuilder.toString());
+      }
     }
+    Collections.sort(list);
+    System.out.println(list);
+    System.out.println(list.size());
+    return list.get(0);
+  }
+  public String solve(String A) {
 
-    public static void main(String[] args) {
-        String input1A = "abcdsfhjagj";
-        System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input1A));
-        String input2A = "ksdjgha";
-        System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input2A));
-    }
+  }
+
+  public static void main(String[] args) {
+    String input1A = "abcdsfhjagj";
+    System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input1A));
+    String input2A = "ksdjgha";
+    System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input2A));
+  }
 }

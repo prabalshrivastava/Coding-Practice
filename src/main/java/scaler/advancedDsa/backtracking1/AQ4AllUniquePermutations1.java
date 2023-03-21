@@ -1,5 +1,7 @@
 package scaler.advancedDsa.backtracking1;
 
+import static scaler.common.CommonUtils.swap;
+
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,9 +86,9 @@ public class AQ4AllUniquePermutations1 {
       } else {
         map.put(A[i], 1);
       }
-      CommonUtils.swap(A, idx, i);
+      swap(A, idx, i);
       permutation(A, idx + 1);
-      CommonUtils.swap(A, i, idx);
+      swap(A, i, idx);
     }
   }
 }

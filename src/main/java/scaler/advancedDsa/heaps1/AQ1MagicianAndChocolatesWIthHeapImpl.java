@@ -1,5 +1,7 @@
 package scaler.advancedDsa.heaps1;
 
+import static scaler.common.CommonUtils.getModdedSum;
+
 import scaler.common.CommonUtils;
 import scaler.common.Heap;
 
@@ -60,7 +62,7 @@ public class AQ1MagicianAndChocolatesWIthHeapImpl {
             int removedElement = Heap.getMaxFromMaxHeap(B);
             B = Heap.extractMaxFromMaxHeap(B);
             System.out.println("Post Removing : " + Arrays.toString(B));
-            ans = CommonUtils.getModdedSum(ans + removedElement);
+            ans= getModdedSum(ans + removedElement);
             B = Heap.insertMaxHeap(B, (removedElement / 2));
             System.out.println("Post Adding : " + Arrays.toString(B));
         }
