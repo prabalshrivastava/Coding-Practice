@@ -49,8 +49,23 @@ public class AQ1LittlePonnyAnd2Subsequence {
     System.out.println(list.size());
     return list.get(0);
   }
-  public String solve(String A) {
 
+  public String solve(String A) {
+    char firstChar = Character.MAX_VALUE;
+    int firstCharIndex = -1;
+    char secondChar = Character.MAX_VALUE;
+    for (int i = 0; i < A.length() - 1; i++) {
+      if (A.charAt(i) < firstChar) {
+        firstChar = A.charAt(i);
+        firstCharIndex = i;
+      }
+    }
+    for (int i = firstCharIndex + 1; i < A.length(); i++) {
+      if (A.charAt(i) < secondChar && i != firstCharIndex) {
+        secondChar = A.charAt(i);
+      }
+    }
+    return firstChar + "" + secondChar;
   }
 
   public static void main(String[] args) {
@@ -58,5 +73,7 @@ public class AQ1LittlePonnyAnd2Subsequence {
     System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input1A));
     String input2A = "ksdjgha";
     System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve(input2A));
+    System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve("scsecugqsb"));
+    System.out.println(new AQ1LittlePonnyAnd2Subsequence().solve("djjhibvetj"));
   }
 }

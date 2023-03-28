@@ -43,13 +43,13 @@ public class HWQ1NumberOfSquarefulArrays2 {
 //  Permutation are [1, 8, 17] and [17, 8, 1].
   public static void main(String[] args) {
     int[] input1A = {2, 2, 2};
-//    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input1A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input1A));
     int[] input2A = {1, 17, 8};
     System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input2A));
     int[] input3A = {41};
     System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input3A));
     int[] input4A = {2262, 238, 123, 21, 15, 21, 4, 60, 40, 60, 40};
-//    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input4A));
+    System.out.println(new HWQ1NumberOfSquarefulArrays2().solve(input4A));
   }
 
   public int solve(int[] A) {
@@ -61,7 +61,9 @@ public class HWQ1NumberOfSquarefulArrays2 {
       }
     }
     permutation(A, 0);
-//    System.out.println(result);
+//    for (int i = 0; i < result.size(); i++) {
+//      System.out.println(Arrays.toString(result.get(i)));
+//    }
     return result.size();
   }
 
@@ -71,21 +73,14 @@ public class HWQ1NumberOfSquarefulArrays2 {
   private void permutation(int[] A, int idx) {
     Map<Integer, Integer> map = new HashMap<>();
     if (idx == A.length) {
-      boolean isSquareFull = true;
-//      System.out.println(Arrays.toString(A));
-      result.add(A);
-//      for (int i = 0; i < A.length - 1; i++) {
-//        isSquareFull = isSquareFull && isSquareFull(A[i], A[i + 1]);
-//      }
-//      if (A.length > 1) {
-//        if (isSquareFull) {
-//          result.add(A);
-//        }
-//      } else {
-//        if (Math.sqrt(A[0]) == (long) Math.sqrt(A[0])) {
-//          result.add(A);
-//        }
-//      }
+      return;
+    }
+    if (idx == A.length - 1) {
+      if (isSquareFull(A[idx], A[idx - 1])) {
+        System.out.println(Arrays.toString(A));
+        int[] copiedArray = Arrays.copyOf(A, A.length);
+        result.add(copiedArray);
+      }
       return;
     }
     for (int i = idx; i < A.length; i++) {
@@ -94,13 +89,7 @@ public class HWQ1NumberOfSquarefulArrays2 {
       }
       map.put(A[i], 1);
       swap(A, idx, i);
-      System.out.println(Arrays.toString(A));
-      if (i + 1 < A.length) {
-        System.out.printf("A[%s]=%s - A[%s]=%s%n", i, A[i], i + 1, A[i + 1]);
-      } else {
-        System.out.printf("A[%s]=%s - A[%s]=%s%n", i, A[i], i + 1, "outofbound");
-      }
-      if (i + 1 < A.length && isSquareFull(A[i], A[i + 1])) {
+      if (idx == 0 || isSquareFull(A[idx], A[idx - 1])) {
         permutation(A, idx + 1);
       }
       swap(A, i, idx);
@@ -110,7 +99,7 @@ public class HWQ1NumberOfSquarefulArrays2 {
   private boolean isSquareFull(long Ai, long Aidx) {
     long sum = Ai + Aidx;
     boolean isSquareFull = Math.sqrt(sum) == (long) Math.sqrt(sum);
-    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
+//    System.out.printf("Ai=%s and Aidx=%s -> %s%n", Ai, Aidx, isSquareFull);
     return isSquareFull;
   }
 }
