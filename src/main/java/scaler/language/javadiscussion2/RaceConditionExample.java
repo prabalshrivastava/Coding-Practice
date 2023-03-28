@@ -49,7 +49,7 @@ class Counter {
 //super
 
 
-//  The keyword that can be used to prevent race condition in the given code is synchronized.
-//    In the code, the Counter class contains a static increment() method that increments the static count variable. When multiple threads execute this method simultaneously, a race condition can occur, resulting in an incorrect count.
-//    To prevent this race condition, we need to ensure that only one thread at a time can access the increment() method. This can be achieved by making the increment() method synchronized. When a method is synchronized, only one thread can execute it at a time, ensuring that the shared data is accessed and modified in a thread-safe manner.
-//    Therefore, the correct keyword that can be used to prevent race condition in this code is synchronized.
+//The keyword that can be used to prevent race condition in the given code is synchronized.
+//In the code, the Counter class contains a static increment() method that increments the static count variable. When multiple threads execute this method simultaneously, a race condition can occur, resulting in an incorrect count.
+//To prevent this race condition, we need to ensure that only one thread at a time can access the increment() method. This can be achieved by making the increment() method synchronized. When a method is synchronized, only one thread can execute it at a time, ensuring that the shared data is accessed and modified in a thread-safe manner.
+//Therefore, the correct keyword that can be used to prevent race condition in this code is synchronized.
