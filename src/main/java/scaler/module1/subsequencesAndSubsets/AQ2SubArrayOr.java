@@ -63,7 +63,27 @@ public class AQ2SubArrayOr {
   }
 
   public int solve(int[] A) {
-    return 0;
+    long finalSubarrayOrSum = 0;
+    //iterate over all the bits.
+    for (int i = 0; i < 32; i++) {
+      long totalSubarrayFormedByTheIthBit = ((long) A.length * (A.length + 1)) / 2;
+      long noOfContinuousZeros = 0;
+      for (int j = 0; j < A.length; j++) {
+        long currentNumber = A[j];
+        if ((currentNumber & (1 << i)) == 0) {
+          noOfContinuousZeros++;
+        } else {
+          totalSubarrayFormedByTheIthBit = totalSubarrayFormedByTheIthBit
+              - ((noOfContinuousZeros * (noOfContinuousZeros + 1)) / 2);
+          noOfContinuousZeros = 0;
+        }
+      }
+      totalSubarrayFormedByTheIthBit = totalSubarrayFormedByTheIthBit
+          - ((noOfContinuousZeros * (noOfContinuousZeros + 1)) / 2);
+      finalSubarrayOrSum =
+          (finalSubarrayOrSum + totalSubarrayFormedByTheIthBit * (1 << i)) % 1000000007;
+    }
+    return (int) (finalSubarrayOrSum % 1000000007);
   }
 
   public int solveBruteForce(int[] A) {
