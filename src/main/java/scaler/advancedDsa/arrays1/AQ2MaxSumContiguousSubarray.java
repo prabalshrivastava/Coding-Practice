@@ -26,22 +26,23 @@ public class AQ2MaxSumContiguousSubarray {
 //    Explanation 2:
 //    The subarray [4,-1,2,1] has the maximum possible sum of 6.
 
-    public int maxSubArray(final int[] A) {
-        int sum = 0;
-        int ans = Integer.MIN_VALUE;
-        for (int i = 0; i < A.length; i++) {
-            sum = sum + A[i];
-            if (sum < 0)
-                sum = 0;
-            ans = Integer.max(ans, sum);
-        }
-        return ans;
+  public int maxSubArray(final int[] A) {
+    int sum = 0;
+    int ans = Integer.MIN_VALUE;
+    for (int i = 0; i < A.length; i++) {
+      sum = sum + A[i];
+      ans = Math.max(ans,sum);
+      if (sum < 0) {
+        sum = 0;
+      }
     }
+    return ans;
+  }
 
-    public static void main(String[] args) {
-        int[] input1A = {1, 2, 3, 4, -10};
-        System.out.println(new AQ2MaxSumContiguousSubarray().maxSubArray(input1A));
-        int[] input2A = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-        System.out.println(new AQ2MaxSumContiguousSubarray().maxSubArray(input2A));
-    }
+  public static void main(String[] args) {
+    int[] input1A = {1, 2, 3, 4, -10};
+    System.out.println(new AQ2MaxSumContiguousSubarray().maxSubArray(input1A));
+    int[] input2A = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    System.out.println(new AQ2MaxSumContiguousSubarray().maxSubArray(input2A));
+  }
 }

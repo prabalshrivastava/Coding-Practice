@@ -1,9 +1,11 @@
 package scaler.advancedDsa.arrays1;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 public class HWQ2MaxNonNegativeSubArray {
-    //    Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
+
+  //    Given an array of integers, A of length N, find out the maximum sum sub-array of non negative numbers from A.
 //    The sub-array should be contiguous i.e., a sub-array created by choosing the second and fourth element and skipping the third element is invalid.
 //    Maximum sub-array is defined in terms of the sum of the elements in the sub-array.
 //    Find and return the required subarray.
@@ -32,12 +34,39 @@ public class HWQ2MaxNonNegativeSubArray {
 //    Explanation 2:
 //    The three sub-arrays are [10], [2, 3], [100].
 //    The answer is [100] as its sum is larger than the other two.
-    public static void main(String[] args) {
-        int[] input1A = new int[]{1, 2, 5, -7, 2, 3};
-        System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input1A)));
+  public static void main(String[] args) {
+    int[] input1A = new int[]{1, 2, 5, -7, 2, 3};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input1A)));
 
+    int[] input2A = new int[]{10, -1, 2, 3, -4, 100};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input2A)));
+
+  }
+
+  public int[] maxset(int[] A) {
+    int sum = 0;
+    int ans = Integer.MIN_VALUE;
+    int startIndex = -1;
+    int endIndex = -1;
+    for (int i = 0; i < A.length; i++) {
+      sum = sum + A[i];
+      if (sum > ans) {
+        ans = sum;
+        if (startIndex == -1) {
+          startIndex = i;
+        }
+        endIndex = i;
+      }
+      if (sum < 0) {
+        sum = 0;
+        startIndex = -1;
+        endIndex = -1;
+      }
     }
-    public int[] maxset(int[] A) {
-        return A;
+    for (int i = startIndex; i < endIndex + 1; i++) {
+      System.out.println(A[i]);
     }
+    //10, -1, 2, 3, -4, 100
+    return A;
+  }
 }

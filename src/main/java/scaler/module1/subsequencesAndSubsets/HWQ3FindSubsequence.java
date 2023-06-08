@@ -24,8 +24,30 @@ public class HWQ3FindSubsequence {
 //      "NO"
 
   public static void main(String[] args) {
+    String input1A = "bit";
+    String input1B = "dfbkjijgbbiihbmmt";
+    System.out.println(new HWQ3FindSubsequence().solve(input1A, input1B));
 
+    String input2A = "apple";
+    String input2B = "appel";
+    System.out.println(new HWQ3FindSubsequence().solve(input2A, input2B));
+    System.out.println(new HWQ3FindSubsequence().solve("gsb",
+        "jgksobmxtoxajbpbganpbgsdpgmhozuxlfxmwmabnfmcsmsjnvwgswzrmtmzsolifelqppadhaitwplcypwdcquwocfdahzrkyhqxtpwbypfgwpzmccwmtgefijeggnmzjqoockojxyngykdbflvntrfxymiqke"));
   }
+
   public String solve(String A, String B) {
+    int index = 0;
+    int i = 0;
+    for (; i < B.length(); i++) {
+      if (index < A.length() && A.charAt(index) == B.charAt(i)) {
+        System.out.println(A.charAt(index));
+        index++;
+      }
+    }
+    if (index == A.length()) {
+      return "YES";
+    } else {
+      return "NO";
+    }
   }
 }
