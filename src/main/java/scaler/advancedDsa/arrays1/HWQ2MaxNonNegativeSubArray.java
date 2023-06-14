@@ -1,7 +1,10 @@
 package scaler.advancedDsa.arrays1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 public class HWQ2MaxNonNegativeSubArray {
 
@@ -41,32 +44,74 @@ public class HWQ2MaxNonNegativeSubArray {
     int[] input2A = new int[]{10, -1, 2, 3, -4, 100};
     System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input2A)));
 
+    int[] input3A = new int[]{1, 2, 5, -7, 2, 5};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input3A)));
+
+    int[] input4A = new int[]{-1, -1, -1, -1, -1};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input4A)));
+
+    int[] input5A = new int[]{0, 0, -1, 0};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input5A)));
+
+    int[] input6A = new int[]{1967513926,1540383426,-1303455736,-521595368};
+    System.out.println(Arrays.toString(new HWQ2MaxNonNegativeSubArray().maxset(input6A)));
   }
 
   public int[] maxset(int[] A) {
-    int sum = 0;
-    int ans = Integer.MIN_VALUE;
-    int startIndex = -1;
+    long sum = 0;
+    long maxSum = Integer.MIN_VALUE;
+    int beginIndex = -1;
     int endIndex = -1;
-    for (int i = 0; i < A.length; i++) {
-      sum = sum + A[i];
-      if (sum > ans) {
-        ans = sum;
-        if (startIndex == -1) {
-          startIndex = i;
-        }
-        endIndex = i;
-      }
-      if (sum < 0) {
+    int bestBeginIndex = -1;
+    int bestEndIndex = -1;
+    int j = 0;
+    while (j < A.length && A[j] < 0) {
+      j++;
+    }
+    for (int i = j; i < A.length; i++) {
+      long sumWithElement = sum + (long)A[i];
+      if (A[i] < 0) {
         sum = 0;
-        startIndex = -1;
+        beginIndex = -1;
         endIndex = -1;
+      } else {
+        if (sumWithElement == maxSum) {
+          System.out.println(" i " + i + "------------>sumWithElement : "  + sumWithElement);
+          if (endIndex != -1) {
+            if (A[i] == 0) {
+              endIndex = i;
+              bestEndIndex = endIndex;
+            } else if (endIndex - beginIndex > bestBeginIndex - bestEndIndex) {
+              bestBeginIndex = beginIndex;
+              bestEndIndex = endIndex;
+            } else if (endIndex - beginIndex == bestBeginIndex - bestEndIndex
+                       && beginIndex < bestBeginIndex) {
+              bestBeginIndex = beginIndex;
+              bestEndIndex = endIndex;
+            }
+          }
+        } else if (sumWithElement > maxSum) {
+          System.out.println(" i " + i + "sumWithElement : "  + sumWithElement);
+          maxSum = sumWithElement;
+          if (beginIndex == -1) {
+            beginIndex = i;
+            bestBeginIndex = i;
+          }
+          endIndex = i;
+          bestEndIndex = i;
+        }
       }
     }
-    for (int i = startIndex; i < endIndex + 1; i++) {
-      System.out.println(A[i]);
+    List<Integer> list = new ArrayList<>();
+    if (bestBeginIndex > -1) {
+      for (int i = bestBeginIndex; i <= bestEndIndex; i++) {
+        list.add(A[i]);
+      }
     }
-    //10, -1, 2, 3, -4, 100
-    return A;
+    return list.stream().mapToInt(value -> value).toArray();
   }
 }
+
+//        System.out.println(
+//            "beginIndex = " + beginIndex + " endIndex = " + endIndex + " -- bestBeginIndex = "
+//            + bestBeginIndex + " bestEndIndex = " + bestEndIndex);

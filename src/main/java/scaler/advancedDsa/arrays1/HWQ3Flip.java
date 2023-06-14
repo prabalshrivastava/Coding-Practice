@@ -38,13 +38,58 @@ public class HWQ3Flip {
 //    Explanation 2:
 //    No operation can give us more than three 1s in final string. So, we return empty array [].
 
-    public static void main(String[] args) {
-        String input1A = "010";
-        System.out.println(Arrays.toString(new HWQ3Flip().flip(input1A)));
-        String input2A = "111";
-        System.out.println(Arrays.toString(new HWQ3Flip().flip(input2A)));
+  public static void main(String[] args) {
+    String input1A = "010";
+    System.out.println(Arrays.toString(new HWQ3Flip().flip(input1A)));
+    String input2A = "111";
+    System.out.println(Arrays.toString(new HWQ3Flip().flip(input2A)));
+    System.out.println(Arrays.toString(new HWQ3Flip().flip("1101010001")));
+    System.out.println(Arrays.toString(new HWQ3Flip().flip("0111000100010")));
+    System.out.println(Arrays.toString(new HWQ3Flip().flip("0101010100011101110100100100001001010111010")));
+    //1234567890123456789012345678901234567890123
+    //0101010100011101110100100100001001010111010
+//    0100001001010111010 -> 11
+//    0100100100001001010111010 -> 15
+  }
+
+  public int[] flip(String A) {
+    int zero = 0;
+    int one = 0;
+    int bi = -1;//begin index
+    int ei = -1;//end index
+    int bbi = -1;//best begin index
+    int bei = -1;//best end index
+    int maxZeroCount = Integer.MIN_VALUE;
+    for (int i = 0; i < A.length(); i++) {
+      if (A.charAt(i) == '0') {
+        zero++;
+        if (zero - one >= maxZeroCount) {
+          if (bi == -1) {
+            bi = i;
+          }
+          ei = i;
+          if (zero - one > maxZeroCount) {
+            bbi = bi;
+            bei = ei;
+          }
+          maxZeroCount = zero - one;
+        }
+      } else {
+        one++;
+        if (zero - one < 0) {
+          zero = 0;
+          one = 0;
+          bi = -1;
+          ei = -1;
+        } else {
+          ei++;
+        }
+      }
     }
-    public int[] flip(String A) {
-        return new int[0];
+    if (bbi != -1) {
+      return new int[]{bbi + 1, bei + 1};
+    } else {
+      return new int[]{};
     }
+  }
 }
