@@ -1,7 +1,5 @@
 package leetcode;
 
-import javax.swing.SpringLayout.Constraints;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder.Output;
 
 public class _1ConcatenationOfArray_1929 {
 //  Given an integer array nums of length n, you want to create an array ans of length 2n where ans[i] == nums[i] and ans[i + n] == nums[i] for 0 <= i < n (0-indexed).
@@ -25,10 +23,11 @@ public class _1ConcatenationOfArray_1929 {
 //      1 <= nums[i] <= 1000
 
   public int[] getConcatenation(int[] nums) {
-    int[] ans = new int[nums.length * 2];
-    for(int i=0;i<nums.length*2;i++){
-      ans[i] = nums[i%nums.length];
-    }
-    return ans;
+//    int[] ans = new int[nums.length * 2];
+//    for(int i=0;i<nums.length*2;i++){
+//      ans[i] = nums[i%nums.length];
+//    }
+//    return ans;
+    return null;
   }
 }
