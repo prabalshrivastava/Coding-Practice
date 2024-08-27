@@ -13,7 +13,13 @@ class DeleteGreatestValueInEachRow {
   }
 
   public static int deleteGreatestValue(int[][] grid) {
-    return usingMaxHeap(grid);
+    usingMaxHeap(grid);
+    return usingSorting(grid);
+  }
+
+  private static int usingSorting(int[][] grid) {
+
+    return 0;
   }
 
   private static int usingMaxHeap(int[][] grid) {
